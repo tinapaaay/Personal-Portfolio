@@ -83,10 +83,17 @@ section {
 
 .hero {
   min-height: 70vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr minmax(240px, 380px);
+  align-items: center;
+  gap: 2rem;
   border-bottom: none;
+}
+
+.hero-image {
+  width: min(100%, 380px);
+  justify-self: end;
+  align-self: end;
 }
 
 .eyebrow,
@@ -107,7 +114,7 @@ h3 {
 h1 {
   max-width: 700px;
   margin: 0.75rem 0 1rem;
-  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-size: clamp(2.5rem, 5vw, 4rem);
 }
 
 h2 {
@@ -249,4 +256,21 @@ footer {
   section {
     padding: 3rem 0;
   }
+
+  .hero {
+  grid-template-columns: 1fr;
+  padding-top: 3rem;
+  text-align: center;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-image {
+  width: min(85%, 320px);
+  justify-self: center;
+}
 }
