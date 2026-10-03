@@ -14,7 +14,12 @@
 <body>
   <header class="site-header">
     <nav class="navbar" aria-label="Main navigation">
-      <a class="logo" href="index.html">CJE</a>
+      <a class="logo" href="index.html" aria-label="Tinapay home">
+      <img
+        src="images/tinapay_logo.png"
+        alt="Tinapay"
+      >
+      </a>
 
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -33,8 +38,51 @@
       <p>My learning projects in web development.</p>
     </section>
 
-    <!-- Featured Projects will go above this section
-         after you rebuild your freeCodeCamp projects. -->
+    <section class="projects-section" aria-labelledby="featured-projects-heading">
+      <h2 id="featured-projects-heading">Featured Projects</h2>
+      <p class="section-intro">
+        Larger projects where I explore complete layouts, visual storytelling,
+        responsive design, and meaningful content.
+      </p>
+
+      <div class="project-grid">
+        <article class="project-card">
+          <p class="project-number">Featured 01</p>
+          <h3>Norman Borlaug Tribute Page</h3>
+          <p>
+            An editorial-style tribute page with a photo hero, quote section,
+            biography timeline, and a responsive layout inspired by a magazine
+            feature.
+          </p>
+
+          <a
+            href="https://github.com/tinapaaay/Tribute-Page"
+            target="_blank"
+            rel="noopener"
+          >
+            View Repository →
+          </a>
+        </article>
+
+        <article class="project-card">
+          <p class="project-number">Featured 02</p>
+          <h3>CSS Layout Field Notes</h3>
+          <p>
+            A technical documentation page about CSS layouts with a sticky sidebar,
+            smooth anchor navigation, expandable tips, section highlighting, and
+            responsive code blocks.
+          </p>
+
+          <a
+            href="https://github.com/tinapaaay/Technical-Documentation"
+            target="_blank"
+            rel="noopener"
+          >
+            View Repository →
+          </a>
+        </article>
+      </div>
+    </section>
 
     <section class="projects-section" aria-labelledby="ui-components-heading">
       <h2 id="ui-components-heading">UI Components & Practice</h2>

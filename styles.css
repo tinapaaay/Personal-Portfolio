@@ -52,6 +52,12 @@ body {
   letter-spacing: 0.08em;
 }
 
+.logo img {
+  display: block;
+  width: 125px;
+  height: auto;
+}
+
 .navbar ul {
   display: flex;
   flex-wrap: wrap;
