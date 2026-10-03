@@ -200,8 +200,19 @@ button:hover {
   background-color: var(--white);
 }
 
-.project-card h2 {
-  margin-top: 0.5rem;
+.project-card h3 {
+  margin: 0.5rem 0 1rem;
+  color: var(--dark-green);
+  font-size: 1.45rem;
+}
+
+.projects-section > h2 {
+  margin-bottom: 0.5rem;
+}
+
+.section-intro {
+  margin-bottom: 2rem;
+  color: var(--muted);
 }
 
 .contact-section {
