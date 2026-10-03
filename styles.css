@@ -300,6 +300,20 @@ button:hover {
   list-style: none;
 }
 
+.project-preview {
+  width: 100%;
+  height: 220px;
+  margin: -0.25rem 0 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  object-fit: cover;
+  object-position: top;
+}
+
+.featured-main .project-preview {
+  height: 280px;
+}
+
 .project-tags li {
   padding: 0.35rem 0.6rem;
   border-radius: 99px;
