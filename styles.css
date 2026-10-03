@@ -296,7 +296,7 @@ button:hover {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin: 1.5rem 0;
+  margin: auto 0 1.5rem;
   list-style: none;
 }
 
@@ -325,6 +325,68 @@ button:hover {
 
 .featured-card .duration {
   margin-top: auto;
+}
+
+.home-featured {
+  padding: 5rem 0;
+}
+
+.home-project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.home-project-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background-color: var(--white);
+  box-shadow: 5px 5px 0 #e4ead9;
+}
+
+.home-project-card h3 {
+  margin: 0.5rem 0 0.8rem;
+  color: var(--dark-green);
+  font-size: 1.35rem;
+}
+
+.home-project-card > p:not(.project-number) {
+  color: var(--muted);
+}
+
+.home-project-card .project-preview {
+  height: 155px;
+  margin: 0 0 1.25rem;
+}
+
+.home-project-card .project-tags {
+  margin: auto 0 1.25rem;
+}
+
+.all-projects-button {
+  margin-top: 2rem;
+}
+
+.skills-section {
+  padding-bottom: 2.5rem;
+}
+
+.home-featured {
+  padding: 2.5rem 0 5rem;
+}
+
+@media (max-width: 800px) {
+  .home-project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-project-card .project-preview {
+    height: 220px;
+  }
 }
 
 @media (max-width: 650px) {
