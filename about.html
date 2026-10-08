@@ -10,9 +10,12 @@
     href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap"
     rel="stylesheet"
   >
-  
+
   <title>About | Christine Joy Espiritu</title>
-  <meta name="description" content="About Christine Joy Espiritu, her education, experience, and goals.">
+  <meta
+    name="description"
+    content="About Christine Joy Espiritu, a Computer Science student, live host, and aspiring frontend developer."
+  >
 
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -22,10 +25,7 @@
   <header class="site-header">
     <nav class="navbar" aria-label="Main navigation">
       <a class="logo" href="index.html" aria-label="Tinapay home">
-      <img
-        src="images/tinapay_logo.png"
-        alt="Tinapay"
-      >
+        <img src="images/tinapay_logo.png" alt="Tinapay">
       </a>
 
       <ul>
@@ -39,67 +39,155 @@
   </header>
 
   <main>
-    <section class="page-heading">
+    <section class="about-hero">
       <p class="eyebrow">Get to know me</p>
-      <h1>About Me</h1>
-      <p>
-        I am a Computer Science student who enjoys learning, organizing ideas,
-        and turning creative concepts into websites.
+
+      <h1>I like turning ideas into things people can explore.</h1>
+
+      <p class="about-lead">
+        Hi, I’m Christine Joy Espiritu—also known as Tinapay. I am a Computer
+        Science student and live host who enjoys building thoughtful web
+        experiences through technology, creativity, and clear communication.
       </p>
     </section>
 
-    <section>
-      <h2>Experience</h2>
+    <section class="about-statement" aria-labelledby="point-of-view-heading">
+      <p class="eyebrow">My point of view</p>
 
-      <article class="timeline-item">
-        <h3>Live Host — Nexplay</h3>
-        <p class="duration">February 2026 – Present</p>
-        <ul>
-          <li>Host live selling and engagement sessions for partnered brands.</li>
-          <li>Build audience interaction through real-time communication.</li>
-          <li>Monitor live metrics and adjust engagement strategies.</li>
+      <blockquote id="point-of-view-heading">
+        I believe good digital experiences should be useful first, but they
+        should also feel warm, clear, and made with care.
+      </blockquote>
+    </section>
+
+    <section class="about-columns">
+      <div>
+        <p class="eyebrow">Beyond the screen</p>
+        <h2>Creativity is part of how I learn.</h2>
+      </div>
+
+      <div class="about-copy">
+        <p>
+          I enjoy organizing ideas, exploring design, and giving meaning to
+          the things I create. My experience as a live host has also taught me
+          how to communicate clearly, adjust quickly, and understand what keeps
+          people engaged.
+        </p>
+
+        <p>
+          Outside of coding, I enjoy learning Korean, exploring art and visual
+          storytelling, and building small creative routines that help me stay
+          curious.
+        </p>
+
+        <ul class="about-interests" aria-label="Personal interests">
+          <li>Live hosting</li>
+          <li>Visual storytelling</li>
+          <li>UI/UX design</li>
+          <li>Korean learning</li>
+          <li>Creative projects</li>
         </ul>
+      </div>
+    </section>
+
+    <section class="growth-section" aria-labelledby="growing-heading">
+      <p class="eyebrow">Currently growing</p>
+      <h2 id="growing-heading">Where I am headed</h2>
+
+      <div class="growth-list">
+        <article class="growth-item">
+          <p class="growth-label">Now</p>
+          <p>Building JavaScript projects and strengthening my frontend skills.</p>
+        </article>
+
+        <article class="growth-item">
+          <p class="growth-label">Next</p>
+          <p>Learning AI-assisted development and improving my UI/UX thinking.</p>
+        </article>
+
+        <article class="growth-item">
+          <p class="growth-label">Always</p>
+          <p>Creating work that feels useful, warm, and personal.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="about-history" aria-labelledby="experience-heading">
+      <p class="eyebrow">Work history</p>
+      <h2 id="experience-heading">Experience</h2>
+
+      <article class="experience-row">
+        <p class="experience-date">2026 — Present</p>
+
+        <div>
+          <p class="experience-company">Nexplay</p>
+          <h3>Live Host</h3>
+          <p>
+            Host live selling and engagement sessions for partnered brands,
+            build real-time audience interaction, and adjust engagement
+            strategies using live metrics.
+          </p>
+        </div>
       </article>
 
-      <article class="timeline-item">
-        <h3>Live Host / Operator — Unicharm</h3>
-        <p class="duration">June 2025 – January 2026</p>
-        <ul>
-          <li>Managed product listings, carts, and customer interactions during live sessions.</li>
-          <li>Monitored analytics and improved engagement strategies.</li>
-          <li>Maintained an organized digital workflow and inventory tracking.</li>
-        </ul>
+      <article class="experience-row">
+        <p class="experience-date">2025 — 2026</p>
+
+        <div>
+          <p class="experience-company">Unicharm</p>
+          <h3>Live Host / Operator</h3>
+          <p>
+            Managed product listings, carts, and customer interactions during
+            live sessions while maintaining organized workflows and tracking
+            engagement analytics.
+          </p>
+        </div>
       </article>
 
-      <article class="timeline-item">
-        <h3>Service Crew — McDonald's</h3>
-        <p class="duration">April 2023 – October 2023</p>
-        <ul>
-          <li>Delivered customer service and resolved concerns efficiently.</li>
-          <li>Maintained accuracy and attention to detail in a fast-paced environment.</li>
-        </ul>
+      <article class="experience-row">
+        <p class="experience-date">2023</p>
+
+        <div>
+          <p class="experience-company">McDonald's</p>
+          <h3>Service Crew</h3>
+          <p>
+            Delivered customer service, resolved concerns efficiently, and
+            maintained accuracy in a fast-paced environment.
+          </p>
+        </div>
       </article>
     </section>
 
-    <section>
-      <h2>Education</h2>
+    <section class="about-history" aria-labelledby="education-heading">
+      <p class="eyebrow">Academic path</p>
+      <h2 id="education-heading">Education</h2>
 
-      <article class="timeline-item">
-        <h3>Far Eastern University</h3>
-        <p>BS Computer Science, specializing in Software Engineering</p>
-        <p class="duration">2023 – Present</p>
+      <article class="experience-row">
+        <p class="experience-date">2023 — Present</p>
+
+        <div>
+          <p class="experience-company">Far Eastern University</p>
+          <h3>BS Computer Science</h3>
+          <p>Specializing in Software Engineering.</p>
+        </div>
       </article>
 
-      <article class="timeline-item">
-        <h3>Polytechnic University of the Philippines</h3>
-        <p>Senior High School</p>
-        <p class="duration">2021 – 2023</p>
+      <article class="experience-row">
+        <p class="experience-date">2021 — 2023</p>
+
+        <div>
+          <p class="experience-company">Polytechnic University of the Philippines</p>
+          <h3>Senior High School</h3>
+        </div>
       </article>
 
-      <article class="timeline-item">
-        <h3>San Juan City Science High School</h3>
-        <p>Junior High School</p>
-        <p class="duration">2016 – 2021</p>
+      <article class="experience-row">
+        <p class="experience-date">2016 — 2021</p>
+
+        <div>
+          <p class="experience-company">San Juan City Science High School</p>
+          <h3>Junior High School</h3>
+        </div>
       </article>
     </section>
   </main>
