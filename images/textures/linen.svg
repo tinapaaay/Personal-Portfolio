@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000"><filter id="f" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency="0.0018 0.0032" numOctaves="2" seed="21" stitchTiles="stitch" result="n"/>
+<feDiffuseLighting in="n" surfaceScale="5" lighting-color="#fffaf0" result="l"><feDistantLight azimuth="250" elevation="72"/></feDiffuseLighting>
+<feFlood flood-color="#fff6e6" result="c"/><feBlend in="l" in2="c" mode="multiply"/></filter>
+<filter id="h" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.04 1.4" numOctaves="2" seed="22" stitchTiles="stitch"/>
+<feColorMatrix values="0 0 0 0 0.45  0 0 0 0 0.38  0 0 0 0 0.28  0 0 0 -1.6 0.95"/></filter>
+<filter id="v" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="1.4 0.04" numOctaves="2" seed="23" stitchTiles="stitch"/>
+<feColorMatrix values="0 0 0 0 0.45  0 0 0 0 0.38  0 0 0 0 0.28  0 0 0 -1.6 0.92"/></filter>
+<rect width="100%" height="100%" filter="url(#f)"/>
+<rect width="100%" height="100%" filter="url(#h)" opacity=".22"/>
+<rect width="100%" height="100%" filter="url(#v)" opacity=".16"/></svg>

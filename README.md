@@ -14,16 +14,13 @@ This project is part of the [Personal Portfolio project on roadmap.sh](https://r
 
 ## Features
 
-- Zen, minimalist design: washi-paper tones, ink typography, and accents from the Tinapay logo
-- Scroll animations: text reveals, words that fill with ink, a self-drawing timeline, and a pinned horizontal project gallery
-- Hand-drawn ensō circle around the hero portrait
-- Hide-on-scroll navigation with a full-screen mobile menu
-- Soft page transitions and a reduced-motion fallback
+- Earthy, zen-inspired design: warm ivory, taupe, terracotta, olive green, and dark wood
+- Hand-made textures (raked sand, plaster, clay, linen, wood grain) drawn with SVG filters in `images/textures/`
+- Arches, pebbles, and circles as image frames, with drifting leaf shadows
+- Opening loader with a percentage counter and a terracotta curtain between pages
+- Scroll animations: word-by-word headings, ink-fill quotes, material bands that open as you scroll, parallax shapes, and a scroll meter
+- Custom cursor on desktop, full-screen mobile menu, and a reduced-motion fallback
 - Responsive layout for desktop and mobile screens
-- Styled contact form
-- Personal information, education, and work experience
-- Project links
-- Semantic HTML structure
 
 ## Built With
 

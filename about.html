@@ -5,36 +5,72 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>About | Christine Joy Espiritu</title>
-  <meta
-    name="description"
-    content="About Christine Joy Espiritu, a Computer Science student, live host, and aspiring frontend developer."
-  >
+  <meta name="description" content="About Christine Joy Espiritu, a Computer Science student, live host, and aspiring frontend developer.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&family=Jost:wght@300;400;500&display=swap"
     rel="stylesheet"
   >
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="favicon_io/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="favicon_io/apple-touch-icon.png">
 
-  <script>document.documentElement.classList.add("js");</script>
+  <script>
+    (function () {
+      var d = document.documentElement;
+      d.classList.add("js");
+      try {
+        if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        if (sessionStorage.getItem("tp-nav")) {
+          sessionStorage.removeItem("tp-nav");
+          d.classList.add("from-nav");
+        } else if (!sessionStorage.getItem("tp-seen")) {
+          d.classList.add("show-loader");
+        }
+      } catch (e) {}
+    })();
+  </script>
   <script src="script.js" defer></script>
 </head>
 
 <body id="top">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="sprig" viewBox="0 0 300 200">
+      <path d="M8 192 Q120 150 292 28" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+      <g fill="currentColor">
+        <path d="M0 0 C12 -10 30 -9 46 0 C30 9 12 10 0 0Z" transform="translate(48 176) rotate(-80)"/>
+        <path d="M0 0 C12 -10 30 -9 46 0 C30 9 12 10 0 0Z" transform="translate(70 168) rotate(12)"/>
+        <path d="M0 0 C12 -10 30 -9 46 0 C30 9 12 10 0 0Z" transform="translate(100 155) rotate(-74)"/>
+        <path d="M0 0 C12 -10 30 -9 46 0 C30 9 12 10 0 0Z" transform="translate(128 141) rotate(8)"/>
+        <path d="M0 0 C12 -10 30 -9 46 0 C30 9 12 10 0 0Z" transform="translate(160 122) rotate(-70)"/>
+        <path d="M0 0 C12 -10 30 -9 46 0 C30 9 12 10 0 0Z" transform="translate(190 103) rotate(4)"/>
+        <path d="M0 0 C12 -10 30 -9 46 0 C30 9 12 10 0 0Z" transform="translate(218 82) rotate(-66)"/>
+        <path d="M0 0 C12 -10 30 -9 46 0 C30 9 12 10 0 0Z" transform="translate(246 62) rotate(0)"/>
+        <path d="M0 0 C12 -10 30 -9 46 0 C30 9 12 10 0 0Z" transform="translate(290 30) rotate(-34)"/>
+      </g>
+    </symbol>
+  </svg>
+
+  <div class="loader" aria-hidden="true">
+    <div class="loader-arch tex-clay"></div>
+    <div class="loader-foot">
+      <div>
+        <p class="mono">Loading experience</p>
+        <p class="mono">Christine Joy Espiritu — Tinapay</p>
+      </div>
+      <p class="loader-num">0%</p>
+    </div>
+  </div>
+  <div class="curtain" aria-hidden="true"></div>
+
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
     <a class="logo" href="index.html" aria-label="Tinapay home">
       <img src="images/tinapay_logo.png" alt="Tinapay">
     </a>
-
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-      <span class="label">Menu</span><span class="lines" aria-hidden="true"></span>
-    </button>
 
     <nav id="site-nav" class="site-nav" aria-label="Main navigation">
       <ul>
@@ -44,42 +80,75 @@
         <li><a href="articles.html"><span class="nav-index">04</span>Articles</a></li>
         <li><a href="contact.html"><span class="nav-index">05</span>Contact</a></li>
       </ul>
+      <p class="nav-extra mono">Computer Science Student · Live Host</p>
     </nav>
+
+    <a class="header-cta line-link" href="contact.html">Let’s talk <span class="arrow" aria-hidden="true">→</span></a>
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="label">Menu</span><span class="lines" aria-hidden="true"></span>
+    </button>
   </header>
 
-  <div class="progress" aria-hidden="true"><span></span></div>
+  <div class="scroll-meter" aria-hidden="true">
+    <span class="mono">Scrolled</span>
+    <b>0%</b>
+    <i></i>
+  </div>
 
   <main id="main">
-    <section class="page-hero wrap">
-      <p class="eyebrow" data-reveal>Get to know me</p>
-      <h1 class="long" data-split style="--d: 0.15s">I like turning ideas into things people can explore.</h1>
-      <p class="lead" data-reveal style="--d: 0.6s">
-        Hi, I’m <strong>Christine Joy Espiritu</strong>, also known as Tinapay. I am a Computer
-        Science student and live host who enjoys building thoughtful web
-        experiences through technology, creativity, and clear communication.
-      </p>
+
+    <section class="page-hero tone tone-linen">
+      <div class="leaves left" aria-hidden="true"></div>
+      <div class="wrap page-hero-inner">
+        <div>
+          <p class="label" data-reveal>Get to know me</p>
+          <h1 class="display long" data-split style="--d: 0.1s">Hi, I’m Christine Joy, also known as <em>Tinapay.</em></h1>
+          <p class="lead" data-reveal style="--d: 0.5s">
+            I am a Computer Science student and live host who enjoys building
+            thoughtful web experiences through technology, creativity, and clear
+            communication.
+          </p>
+        </div>
+        <div class="page-hero-visual">
+          <div class="shape arch tex-olive" data-reveal="rise" data-speed="0.04">
+            <div class="leaves" aria-hidden="true"></div>
+            <img class="portrait" src="images/4.png" alt="Christine Joy Espiritu wearing glasses and a black blazer" width="1145" height="1374">
+          </div>
+          <div class="mini shape circle tex-sand ring" data-reveal="pop" style="--d: 0.4s" aria-hidden="true"></div>
+          <div class="badge clay" data-reveal="pop" style="--d: 0.6s" aria-hidden="true">
+            <svg viewBox="0 0 100 100" aria-hidden="true">
+              <defs><path id="b-about" d="M50,50 m-40,0 a40,40 0 1,1 80,0 a40,40 0 1,1 -80,0"/></defs>
+              <text><textPath href="#b-about" textLength="248" lengthAdjust="spacing">Live host · Developer · Learner ·</textPath></text>
+            </svg>
+            <span class="badge-core">Hello</span>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <div class="wrap"><div class="rule" data-reveal="line"></div></div>
-
-    <section class="quote-block" aria-labelledby="point-of-view-heading">
+    <section class="statement tone tone-clay" aria-labelledby="point-of-view-heading">
+      <div class="glow" style="top: -30vmax; left: 30%" aria-hidden="true"></div>
+      <div class="leaves" aria-hidden="true"></div>
       <div class="wrap">
-        <p class="eyebrow" data-reveal>My point of view</p>
+        <p class="label" data-reveal>My point of view</p>
         <blockquote id="point-of-view-heading" data-fill>
           I believe good digital experiences should be useful first, but they
-          should also feel warm, clear, and made with care.
+          should also feel <em>warm, clear, and made with care.</em>
         </blockquote>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section tone tone-linen">
       <div class="wrap split">
-        <div>
-          <p class="eyebrow" data-reveal>Beyond the screen</p>
-          <h2 data-split>Creativity is part of how I learn.</h2>
+        <div class="split-visual">
+          <div class="pebble shape tex-sand" data-reveal="rise" aria-hidden="true"></div>
+          <p class="float-word" data-reveal style="--d: 0.4s" aria-hidden="true">curious</p>
+          <div class="circle shape tex-clay ring" data-reveal="pop" style="--d: 0.3s" aria-hidden="true"></div>
         </div>
-
-        <div class="copy" data-stagger="0.12">
+        <div class="copy">
+          <p class="label" data-reveal>Beyond the screen</p>
+          <h2 class="title" data-split>Creativity is part of how I <em>learn.</em></h2>
           <p data-reveal>
             I enjoy organizing ideas, exploring design, and giving meaning to
             the things I create. My experience as a live host has also taught me
@@ -92,148 +161,120 @@
             curious.
           </p>
           <ul class="interests" aria-label="Personal interests" data-reveal>
-            <li>Live hosting</li>
-            <li>Visual storytelling</li>
-            <li>UI/UX design</li>
-            <li>Korean learning</li>
-            <li>Creative projects</li>
+            <li>Live hosting</li><li>Visual storytelling</li><li>UI/UX design</li><li>Korean learning</li><li>Creative projects</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="growing-heading">
+    <section class="section tone tone-taupe" aria-labelledby="growing-heading">
+      <div class="leaves left" aria-hidden="true"></div>
       <div class="wrap">
         <div class="section-head">
-          <p class="section-mark" data-reveal>Currently growing</p>
-          <h2 class="section-title" id="growing-heading" data-split>Where I am headed</h2>
+          <p class="label" data-reveal>Currently growing</p>
+          <h2 class="title" id="growing-heading" data-split>Where I am <em>headed</em></h2>
         </div>
-
         <div class="growth" data-stagger="0.15">
           <article class="growth-item" data-reveal>
-            <p class="growth-label">Now</p>
+            <p class="growth-shape shape arch tex-clay">Now</p>
             <p>Building JavaScript projects and strengthening my frontend skills.</p>
           </article>
           <article class="growth-item" data-reveal>
-            <p class="growth-label">Next</p>
+            <p class="growth-shape shape circle tex-olive">Next</p>
             <p>Learning AI-assisted development and improving my UI/UX thinking.</p>
           </article>
           <article class="growth-item" data-reveal>
-            <p class="growth-label">Always</p>
+            <p class="growth-shape shape pebble tex-sand">Always</p>
             <p>Creating work that feels useful, warm, and personal.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="experience-heading">
+    <section class="section tone tone-linen" aria-labelledby="experience-heading">
       <div class="wrap">
         <div class="section-head">
-          <p class="section-mark" data-reveal>Work history</p>
-          <h2 class="section-title" id="experience-heading" data-split>Experience</h2>
+          <p class="label" data-reveal>Work history</p>
+          <h2 class="title" id="experience-heading" data-split>Experience</h2>
         </div>
-
         <div class="rows">
           <article class="row" data-reveal>
-            <p class="row-date">2026 — Present</p>
-            <div>
-              <p class="row-org">Nexplay</p>
-              <h3>Live Host</h3>
-              <p>
-                Host live selling and engagement sessions for partnered brands,
-                build real-time audience interaction, and adjust engagement
-                strategies using live metrics.
-              </p>
-            </div>
+            <div><p class="num-line">01</p><p class="mono row-date">2026 — Present</p></div>
+            <div><span class="mono row-org">Nexplay</span><h3>Live Host</h3></div>
+            <p>Host live selling and engagement sessions for partnered brands, build real-time audience interaction, and adjust engagement strategies using live metrics.</p>
           </article>
-
           <article class="row" data-reveal>
-            <p class="row-date">2025 — 2026</p>
-            <div>
-              <p class="row-org">Unicharm</p>
-              <h3>Live Host / Operator</h3>
-              <p>
-                Managed product listings, carts, and customer interactions during
-                live sessions while maintaining organized workflows and tracking
-                engagement analytics.
-              </p>
-            </div>
+            <div><p class="num-line">02</p><p class="mono row-date">2025 — 2026</p></div>
+            <div><span class="mono row-org">Unicharm</span><h3>Live Host / Operator</h3></div>
+            <p>Managed product listings, carts, and customer interactions during live sessions while maintaining organized workflows and tracking engagement analytics.</p>
           </article>
-
           <article class="row" data-reveal>
-            <p class="row-date">2023</p>
-            <div>
-              <p class="row-org">McDonald's</p>
-              <h3>Service Crew</h3>
-              <p>
-                Delivered customer service, resolved concerns efficiently, and
-                maintained accuracy in a fast-paced environment.
-              </p>
-            </div>
+            <div><p class="num-line">03</p><p class="mono row-date">2023</p></div>
+            <div><span class="mono row-org">McDonald's</span><h3>Service Crew</h3></div>
+            <p>Delivered customer service, resolved concerns efficiently, and maintained accuracy in a fast-paced environment.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="education-heading">
+    <section class="section tone tone-olive" aria-labelledby="education-heading">
+      <div class="glow" style="bottom: -30vmax; right: -20vmax" aria-hidden="true"></div>
+      <div class="leaves" aria-hidden="true"></div>
       <div class="wrap">
         <div class="section-head">
-          <p class="section-mark" data-reveal>Academic path</p>
-          <h2 class="section-title" id="education-heading" data-split>Education</h2>
+          <p class="label" data-reveal>Academic path</p>
+          <h2 class="title" id="education-heading" data-split>Education</h2>
         </div>
-
         <div class="rows">
           <article class="row" data-reveal>
-            <p class="row-date">2023 — Present</p>
-            <div>
-              <p class="row-org">Far Eastern University</p>
-              <h3>BS Computer Science</h3>
-              <p>Specializing in Software Engineering.</p>
-            </div>
+            <div><p class="num-line">01</p><p class="mono row-date">2023 — Present</p></div>
+            <div><span class="mono row-org">Far Eastern University</span><h3>BS Computer Science</h3></div>
+            <p>Specializing in Software Engineering.</p>
           </article>
-
           <article class="row" data-reveal>
-            <p class="row-date">2021 — 2023</p>
-            <div>
-              <p class="row-org">Polytechnic University of the Philippines</p>
-              <h3>Senior High School</h3>
-            </div>
+            <div><p class="num-line">02</p><p class="mono row-date">2021 — 2023</p></div>
+            <div><span class="mono row-org">Polytechnic University of the Philippines</span><h3>Senior High School</h3></div>
+            <p></p>
           </article>
-
           <article class="row" data-reveal>
-            <p class="row-date">2016 — 2021</p>
-            <div>
-              <p class="row-org">San Juan City Science High School</p>
-              <h3>Junior High School</h3>
-            </div>
+            <div><p class="num-line">03</p><p class="mono row-date">2016 — 2021</p></div>
+            <div><span class="mono row-org">San Juan City Science High School</span><h3>Junior High School</h3></div>
+            <p></p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="closing">
-      <div class="wrap">
-        <p class="eyebrow" data-reveal>Let’s connect</p>
-        <h2 data-split>See what I have been <em>building.</em></h2>
-        <div data-reveal>
-          <a class="pill-button" href="projects.html">View My Projects <span aria-hidden="true">→</span></a>
+    <section class="closing tone tone-wood" aria-labelledby="closing-heading">
+      <div class="glow" style="top: -20vmax; right: -10vmax" aria-hidden="true"></div>
+      <div class="leaves left" aria-hidden="true"></div>
+      <div class="wrap closing-grid">
+        <div>
+          <p class="label" data-reveal>Selected work</p>
+          <h2 class="display" id="closing-heading" data-split>See what I have been <em>building.</em></h2>
+          <div data-reveal><a class="pill" href="projects.html">View my projects <span aria-hidden="true">→</span></a></div>
+        </div>
+        <div class="closing-visual">
+          <div class="closing-arch shape arch tex-clay ring" data-reveal="rise"><div class="leaves" aria-hidden="true"></div></div>
+          <svg class="sprig" aria-hidden="true" data-speed="0.08"><use href="#sprig"/></svg>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="wrap footer-inner">
-      <div>
-        <p class="footer-mark">Tinapay</p>
-        <small>© 2026 Christine Joy Espiritu. All rights reserved.</small>
+    <div class="wrap">
+      <div class="footer-inner">
+        <p class="mono">© 2026 Christine Joy Espiritu</p>
+        <ul class="footer-links">
+          <li><a href="https://www.linkedin.com/in/tinapay/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/tinapaaay" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://www.instagram.com/_tina_pay/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com/01eyojenitsirhc/" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+        <a class="to-top" href="#top">Back to top ↑</a>
       </div>
-      <ul class="footer-links">
-        <li><a href="https://www.linkedin.com/in/tinapay/" target="_blank" rel="noopener">LinkedIn</a></li>
-        <li><a href="https://github.com/tinapaaay" target="_blank" rel="noopener">GitHub</a></li>
-        <li><a href="https://www.instagram.com/_tina_pay/" target="_blank" rel="noopener">Instagram</a></li>
-        <li><a href="#top">Back to top ↑</a></li>
-      </ul>
+      <p class="footer-word" aria-hidden="true">tinapay</p>
     </div>
   </footer>
 </body>

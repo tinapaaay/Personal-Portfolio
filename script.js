@@ -1,41 +1,96 @@
-/* Tinapay portfolio — quiet scroll motion, no libraries. */
+/* Tinapay portfolio — motion, no libraries.
+   The <head> of each page sets html.js and decides whether the loader
+   (first visit this session) or the clay curtain (moving between pages) shows. */
 
 (function () {
   const root = document.documentElement;
-  root.classList.add("js");
-
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const clamp = (n, min, max) => Math.min(Math.max(n, min), max);
+
+  const store = {
+    get(key) {
+      try { return sessionStorage.getItem(key); } catch (e) { return null; }
+    },
+    set(key, value) {
+      try { sessionStorage.setItem(key, value); } catch (e) { /* private mode */ }
+    },
+  };
 
   document.addEventListener("DOMContentLoaded", () => {
     splitWords("[data-split]", "w");
     splitWords("[data-fill]", "f");
-    setupReveals();
     setupHeader();
     setupMenu();
     setupPageTransitions();
-    if (!reduceMotion) setupScrollScenes();
+
+    if (reduceMotion) {
+      root.classList.remove("show-loader", "from-nav");
+      document.querySelectorAll("[data-reveal], [data-split]").forEach((el) => el.classList.add("is-in"));
+      return;
+    }
+
+    setupCursor();
+    setupScrollScenes();
+    intro().then(setupReveals);
   });
 
-  /* Wrap every word in spans so it can be animated on its own.
-     Keeps inner elements such as <em>, <strong> and <br>. */
+  /* First visit: count to 100 while an arch fills. Between pages: lift the curtain. */
+  function intro() {
+    return new Promise((resolve) => {
+      if (root.classList.contains("show-loader")) {
+        const loader = document.querySelector(".loader");
+        const num = loader && loader.querySelector(".loader-num");
+        const arch = loader && loader.querySelector(".loader-arch");
+        if (!loader) { resolve(); return; }
+
+        const duration = 1900;
+        const start = performance.now();
+        const tick = (now) => {
+          const t = clamp((now - start) / duration, 0, 1);
+          const eased = 1 - Math.pow(1 - t, 3);
+          const value = Math.round(eased * 100);
+          if (num) num.textContent = `${value}%`;
+          if (arch) arch.style.setProperty("--fill", `${100 - value}%`);
+          if (t < 1) {
+            requestAnimationFrame(tick);
+          } else {
+            store.set("tp-seen", "1");
+            setTimeout(() => {
+              loader.classList.add("is-done");
+              setTimeout(resolve, 250);
+              setTimeout(() => root.classList.remove("show-loader"), 1300);
+            }, 250);
+          }
+        };
+        requestAnimationFrame(tick);
+        return;
+      }
+
+      if (root.classList.contains("from-nav")) {
+        requestAnimationFrame(() => requestAnimationFrame(() => root.classList.add("is-ready")));
+        setTimeout(resolve, 450);
+        return;
+      }
+
+      store.set("tp-seen", "1");
+      resolve();
+    });
+  }
+
+  /* Wrap words in spans (keeps <em>, <strong>, <br>). */
   function splitWords(selector, kind) {
     document.querySelectorAll(selector).forEach((el) => {
       let index = 0;
-
       const walk = (node) => {
         [...node.childNodes].forEach((child) => {
           if (child.nodeType === Node.TEXT_NODE) {
-            const parts = child.textContent.split(/(\s+)/);
             const frag = document.createDocumentFragment();
-
-            parts.forEach((part) => {
+            child.textContent.split(/(\s+)/).forEach((part) => {
               if (!part) return;
               if (/^\s+$/.test(part)) {
                 frag.appendChild(document.createTextNode(" "));
                 return;
               }
-
               if (kind === "w") {
                 const outer = document.createElement("span");
                 const inner = document.createElement("span");
@@ -52,23 +107,18 @@
                 frag.appendChild(span);
               }
             });
-
             child.replaceWith(frag);
           } else if (child.nodeType === Node.ELEMENT_NODE && child.tagName !== "BR") {
             walk(child);
           }
         });
       };
-
-      // Screen readers keep reading the original sentence
       el.setAttribute("aria-label", el.textContent.replace(/\s+/g, " ").trim());
       walk(el);
       [...el.children].forEach((c) => c.setAttribute("aria-hidden", "true"));
     });
   }
 
-  /* Fade, rise and un-blur elements as they enter the viewport.
-     Children of [data-stagger] get increasing delays. */
   function setupReveals() {
     document.querySelectorAll("[data-stagger]").forEach((group) => {
       const step = parseFloat(group.dataset.stagger) || 0.1;
@@ -78,42 +128,45 @@
     });
 
     const targets = document.querySelectorAll("[data-reveal], [data-split]");
-
-    if (reduceMotion || !("IntersectionObserver" in window)) {
+    if (!("IntersectionObserver" in window)) {
       targets.forEach((el) => el.classList.add("is-in"));
       return;
     }
 
+    // Fully clipped shapes count as invisible, so watch their parent instead
+    const proxies = new Map();
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-in");
+          (proxies.get(entry.target) || []).forEach((el) => el.classList.add("is-in"));
           observer.unobserve(entry.target);
         });
       },
-      { rootMargin: "0px 0px -12% 0px", threshold: 0.05 }
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.01 }
     );
-
-    targets.forEach((el) => observer.observe(el));
+    targets.forEach((el) => {
+      const clipped = ["rise", "band"].includes(el.dataset.reveal);
+      const watch = clipped ? el.parentElement : el;
+      if (!proxies.has(watch)) proxies.set(watch, []);
+      proxies.get(watch).push(el);
+      observer.observe(watch);
+    });
   }
 
-  /* Header hides while reading down and returns when scrolling up. */
   function setupHeader() {
     const header = document.querySelector(".site-header");
     if (!header) return;
     let lastY = window.scrollY;
-
     const update = () => {
       const y = window.scrollY;
       header.classList.toggle("is-scrolled", y > 40);
       if (!document.body.classList.contains("menu-open")) {
-        header.classList.toggle("is-hidden", y > 300 && y > lastY + 2);
-        if (y < lastY - 2) header.classList.remove("is-hidden");
+        if (y > 320 && y > lastY + 2) header.classList.add("is-hidden");
+        if (y < lastY - 2 || y < 320) header.classList.remove("is-hidden");
       }
       lastY = y;
     };
-
     window.addEventListener("scroll", update, { passive: true });
     update();
   }
@@ -122,153 +175,146 @@
     const toggle = document.querySelector(".menu-toggle");
     if (!toggle) return;
     const label = toggle.querySelector(".label");
-
     const setOpen = (open) => {
       document.body.classList.toggle("menu-open", open);
       toggle.setAttribute("aria-expanded", String(open));
       if (label) label.textContent = open ? "Close" : "Menu";
     };
-
-    toggle.addEventListener("click", () => {
-      setOpen(!document.body.classList.contains("menu-open"));
-    });
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") setOpen(false);
-    });
-
-    window.matchMedia("(min-width: 901px)").addEventListener("change", () => setOpen(false));
+    toggle.addEventListener("click", () => setOpen(!document.body.classList.contains("menu-open")));
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") setOpen(false); });
+    window.matchMedia("(min-width: 961px)").addEventListener("change", () => setOpen(false));
   }
 
-  /* Soft fade between pages. */
+  /* A terracotta curtain rises before leaving and lifts on the next page. */
   function setupPageTransitions() {
     if (reduceMotion) return;
-
     document.querySelectorAll("a[href]").forEach((link) => {
       const href = link.getAttribute("href");
-      const internal =
-        href.endsWith(".html") && !link.target && !href.startsWith("http") && !href.startsWith("#");
+      const internal = /\.html($|#)/.test(href) && !link.target && !/^https?:/.test(href);
       if (!internal) return;
-
       link.addEventListener("click", (e) => {
         if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
         e.preventDefault();
+        store.set("tp-nav", "1");
         document.body.classList.add("is-leaving");
-        setTimeout(() => (window.location.href = href), 420);
+        setTimeout(() => (window.location.href = href), 650);
       });
     });
 
-    // Coming back with the browser's back button should not show a blank page
     window.addEventListener("pageshow", (e) => {
-      if (e.persisted) document.body.classList.remove("is-leaving", "menu-open");
+      if (e.persisted) {
+        document.body.classList.remove("is-leaving", "menu-open");
+        root.classList.remove("from-nav", "show-loader");
+      }
     });
   }
 
-  /* Everything tied directly to scroll position, run in one animation frame. */
+  /* A small clay dot that follows the pointer and grows over links. */
+  function setupCursor() {
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    const dot = document.createElement("div");
+    dot.className = "cursor";
+    dot.setAttribute("aria-hidden", "true");
+    document.body.appendChild(dot);
+    root.classList.add("has-cursor");
+
+    let x = -100, y = -100, cx = x, cy = y;
+    window.addEventListener("mousemove", (e) => { x = e.clientX; y = e.clientY; }, { passive: true });
+
+    document.addEventListener("mouseover", (e) => {
+      const view = e.target.closest("[data-cursor='view']");
+      const link = e.target.closest("a, button, label, input, textarea");
+      dot.classList.toggle("is-view", Boolean(view));
+      dot.classList.toggle("is-link", Boolean(link) && !view);
+      dot.textContent = view ? "View" : "";
+    });
+
+    const loop = () => {
+      cx += (x - cx) * 0.2;
+      cy += (y - cy) * 0.2;
+      dot.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
+      requestAnimationFrame(loop);
+    };
+    loop();
+  }
+
   function setupScrollScenes() {
-    const progressBar = document.querySelector(".progress span");
+    const meter = document.querySelector(".scroll-meter");
+    const meterNum = meter && meter.querySelector("b");
     const fills = [...document.querySelectorAll("[data-fill]")].map((el) => ({
       el,
       words: [...el.querySelectorAll(".f")],
     }));
     const parallax = [...document.querySelectorAll("[data-speed]")];
-    const journeys = [...document.querySelectorAll(".journey")];
-    const hscroll = document.querySelector(".hscroll");
-    const pinQuery = window.matchMedia("(min-width: 901px)");
+    const leaves = [...document.querySelectorAll(".leaves")];
+    const bands = [...document.querySelectorAll(".band")];
+    const badges = [...document.querySelectorAll(".badge svg")];
+    const journeyItems = [...document.querySelectorAll(".journey-item")];
+    const journeyCounter = document.querySelector(".journey-shape .counter");
 
-    let ticking = false;
     let vh = window.innerHeight;
-
-    /* Horizontal gallery: the section gets tall enough that scrolling
-       down slides the track sideways while it stays pinned. */
-    const layoutHScroll = () => {
-      if (!hscroll) return;
-      const track = hscroll.querySelector(".hscroll-track");
-      if (pinQuery.matches) {
-        hscroll.classList.add("is-pinned");
-        const distance = Math.max(0, track.scrollWidth - window.innerWidth);
-        hscroll.style.height = `${distance + vh}px`;
-        hscroll.dataset.distance = distance;
-      } else {
-        hscroll.classList.remove("is-pinned");
-        hscroll.style.height = "";
-        track.style.transform = "";
-      }
-    };
+    let ticking = false;
 
     const render = () => {
       ticking = false;
       const scrollY = window.scrollY;
-      const maxScroll = document.documentElement.scrollHeight - vh;
+      const max = document.documentElement.scrollHeight - vh;
+      const p = max > 0 ? scrollY / max : 0;
 
-      if (progressBar) {
-        progressBar.style.transform = `scaleY(${maxScroll > 0 ? scrollY / maxScroll : 0})`;
+      if (meter) {
+        meter.style.setProperty("--p", p.toFixed(4));
+        if (meterNum) meterNum.textContent = `${Math.round(p * 100)}%`;
       }
 
-      // Words fill with ink as the paragraph travels up the screen
       fills.forEach(({ el, words }) => {
         const rect = el.getBoundingClientRect();
-        const p = clamp((vh * 0.85 - rect.top) / (rect.height + vh * 0.3), 0, 1);
-        const lit = Math.round(p * words.length);
+        const t = clamp((vh * 0.85 - rect.top) / (rect.height + vh * 0.3), 0, 1);
+        const lit = Math.round(t * words.length);
         words.forEach((w, i) => w.classList.toggle("is-on", i < lit));
       });
 
       parallax.forEach((el) => {
-        const rect = el.parentElement.getBoundingClientRect();
-        if (rect.bottom < -200 || rect.top > vh + 200) return;
+        const rect = el.getBoundingClientRect();
+        if (rect.bottom < -300 || rect.top > vh + 300) return;
         const speed = parseFloat(el.dataset.speed) || 0.1;
         const offset = (rect.top + rect.height / 2 - vh / 2) * speed;
-        el.style.transform = `translate3d(0, ${-offset}px, 0)`;
+        el.style.translate = `0 ${(-offset).toFixed(1)}px`;
       });
 
-      // Timeline line draws itself and dots light up as it passes them
-      journeys.forEach((list) => {
-        const rect = list.getBoundingClientRect();
-        const p = clamp((vh * 0.6 - rect.top) / rect.height, 0, 1);
-        list.style.setProperty("--p", p.toFixed(4));
-        const lineY = rect.top + p * rect.height;
-        list.querySelectorAll(".journey-item").forEach((item) => {
-          const dot = item.querySelector(".journey-dot");
-          item.classList.toggle("is-lit", dot.getBoundingClientRect().top < lineY);
+      leaves.forEach((el) => {
+        const rect = el.parentElement.getBoundingClientRect();
+        if (rect.bottom < 0 || rect.top > vh) return;
+        el.style.setProperty("--ly", `${(rect.top * -0.12).toFixed(1)}px`);
+      });
+
+      bands.forEach((band) => {
+        const rect = band.getBoundingClientRect();
+        if (rect.bottom < 0 || rect.top > vh) return;
+        const t = (rect.top + rect.height / 2) / vh;
+        band.style.setProperty("--by", `${(t * 100).toFixed(1)}%`);
+      });
+
+      badges.forEach((svg) => svg.style.setProperty("--spin", `${scrollY * 0.15}deg`));
+
+      if (journeyCounter && journeyItems.length) {
+        let current = 0;
+        journeyItems.forEach((item, i) => {
+          if (item.getBoundingClientRect().top < vh * 0.55) current = i;
         });
-      });
-
-      if (hscroll && hscroll.classList.contains("is-pinned")) {
-        const track = hscroll.querySelector(".hscroll-track");
-        const bar = hscroll.querySelector(".hscroll-bar span");
-        const count = hscroll.querySelector(".hscroll-count b");
-        const cards = hscroll.querySelectorAll(".work-card");
-        const distance = parseFloat(hscroll.dataset.distance) || 0;
-        const rect = hscroll.getBoundingClientRect();
-        const p = clamp(-rect.top / (hscroll.offsetHeight - vh || 1), 0, 1);
-
-        track.style.transform = `translate3d(${-p * distance}px, 0, 0)`;
-        if (bar) bar.style.transform = `scaleX(${p})`;
-        if (count && cards.length) {
-          const current = Math.min(cards.length, Math.floor(p * cards.length) + 1);
-          count.textContent = String(current).padStart(2, "0");
-        }
+        const label = journeyItems[current].dataset.count || String(current + 1).padStart(2, "0");
+        if (journeyCounter.textContent !== label) journeyCounter.textContent = label;
       }
     };
 
-    const requestRender = () => {
+    const request = () => {
       if (!ticking) {
         ticking = true;
         requestAnimationFrame(render);
       }
     };
 
-    const onResize = () => {
-      vh = window.innerHeight;
-      layoutHScroll();
-      requestRender();
-    };
-
-    layoutHScroll();
     render();
-
-    window.addEventListener("scroll", requestRender, { passive: true });
-    window.addEventListener("resize", onResize);
-    window.addEventListener("load", onResize);
+    window.addEventListener("scroll", request, { passive: true });
+    window.addEventListener("resize", () => { vh = window.innerHeight; request(); });
   }
 })();
