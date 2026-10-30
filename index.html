@@ -4,12 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap"
-    rel="stylesheet"
-  >
   <title>Christine Joy Espiritu | Portfolio</title>
   <meta
     name="description"
@@ -17,297 +11,340 @@
   >
   <meta name="author" content="Christine Joy Espiritu">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  >
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon_io/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="favicon_io/apple-touch-icon.png">
+
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="script.js" defer></script>
 </head>
 
-<body>
-  <header class="site-header">
-    <nav class="navbar" aria-label="Main navigation">
-      <a class="logo" href="index.html" aria-label="Tinapay home">
-      <img
-        src="images/tinapay_logo.png"
-        alt="Tinapay"
-      >
-      </a>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
 
+  <header class="site-header">
+    <a class="logo" href="index.html" aria-label="Tinapay home">
+      <img src="images/tinapay_logo.png" alt="Tinapay">
+    </a>
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="label">Menu</span><span class="lines" aria-hidden="true"></span>
+    </button>
+
+    <nav id="site-nav" class="site-nav" aria-label="Main navigation">
       <ul>
-        <li><a href="index.html" aria-current="page">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="articles.html">Articles</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="index.html" aria-current="page"><span class="nav-index">01</span>Home</a></li>
+        <li><a href="about.html"><span class="nav-index">02</span>About</a></li>
+        <li><a href="projects.html"><span class="nav-index">03</span>Projects</a></li>
+        <li><a href="articles.html"><span class="nav-index">04</span>Articles</a></li>
+        <li><a href="contact.html"><span class="nav-index">05</span>Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
+  <div class="progress" aria-hidden="true"><span></span></div>
+
+  <main id="main">
+    <!-- Hero -->
     <section class="hero">
-      <div class="hero-content">
-        <p class="eyebrow">Computer Science Student · Live Host</p>
+      <div class="hero-copy">
+        <p class="eyebrow" data-reveal style="--d: 0.2s">Computer Science Student · Live Host</p>
 
-        <h1>Christine Joy Espiritu</h1>
+        <h1 class="hero-name" data-split style="--d: 0.35s">
+          Christine Joy<br><em>Espiritu</em>
+        </h1>
 
-        <p class="hero-text">
+        <p class="hero-text" data-reveal style="--d: 0.9s">
           I am an aspiring frontend developer who enjoys building thoughtful,
           organized, and creative digital experiences.
         </p>
 
-        <a class="button" href="projects.html">View My Projects</a>
+        <div class="hero-actions" data-reveal style="--d: 1.1s">
+          <a class="pill-button" href="projects.html">View My Projects <span aria-hidden="true">→</span></a>
+          <a class="text-link" href="about.html">About me <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
       </div>
 
-      <img
-        class="hero-image"
-        src="images/4.png"
-        alt="Christine Joy Espiritu wearing glasses and a black blazer"
-      >
-    </section>
+      <div class="hero-visual">
+        <svg class="enso" viewBox="0 0 500 500" aria-hidden="true">
+          <defs>
+            <filter id="brush" x="-10%" y="-10%" width="120%" height="120%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="3" seed="4" />
+              <feDisplacementMap in="SourceGraphic" scale="6" />
+            </filter>
+          </defs>
+          <g filter="url(#brush)">
+            <path class="enso-main" pathLength="1"
+              d="M 378.6 96.8 A 200 200 0 1 1 291.6 54.4" />
+            <path class="enso-dry" pathLength="1"
+              d="M 394 129.2 A 188 188 0 1 1 266.4 62.7" />
+          </g>
+        </svg>
 
-    <section>
-      <h2>About Me</h2>
-      <p>
-        I am studying Computer Science with a specialization in Software
-        Engineering at Far Eastern University. I am currently developing my
-        skills in HTML, CSS, JavaScript, UI/UX design, and web development.
-      </p>
-    </section>
-
-    <section class="skills-section" aria-labelledby="skills-heading">
-      <p class="eyebrow">What I bring</p>
-      <h2 id="skills-heading">Skills & Tools</h2>
-      <p class="learning-note">
-        Currently exploring: AI-assisted development, Full-Stack Development, and UI/UX Design.
-      </p>
-
-      <div class="skills-grid">
-        <article class="skill-group">
-          <h3>Frontend Development</h3>
-          <ul class="tag-list">
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>Responsive Web Design</li>
-            <li>Front-End Development</li>
-            <li>JavaScript</li>
-          </ul>
-        </article>
-
-        <article class="skill-group">
-          <h3>Programming & Tools</h3>
-          <ul class="tag-list">
-            <li>Python</li>
-            <li>Java</li>
-            <li>Git</li>
-            <li>Visual Studio Code</li>
-            <li>Microsoft Excel</li>
-          </ul>
-        </article>
-
-        <article class="skill-group">
-          <h3>Workflow & Research</h3>
-          <ul class="tag-list">
-            <li>Agile Development</li>
-            <li>Project Management</li>
-            <li>Data Analysis</li>
-            <li>Research</li>
-          </ul>
-        </article>
-
-        <article class="skill-group">
-          <h3>Communication & Marketing</h3>
-          <ul class="tag-list">
-            <li>Live Streaming</li>
-            <li>On-Air Hosting</li>
-            <li>Product Marketing</li>
-            <li>Customer Support</li>
-            <li>Sales</li>
-          </ul>
-        </article>
-
-        <article class="skill-group">
-          <h3>AI-Assisted Development</h3>
-          <ul class="tag-list">
-            <li>AI-Assisted Coding</li>
-            <li>Prompt Writing</li>
-            <li>ChatGPT</li>
-            <li>UI Ideation</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section class="learning-journey" aria-labelledby="journey-heading">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">Learning milestones</p>
-          <h2 id="journey-heading">Learning Journey</h2>
+        <div class="hero-portrait" data-speed="0.06">
+          <img
+            src="images/4.png"
+            alt="Christine Joy Espiritu wearing glasses and a black blazer"
+            width="1145"
+            height="1374"
+          >
         </div>
 
-        <a
-          href="https://www.linkedin.com/in/tinapay/details/certifications/"
-          target="_blank"
-          rel="noopener"
-        >
-          View all on LinkedIn →
-        </a>
+        <span class="hero-seal" aria-hidden="true">tina<br>pay</span>
       </div>
 
-      <p class="section-intro">
-        Courses, certifications, and milestones that shape how I build.
-      </p>
+      <div class="scroll-cue" aria-hidden="true"><span class="line"></span>Scroll</div>
+    </section>
 
-      <div class="journey-list">
-        <article class="journey-item">
-          <p class="journey-year">2026</p>
-          <span class="journey-dot" aria-hidden="true"></span>
-
-          <div class="journey-content">
-            <p class="journey-issuer">freeCodeCamp</p>
-            <h3>Responsive Web Design</h3>
-            <p>
-              Built a foundation in semantic HTML, CSS, accessibility, and
-              responsive layouts.
-            </p>
-            <p class="journey-meta">Credential ID: tinapay-rwdv9</p>
-          </div>
-        </article>
-
-        <article class="journey-item">
-          <p class="journey-year">2026</p>
-          <span class="journey-dot" aria-hidden="true"></span>
-
-          <div class="journey-content">
-            <p class="journey-issuer">Project Management Institute</p>
-            <h3>PMI Project Management Ready</h3>
-            <p>
-              Learned project planning, teamwork, and the foundations of delivering
-              work with structure.
-            </p>
-            <p class="journey-meta">Valid until March 2030</p>
-          </div>
-        </article>
-
-        <article class="journey-item">
-          <p class="journey-year">2025</p>
-          <span class="journey-dot" aria-hidden="true"></span>
-
-          <div class="journey-content">
-            <p class="journey-issuer">Pearson Professional Programs</p>
-            <h3>Information Technology Specialist in Python</h3>
-            <p>
-              Validated programming foundations in Python through an industry
-              certification.
-            </p>
-            <p class="journey-meta">Valid until July 2030</p>
-          </div>
-        </article>
-
-        <article class="journey-item">
-          <p class="journey-year">2025</p>
-          <span class="journey-dot" aria-hidden="true"></span>
-
-          <div class="journey-content">
-            <p class="journey-issuer">LinkedIn Learning</p>
-            <h3>Using Git with Visual Studio Code</h3>
-            <p>
-              Practiced version control and a practical development workflow using
-              Git and Visual Studio Code.
-            </p>
-          </div>
-        </article>
-
-        <article class="journey-item">
-          <p class="journey-year">Next</p>
-          <span class="journey-dot" aria-hidden="true"></span>
-
-          <div class="journey-content">
-            <p class="journey-issuer">Currently learning</p>
-            <h3>Prompt Engineering for AI</h3>
-            <p>
-              Exploring how to write clear, useful prompts for generative AI tools
-              and development workflows.
-            </p>
-          </div>
-        </article>
+    <!-- Statement -->
+    <section class="statement" aria-label="About me">
+      <div class="wrap">
+        <p class="eyebrow" data-reveal>About me</p>
+        <p class="statement-text" data-fill>
+          I am studying <strong>Computer Science</strong> with a specialization in
+          Software Engineering at Far Eastern University. I am currently
+          developing my skills in HTML, CSS, JavaScript, UI/UX design, and
+          web development.
+        </p>
       </div>
     </section>
 
-    <section class="home-featured" id="featured-projects">
-      <p class="eyebrow">Selected work</p>
-      <h2>Featured Projects</h2>
-      <p class="section-intro">
-        A few projects where I turn what I am learning into working web experiences.
-      </p>
+    <!-- Skills -->
+    <section class="section" aria-labelledby="skills-heading">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="section-mark" data-reveal>01 — What I bring</p>
+          <div>
+            <h2 class="section-title" id="skills-heading" data-split>Skills &amp; Tools</h2>
+            <p class="section-intro" data-reveal>
+              The tools I build with, and the people skills I picked up live on air.
+            </p>
+          </div>
+        </div>
 
-      <div class="home-project-grid">
-        <article class="home-project-card">
-          <img
-            class="project-preview"
-            src="images/projects/pugon.png"
-            alt="Pugon savings tracker dashboard with goal cards and progress bars"
-          >
+        <div class="skill-list" data-stagger="0.08">
+          <article class="skill-row" data-reveal>
+            <span class="skill-num">01</span>
+            <h3>Frontend Development</h3>
+            <ul class="tags">
+              <li>HTML</li><li>CSS</li><li>Responsive Web Design</li><li>Front-End Development</li><li>JavaScript</li>
+            </ul>
+          </article>
 
-          <p class="project-number">01 · Featured</p>
-          <h3>Pugon</h3>
-          <p>A cozy savings tracker that turns financial goals into recipes you can build step by step.</p>
+          <article class="skill-row" data-reveal>
+            <span class="skill-num">02</span>
+            <h3>Programming &amp; Tools</h3>
+            <ul class="tags">
+              <li>Python</li><li>Java</li><li>Git</li><li>Visual Studio Code</li><li>Microsoft Excel</li>
+            </ul>
+          </article>
 
-          <ul class="project-tags" aria-label="Technologies used">
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-          </ul>
+          <article class="skill-row" data-reveal>
+            <span class="skill-num">03</span>
+            <h3>Workflow &amp; Research</h3>
+            <ul class="tags">
+              <li>Agile Development</li><li>Project Management</li><li>Data Analysis</li><li>Research</li>
+            </ul>
+          </article>
 
-          <a href="projects.html">See project →</a>
-        </article>
+          <article class="skill-row" data-reveal>
+            <span class="skill-num">04</span>
+            <h3>Communication &amp; Marketing</h3>
+            <ul class="tags">
+              <li>Live Streaming</li><li>On-Air Hosting</li><li>Product Marketing</li><li>Customer Support</li><li>Sales</li>
+            </ul>
+          </article>
 
-        <article class="home-project-card">
-          <img
-            class="project-preview"
-            src="images/projects/salin.png"
-            alt="Salin Filipino dictionary interface with word cards and search tools"
-          >
+          <article class="skill-row" data-reveal>
+            <span class="skill-num">05</span>
+            <h3>AI-Assisted Development</h3>
+            <ul class="tags">
+              <li>AI-Assisted Coding</li><li>Prompt Writing</li><li>ChatGPT</li><li>UI Ideation</li>
+            </ul>
+          </article>
+        </div>
 
-          <p class="project-number">02 · Featured</p>
-          <h3>Salin</h3>
-          <p>A Filipino word companion for exploring meanings, example sentences, and saved words.</p>
-
-          <ul class="project-tags" aria-label="Technologies used">
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-          </ul>
-
-          <a href="projects.html">See project →</a>
-        </article>
-
-        <article class="home-project-card">
-          <img
-            class="project-preview"
-            src="images/projects/tribute-page.png"
-            alt="Norman Borlaug tribute page with editorial typography and portrait image"
-          >
-
-          <p class="project-number">03 · Featured</p>
-          <h3>Norman Borlaug Tribute</h3>
-          <p>An editorial tribute page that presents the life and impact of Norman Borlaug.</p>
-
-          <ul class="project-tags" aria-label="Technologies used">
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>Responsive Design</li>
-          </ul>
-
-          <a href="projects.html">See project →</a>
-        </article>
+        <p class="learning-note" data-reveal>
+          <span>Currently exploring —</span> AI-assisted development, Full-Stack Development, and UI/UX Design.
+        </p>
       </div>
+    </section>
 
-      <a class="button all-projects-button" href="projects.html">
-        View all projects →
-      </a>
+    <!-- Learning journey -->
+    <section class="section" aria-labelledby="journey-heading">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="section-mark" data-reveal>02 — Learning milestones</p>
+          <div>
+            <h2 class="section-title" id="journey-heading" data-split>Learning Journey</h2>
+            <p class="section-intro" data-reveal>
+              Courses, certifications, and milestones that shape how I build.
+            </p>
+          </div>
+        </div>
+
+        <div class="journey">
+          <article class="journey-item" data-reveal>
+            <p class="journey-year">2026</p>
+            <span class="journey-dot" aria-hidden="true"></span>
+            <div class="journey-content">
+              <p class="journey-issuer">freeCodeCamp</p>
+              <h3>Responsive Web Design</h3>
+              <p>Built a foundation in semantic HTML, CSS, accessibility, and responsive layouts.</p>
+              <p class="journey-meta">Credential ID: tinapay-rwdv9</p>
+            </div>
+          </article>
+
+          <article class="journey-item" data-reveal>
+            <p class="journey-year">2026</p>
+            <span class="journey-dot" aria-hidden="true"></span>
+            <div class="journey-content">
+              <p class="journey-issuer">Project Management Institute</p>
+              <h3>PMI Project Management Ready</h3>
+              <p>Learned project planning, teamwork, and the foundations of delivering work with structure.</p>
+              <p class="journey-meta">Valid until March 2030</p>
+            </div>
+          </article>
+
+          <article class="journey-item" data-reveal>
+            <p class="journey-year">2025</p>
+            <span class="journey-dot" aria-hidden="true"></span>
+            <div class="journey-content">
+              <p class="journey-issuer">Pearson Professional Programs</p>
+              <h3>Information Technology Specialist in Python</h3>
+              <p>Validated programming foundations in Python through an industry certification.</p>
+              <p class="journey-meta">Valid until July 2030</p>
+            </div>
+          </article>
+
+          <article class="journey-item" data-reveal>
+            <p class="journey-year">2025</p>
+            <span class="journey-dot" aria-hidden="true"></span>
+            <div class="journey-content">
+              <p class="journey-issuer">LinkedIn Learning</p>
+              <h3>Using Git with Visual Studio Code</h3>
+              <p>Practiced version control and a practical development workflow using Git and Visual Studio Code.</p>
+            </div>
+          </article>
+
+          <article class="journey-item is-next" data-reveal>
+            <p class="journey-year">Next</p>
+            <span class="journey-dot" aria-hidden="true"></span>
+            <div class="journey-content">
+              <p class="journey-issuer">Currently learning</p>
+              <h3>Prompt Engineering for AI</h3>
+              <p>Exploring how to write clear, useful prompts for generative AI tools and development workflows.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="journey-foot" data-reveal>
+          <a class="text-link" href="https://www.linkedin.com/in/tinapay/details/certifications/" target="_blank" rel="noopener">
+            View all on LinkedIn <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured projects: horizontal scroll -->
+    <section class="hscroll" aria-labelledby="featured-heading">
+      <div class="hscroll-sticky">
+        <div class="wrap">
+          <div class="hscroll-head">
+            <div>
+              <p class="eyebrow" data-reveal>03 — Selected work</p>
+              <h2 class="section-title" id="featured-heading" data-split>Featured Projects</h2>
+            </div>
+            <p class="hscroll-count" aria-hidden="true"><b>01</b> / 03</p>
+          </div>
+        </div>
+
+        <div class="hscroll-track">
+          <article class="work-card">
+            <a href="projects.html">
+              <div class="work-frame">
+                <img src="images/projects/pugon.png" alt="Pugon savings tracker dashboard with goal cards and progress bars" loading="lazy">
+              </div>
+              <div class="work-meta">
+                <h3>Pugon</h3>
+                <span class="work-num">01</span>
+              </div>
+              <p>A cozy savings tracker that turns financial goals into recipes you can build step by step.</p>
+              <ul class="tags" aria-label="Technologies used"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+            </a>
+          </article>
+
+          <article class="work-card">
+            <a href="projects.html">
+              <div class="work-frame">
+                <img src="images/projects/salin.png" alt="Salin Filipino dictionary interface with word cards and search tools" loading="lazy">
+              </div>
+              <div class="work-meta">
+                <h3>Salin</h3>
+                <span class="work-num">02</span>
+              </div>
+              <p>A Filipino word companion for exploring meanings, example sentences, and saved words.</p>
+              <ul class="tags" aria-label="Technologies used"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+            </a>
+          </article>
+
+          <article class="work-card">
+            <a href="projects.html">
+              <div class="work-frame">
+                <img src="images/projects/tribute-page.png" alt="Norman Borlaug tribute page with editorial typography and portrait image" loading="lazy">
+              </div>
+              <div class="work-meta">
+                <h3>Norman Borlaug Tribute</h3>
+                <span class="work-num">03</span>
+              </div>
+              <p>An editorial tribute page that presents the life and impact of Norman Borlaug.</p>
+              <ul class="tags" aria-label="Technologies used"><li>HTML</li><li>CSS</li><li>Responsive Design</li></ul>
+            </a>
+          </article>
+
+          <div class="work-end">
+            <p>A few projects where I turn what I am learning into working web experiences.</p>
+            <a class="pill-button" href="projects.html">View all projects <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+
+        <div class="wrap">
+          <div class="hscroll-bar" aria-hidden="true"><span></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing -->
+    <section class="closing">
+      <div class="wrap">
+        <p class="eyebrow" data-reveal>Let’s connect</p>
+        <h2 data-split>Let’s build something <em>thoughtful.</em></h2>
+        <div data-reveal>
+          <a class="pill-button" href="contact.html">Send me a message <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
     </section>
   </main>
 
-  <footer>
-    <p>© 2026 Christine Joy Espiritu. All rights reserved.</p>
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div>
+        <p class="footer-mark">Tinapay</p>
+        <small>© 2026 Christine Joy Espiritu. All rights reserved.</small>
+      </div>
+      <ul class="footer-links">
+        <li><a href="https://www.linkedin.com/in/tinapay/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://github.com/tinapaaay" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.instagram.com/_tina_pay/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="#top">Back to top ↑</a></li>
+      </ul>
+    </div>
   </footer>
 </body>
 </html>

@@ -7,385 +7,247 @@
   <title>Projects | Christine Joy Espiritu</title>
   <meta name="description" content="Web development projects by Christine Joy Espiritu.">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  >
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon_io/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="favicon_io/apple-touch-icon.png">
+
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="script.js" defer></script>
 </head>
 
-<body>
-  <header class="site-header">
-    <nav class="navbar" aria-label="Main navigation">
-      <a class="logo" href="index.html" aria-label="Tinapay home">
-      <img
-        src="images/tinapay_logo.png"
-        alt="Tinapay"
-      >
-      </a>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
 
+  <header class="site-header">
+    <a class="logo" href="index.html" aria-label="Tinapay home">
+      <img src="images/tinapay_logo.png" alt="Tinapay">
+    </a>
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="label">Menu</span><span class="lines" aria-hidden="true"></span>
+    </button>
+
+    <nav id="site-nav" class="site-nav" aria-label="Main navigation">
       <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="projects.html" aria-current="page">Projects</a></li>
-        <li><a href="articles.html">Articles</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="index.html"><span class="nav-index">01</span>Home</a></li>
+        <li><a href="about.html"><span class="nav-index">02</span>About</a></li>
+        <li><a href="projects.html" aria-current="page"><span class="nav-index">03</span>Projects</a></li>
+        <li><a href="articles.html"><span class="nav-index">04</span>Articles</a></li>
+        <li><a href="contact.html"><span class="nav-index">05</span>Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
-    <section class="page-heading">
-      <p class="eyebrow">Things I am building</p>
-      <h1>Projects</h1>
-      <p>My learning projects in web development.</p>
+  <div class="progress" aria-hidden="true"><span></span></div>
+
+  <main id="main">
+    <section class="page-hero wrap">
+      <p class="eyebrow" data-reveal>Things I am building</p>
+      <h1 data-split style="--d: 0.15s">Projects</h1>
+      <p class="lead" data-reveal style="--d: 0.5s">
+        My learning projects in web development. Larger projects where I combine
+        visual direction, responsive design, accessibility, and JavaScript.
+      </p>
     </section>
 
-    <section class="projects-section featured-projects" aria-labelledby="featured-projects-heading">
-      <div class="featured-heading">
-        <div>
-          <p class="eyebrow">Selected work</p>
-          <h2 id="featured-projects-heading">Featured Projects</h2>
-        </div>
+    <section class="wrap" aria-labelledby="featured-projects-heading">
+      <h2 class="visually-hidden" id="featured-projects-heading">Featured Projects</h2>
 
-        <p class="section-intro">
-          Larger projects where I combine visual direction, responsive design,
-          accessibility, and JavaScript.
-        </p>
-      </div>
-
-      <div class="featured-grid">
-        <article class="featured-card featured-main">
-          <img
-            class="project-preview"
-            src="images/projects/pugon.png"
-            alt="Pugon savings tracker dashboard with goal cards and progress bars"
-          >
-          <p class="project-number">Featured 01</p>
-          <p class="project-type">JavaScript Web App</p>
+      <article class="feature">
+        <a class="feature-media" data-reveal="image" href="https://github.com/tinapaaay/Pugon---Savings-Tracker" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <img data-speed="0.08" src="images/projects/pugon.png" alt="" loading="lazy">
+        </a>
+        <div class="feature-body" data-reveal>
+          <span class="feature-num" aria-hidden="true">01</span>
+          <p class="feature-type">JavaScript Web App</p>
           <h3>Pugon</h3>
-          <p class="featured-description">
+          <p>
             A cozy gamified savings tracker where financial goals become dream
             recipes. Users can add savings, unlock recipe milestones, and keep
             their progress using localStorage.
           </p>
-
-          <ul class="project-tags">
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-            <li>localStorage</li>
-          </ul>
-
-          <a
-            href="https://github.com/tinapaaay/Pugon---Savings-Tracker"
-            target="_blank"
-            rel="noopener"
-          >
-            View Repository →
+          <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>localStorage</li></ul>
+          <a class="text-link" href="https://github.com/tinapaaay/Pugon---Savings-Tracker" target="_blank" rel="noopener">
+            View Repository <span class="arrow" aria-hidden="true">↗</span>
           </a>
-        </article>
+        </div>
+      </article>
 
-        <article class="featured-card">
-          <img
-            class="project-preview"
-            src="images/projects/salin.png"
-            alt="Salin Filipino dictionary interface with word cards and search tools"
-          >
-          <p class="project-number">Featured 02</p>
-          <p class="project-type">JavaScript Web App</p>
+      <article class="feature">
+        <a class="feature-media" data-reveal="image" href="https://github.com/tinapaaay/Salin-Filipino-English-Dictionary" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <img data-speed="0.08" src="images/projects/salin.png" alt="" loading="lazy">
+        </a>
+        <div class="feature-body" data-reveal>
+          <span class="feature-num" aria-hidden="true">02</span>
+          <p class="feature-type">JavaScript Web App</p>
           <h3>Salin</h3>
           <p>
             A Filipino word companion with search, category filters, a Word of the
             Day section, and saved words stored in localStorage.
           </p>
-
-          <ul class="project-tags">
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-          </ul>
-
-          <a
-            href="https://github.com/tinapaaay/Salin-Filipino-English-Dictionary"
-            target="_blank"
-            rel="noopener"
-          >
-            View Repository →
+          <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+          <a class="text-link" href="https://github.com/tinapaaay/Salin-Filipino-English-Dictionary" target="_blank" rel="noopener">
+            View Repository <span class="arrow" aria-hidden="true">↗</span>
           </a>
-        </article>
+        </div>
+      </article>
 
-        <article class="featured-card">
-          <img
-            class="project-preview"
-            src="images/projects/tribute-page.png"
-            alt="Norman Borlaug tribute page with editorial typography and portrait image"
-          >
-          <p class="project-number">Featured 03</p>
-          <p class="project-type">Editorial Website</p>
+      <article class="feature">
+        <a class="feature-media" data-reveal="image" href="https://github.com/tinapaaay/Tribute-Page" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <img data-speed="0.08" src="images/projects/tribute-page.png" alt="" loading="lazy">
+        </a>
+        <div class="feature-body" data-reveal>
+          <span class="feature-num" aria-hidden="true">03</span>
+          <p class="feature-type">Editorial Website</p>
           <h3>Norman Borlaug Tribute Page</h3>
           <p>
             An editorial-style biography page with a photo hero, quote section,
             responsive timeline, and reading-focused typography.
           </p>
-
-          <ul class="project-tags">
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>Responsive Design</li>
-          </ul>
-
-          <a
-            href="https://github.com/tinapaaay/Tribute-Page"
-            target="_blank"
-            rel="noopener"
-          >
-            View Repository →
+          <ul class="tags"><li>HTML</li><li>CSS</li><li>Responsive Design</li></ul>
+          <a class="text-link" href="https://github.com/tinapaaay/Tribute-Page" target="_blank" rel="noopener">
+            View Repository <span class="arrow" aria-hidden="true">↗</span>
           </a>
-        </article>
+        </div>
+      </article>
 
-        <article class="featured-card">
-          <img
-            class="project-preview"
-            src="images/projects/technical-documentation.png"
-            alt="CSS Layout Field Notes documentation page with a sidebar navigation"
-          >
-          <p class="project-number">Featured 04</p>
-          <p class="project-type">Documentation Website</p>
+      <article class="feature">
+        <a class="feature-media" data-reveal="image" href="https://github.com/tinapaaay/Technical-Documentation" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <img data-speed="0.08" src="images/projects/technical-documentation.png" alt="" loading="lazy">
+        </a>
+        <div class="feature-body" data-reveal>
+          <span class="feature-num" aria-hidden="true">04</span>
+          <p class="feature-type">Documentation Website</p>
           <h3>CSS Layout Field Notes</h3>
           <p>
             A technical documentation page with a sticky sidebar, smooth anchor
             navigation, highlighted sections, and expandable learning notes.
           </p>
-
-          <ul class="project-tags">
-            <li>CSS Grid</li>
-            <li>Sticky Layout</li>
-            <li>Accessibility</li>
-          </ul>
-
-          <a
-            href="https://github.com/tinapaaayTechnical-Documentation"
-            target="_blank"
-            rel="noopener"
-          >
-            View Repository →
+          <ul class="tags"><li>CSS Grid</li><li>Sticky Layout</li><li>Accessibility</li></ul>
+          <a class="text-link" href="https://github.com/tinapaaay/Technical-Documentation" target="_blank" rel="noopener">
+            View Repository <span class="arrow" aria-hidden="true">↗</span>
           </a>
-        </article>
+        </div>
+      </article>
 
-        <article class="featured-card">
-          <img
-            class="project-preview"
-            src="images/projects/product-landing-page.png"
-            alt="Aqua Nook product landing page for aquascaping supplies"
-          >
-          <p class="project-number">Featured 05</p>
-          <p class="project-type">Product Landing Page</p>
+      <article class="feature">
+        <a class="feature-media" data-reveal="image" href="https://github.com/tinapaaay/Product-Landing-Page" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <img data-speed="0.08" src="images/projects/product-landing-page.png" alt="" loading="lazy">
+        </a>
+        <div class="feature-body" data-reveal>
+          <span class="feature-num" aria-hidden="true">05</span>
+          <p class="feature-type">Product Landing Page</p>
           <h3>Aqua Nook</h3>
           <p>
             A responsive landing page for beginner aquascaping kits with immersive
             visuals, product options, an email form, and a video section.
           </p>
-
-          <ul class="project-tags">
-            <li>HTML</li>
-            <li>CSS Grid</li>
-            <li>Forms</li>
-          </ul>
-
-          <a
-            href="https://github.com/tinapaaay/Product-Landing-Page"
-            target="_blank"
-            rel="noopener"
-          >
-            View Repository →
+          <ul class="tags"><li>HTML</li><li>CSS Grid</li><li>Forms</li></ul>
+          <a class="text-link" href="https://github.com/tinapaaay/Product-Landing-Page" target="_blank" rel="noopener">
+            View Repository <span class="arrow" aria-hidden="true">↗</span>
           </a>
-        </article>
-      </div>
+        </div>
+      </article>
     </section>
 
-    <section class="projects-section" aria-labelledby="ui-components-heading">
-      <h2 id="ui-components-heading">UI Components & Practice</h2>
-      <p class="section-intro">
-        Small projects where I practice specific HTML, CSS, accessibility,
-        layout, and responsive-design skills.
-      </p>
+    <section class="section" aria-labelledby="ui-components-heading">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="section-mark" data-reveal>Practice</p>
+          <div>
+            <h2 class="section-title" id="ui-components-heading" data-split>UI Components &amp; Practice</h2>
+            <p class="section-intro" data-reveal>
+              Small projects where I practice specific HTML, CSS, accessibility,
+              layout, and responsive-design skills.
+            </p>
+          </div>
+        </div>
 
-      <div class="project-grid">
-        <article class="project-card">
-          <p class="project-number">01</p>
-          <h3>Single-Page CV</h3>
-          <p>
-            A semantic CV website built with HTML, SEO meta tags, Open Graph
-            tags, and a favicon.
-          </p>
-
-          <a
-            href="https://github.com/tinapaaay/Single-Page-CV"
-            target="_blank"
-            rel="noopener"
-          >
-            View Repository →
+        <div class="index-list" data-stagger="0.05">
+          <a class="index-row" data-reveal href="https://github.com/tinapaaay/Single-Page-CV" target="_blank" rel="noopener">
+            <span class="index-num">01</span>
+            <h3>Single-Page CV</h3>
+            <p>A semantic CV website built with HTML, SEO meta tags, Open Graph tags, and a favicon.</p>
+            <span class="index-arrow" aria-hidden="true">↗</span>
           </a>
-        </article>
-
-        <article class="project-card">
-          <p class="project-number">02</p>
-          <h3>Changelog Component</h3>
-          <p>
-            A responsive timeline component built to practice CSS positioning,
-            pseudo-elements, and media queries.
-          </p>
-
-          <a
-            href="https://github.com/tinapaaay/Changelog-Component"
-            target="_blank"
-            rel="noopener"
-          >
-            View Repository →
+          <a class="index-row" data-reveal href="https://github.com/tinapaaay/Changelog-Component" target="_blank" rel="noopener">
+            <span class="index-num">02</span>
+            <h3>Changelog Component</h3>
+            <p>A responsive timeline component built to practice CSS positioning, pseudo-elements, and media queries.</p>
+            <span class="index-arrow" aria-hidden="true">↗</span>
           </a>
-        </article>
-
-        <article class="project-card">
-          <p class="project-number">03</p>
-          <h3>Testimonial Cards</h3>
-          <p>
-            A responsive collection of testimonial cards using CSS Grid,
-            Flexbox, profile images, and varied card layouts.
-          </p>
-
-          <a
-            href="https://github.com/tinapaaay/Testimonial-Cards"
-            target="_blank"
-            rel="noopener"
-          >
-            View Repository →
+          <a class="index-row" data-reveal href="https://github.com/tinapaaay/Testimonial-Cards" target="_blank" rel="noopener">
+            <span class="index-num">03</span>
+            <h3>Testimonial Cards</h3>
+            <p>A responsive collection of testimonial cards using CSS Grid, Flexbox, profile images, and varied card layouts.</p>
+            <span class="index-arrow" aria-hidden="true">↗</span>
           </a>
-        </article>
-
-        <article class="project-card">
-          <p class="project-number">04</p>
-          <h3>Datepicker UI</h3>
-          <p>
-            A static calendar user interface built with HTML and CSS Grid,
-            ready to become interactive with JavaScript later.
-          </p>
-
-          <a
-            href="https://github.com/tinapaaay/Datepicker-UI"
-            target="_blank"
-            rel="noopener"
-          >
-            View Repository →
+          <a class="index-row" data-reveal href="https://github.com/tinapaaay/Datepicker-UI" target="_blank" rel="noopener">
+            <span class="index-num">04</span>
+            <h3>Datepicker UI</h3>
+            <p>A static calendar user interface built with HTML and CSS Grid, ready to become interactive with JavaScript later.</p>
+            <span class="index-arrow" aria-hidden="true">↗</span>
           </a>
-        </article>
-
-        <article class="project-card">
-          <p class="project-number">05</p>
-          <h3>Accessible Form UI</h3>
-          <p>
-            A static sign-up form with accessible labels, focus states, ARIA
-            attributes, error-message areas, and a progress bar.
-          </p>
-
-          <a
-            href="https://github.com/tinapaaay/Accessible-Form-UI"
-            target="_blank"
-            rel="noopener"
-          >
-            View Repository →
+          <a class="index-row" data-reveal href="https://github.com/tinapaaay/Accessible-Form-UI" target="_blank" rel="noopener">
+            <span class="index-num">05</span>
+            <h3>Accessible Form UI</h3>
+            <p>A static sign-up form with accessible labels, focus states, ARIA attributes, error-message areas, and a progress bar.</p>
+            <span class="index-arrow" aria-hidden="true">↗</span>
           </a>
-        </article>
-
-        <article class="project-card">
-          <p class="project-number">06</p>
-          <h3>Image Grid Layout</h3>
-          <p>
-            A responsive six-image gallery using CSS Grid, local image assets,
-            and different grid-item spans.
-          </p>
-
-          <a
-            href="https://github.com/tinapaaay/Image-Grid-Layout"
-            target="_blank"
-            rel="noopener"
-          >
-            View Repository →
+          <a class="index-row" data-reveal href="https://github.com/tinapaaay/Image-Grid-Layout" target="_blank" rel="noopener">
+            <span class="index-num">06</span>
+            <h3>Image Grid Layout</h3>
+            <p>A responsive six-image gallery using CSS Grid, local image assets, and different grid-item spans.</p>
+            <span class="index-arrow" aria-hidden="true">↗</span>
           </a>
-        </article>
-
-        <article class="project-card">
-          <p class="project-number">07</p>
-          <h3>CSS Tooltip UI</h3>
-          <p>
-            A CSS-only navigation tooltip component with hover effects,
-            keyboard focus support, smooth transitions, and accessible markup.
-          </p>
-
-          <a
-            href="https://github.com/tinapaaay/CSS-Tooltip-UI"
-            target="_blank"
-            rel="noopener"
-          >
-            View Repository →
+          <a class="index-row" data-reveal href="https://github.com/tinapaaay/CSS-Tooltip-UI" target="_blank" rel="noopener">
+            <span class="index-num">07</span>
+            <h3>CSS Tooltip UI</h3>
+            <p>A CSS-only navigation tooltip component with hover effects, keyboard focus support, smooth transitions, and accessible markup.</p>
+            <span class="index-arrow" aria-hidden="true">↗</span>
           </a>
-        </article>
-
-        <article class="project-card">
-          <p class="project-number">08</p>
-          <h3>Pricing Comparison Table</h3>
-          <p>
-            A responsive and accessible pricing comparison page using a
-            semantic HTML table, captions, scopes, merged cells, and CSS.
-          </p>
-
-          <a
-            href="https://github.com/tinapaaay/Pricing-Comparison-Table"
-            target="_blank"
-            rel="noopener"
-          >
-            View Repository →
+          <a class="index-row" data-reveal href="https://github.com/tinapaaay/Pricing-Comparison-Table" target="_blank" rel="noopener">
+            <span class="index-num">08</span>
+            <h3>Pricing Comparison Table</h3>
+            <p>A responsive and accessible pricing comparison page using a semantic HTML table, captions, scopes, merged cells, and CSS.</p>
+            <span class="index-arrow" aria-hidden="true">↗</span>
           </a>
-        </article>
-
-        <article class="project-card">
-          <p class="project-number">09</p>
-          <h3>Blog Post Page</h3>
-          <p>
-            A semantic and responsive blog post page using meaningful text
-            elements, accessible images, code blocks, quotes, and a
-            reading-focused layout.
-          </p>
-
-          <a
-            href="https://github.com/tinapaaay/Blog-Post-Page"
-            target="_blank"
-            rel="noopener"
-          >
-            View Repository →
+          <a class="index-row" data-reveal href="https://github.com/tinapaaay/Blog-Post-Page" target="_blank" rel="noopener">
+            <span class="index-num">09</span>
+            <h3>Blog Post Page</h3>
+            <p>A semantic and responsive blog post page using meaningful text elements, accessible images, code blocks, quotes, and a reading-focused layout.</p>
+            <span class="index-arrow" aria-hidden="true">↗</span>
           </a>
-        </article>
-
-        <article class="project-card">
-          <p class="project-number">10</p>
-          <h3>Pricing Cards</h3>
-          <p>
-            A responsive three-card pricing component using Flexbox,
-            equal-height cards, a highlighted recommended plan, and
-            interactive button states.
-          </p>
-
-          <a
-            href="https://github.com/tinapaaay/Pricing-Cards"
-            target="_blank"
-            rel="noopener"
-          >
-            View Repository →
+          <a class="index-row" data-reveal href="https://github.com/tinapaaay/Pricing-Cards" target="_blank" rel="noopener">
+            <span class="index-num">10</span>
+            <h3>Pricing Cards</h3>
+            <p>A responsive three-card pricing component using Flexbox, equal-height cards, a highlighted recommended plan, and interactive button states.</p>
+            <span class="index-arrow" aria-hidden="true">↗</span>
           </a>
-        </article>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <p>© 2026 Christine Joy Espiritu. All rights reserved.</p>
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div>
+        <p class="footer-mark">Tinapay</p>
+        <small>© 2026 Christine Joy Espiritu. All rights reserved.</small>
+      </div>
+      <ul class="footer-links">
+        <li><a href="https://www.linkedin.com/in/tinapay/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://github.com/tinapaaay" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.instagram.com/_tina_pay/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="#top">Back to top ↑</a></li>
+      </ul>
+    </div>
   </footer>
 </body>
 </html>

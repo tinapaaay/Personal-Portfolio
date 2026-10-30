@@ -4,108 +4,126 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap"
-    rel="stylesheet"
-  >
   <title>Contact | Christine Joy Espiritu</title>
   <meta name="description" content="Contact Christine Joy Espiritu.">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  >
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon_io/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="favicon_io/apple-touch-icon.png">
+
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="script.js" defer></script>
 </head>
 
-<body>
-  <header class="site-header">
-    <nav class="navbar" aria-label="Main navigation">
-      <a class="logo" href="index.html" aria-label="Tinapay home">
-      <img
-        src="images/tinapay_logo.png"
-        alt="Tinapay"
-      >
-      </a>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
 
+  <header class="site-header">
+    <a class="logo" href="index.html" aria-label="Tinapay home">
+      <img src="images/tinapay_logo.png" alt="Tinapay">
+    </a>
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="label">Menu</span><span class="lines" aria-hidden="true"></span>
+    </button>
+
+    <nav id="site-nav" class="site-nav" aria-label="Main navigation">
       <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="articles.html">Articles</a></li>
-        <li><a href="contact.html" aria-current="page">Contact</a></li>
+        <li><a href="index.html"><span class="nav-index">01</span>Home</a></li>
+        <li><a href="about.html"><span class="nav-index">02</span>About</a></li>
+        <li><a href="projects.html"><span class="nav-index">03</span>Projects</a></li>
+        <li><a href="articles.html"><span class="nav-index">04</span>Articles</a></li>
+        <li><a href="contact.html" aria-current="page"><span class="nav-index">05</span>Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
-    <section class="page-heading">
-      <p class="eyebrow">Let’s connect</p>
-      <h1>Contact Me</h1>
-      <p>Send me a message and I will get back to you as soon as I can.</p>
+  <div class="progress" aria-hidden="true"><span></span></div>
+
+  <main id="main">
+    <section class="page-hero wrap">
+      <p class="eyebrow" data-reveal>Let’s connect</p>
+      <h1 data-split style="--d: 0.15s">Contact Me</h1>
+      <p class="lead" data-reveal style="--d: 0.5s">
+        Send me a message and I will get back to you as soon as I can.
+      </p>
     </section>
 
-    <section class="contact-section">
-      <form action="#" method="post">
-        <p>
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" required>
-        </p>
+    <section class="wrap" aria-label="Contact form" style="padding-bottom: var(--space)">
+      <div class="contact-grid">
+        <div class="contact-aside" data-reveal>
+          <p class="eyebrow">Write to me</p>
+          <p>Questions, collaborations, or just a hello. All are welcome.</p>
+        </div>
 
-        <p>
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required>
-        </p>
+        <form class="form" action="#" method="post" data-reveal style="--d: 0.15s">
+          <div class="field">
+            <input type="text" id="name" name="name" placeholder=" " autocomplete="name" required>
+            <label for="name">Name</label>
+            <span class="bar" aria-hidden="true"></span>
+          </div>
 
-        <p>
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="7" required></textarea>
-        </p>
+          <div class="field">
+            <input type="email" id="email" name="email" placeholder=" " autocomplete="email" required>
+            <label for="email">Email</label>
+            <span class="bar" aria-hidden="true"></span>
+          </div>
 
-        <button type="submit">Send Message</button>
-      </form>
+          <div class="field">
+            <textarea id="message" name="message" rows="5" placeholder=" " required></textarea>
+            <label for="message">Message</label>
+            <span class="bar" aria-hidden="true"></span>
+          </div>
+
+          <button class="pill-button" type="submit">Send Message <span aria-hidden="true">→</span></button>
+        </form>
+      </div>
     </section>
-    <section class="social-section" aria-labelledby="social-heading">
-      <p class="eyebrow">Elsewhere online</p>
-      <h2 id="social-heading">Find me online</h2>
 
-      <div class="social-links">
-        <a
-          href="https://www.linkedin.com/in/tinapay/"
-          target="_blank"
-          rel="noopener"
-        >
-          LinkedIn <span aria-hidden="true">↗</span>
-        </a>
+    <section class="section" aria-labelledby="social-heading" style="padding-top: 0">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="section-mark" data-reveal>Elsewhere online</p>
+          <h2 class="section-title" id="social-heading" data-split>Find me online</h2>
+        </div>
 
-        <a
-          href="https://github.com/tinapaaay"
-          target="_blank"
-          rel="noopener"
-        >
-          GitHub <span aria-hidden="true">↗</span>
-        </a>
-
-        <a
-          href="https://www.instagram.com/_tina_pay/"
-          target="_blank"
-          rel="noopener"
-        >
-          Instagram <span aria-hidden="true">↗</span>
-        </a>
-
-        <a
-          href="https://www.facebook.com/01eyojenitsirhc/"
-          target="_blank"
-          rel="noopener"
-        >
-          Facebook <span aria-hidden="true">↗</span>
-        </a>
+        <div class="socials" data-stagger="0.08">
+          <a class="social-row" data-reveal href="https://www.linkedin.com/in/tinapay/" target="_blank" rel="noopener">
+            <span class="label">LinkedIn</span><span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="social-row" data-reveal href="https://github.com/tinapaaay" target="_blank" rel="noopener">
+            <span class="label">GitHub</span><span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="social-row" data-reveal href="https://www.instagram.com/_tina_pay/" target="_blank" rel="noopener">
+            <span class="label">Instagram</span><span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="social-row" data-reveal href="https://www.facebook.com/01eyojenitsirhc/" target="_blank" rel="noopener">
+            <span class="label">Facebook</span><span class="arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <p>© 2026 Christine Joy Espiritu. All rights reserved.</p>
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div>
+        <p class="footer-mark">Tinapay</p>
+        <small>© 2026 Christine Joy Espiritu. All rights reserved.</small>
+      </div>
+      <ul class="footer-links">
+        <li><a href="https://www.linkedin.com/in/tinapay/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://github.com/tinapaaay" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.instagram.com/_tina_pay/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="#top">Back to top ↑</a></li>
+      </ul>
+    </div>
   </footer>
 </body>
 </html>

@@ -4,196 +4,237 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap"
-    rel="stylesheet"
-  >
-
   <title>About | Christine Joy Espiritu</title>
   <meta
     name="description"
     content="About Christine Joy Espiritu, a Computer Science student, live host, and aspiring frontend developer."
   >
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  >
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon_io/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="favicon_io/apple-touch-icon.png">
+
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="script.js" defer></script>
 </head>
 
-<body>
-  <header class="site-header">
-    <nav class="navbar" aria-label="Main navigation">
-      <a class="logo" href="index.html" aria-label="Tinapay home">
-        <img src="images/tinapay_logo.png" alt="Tinapay">
-      </a>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
 
+  <header class="site-header">
+    <a class="logo" href="index.html" aria-label="Tinapay home">
+      <img src="images/tinapay_logo.png" alt="Tinapay">
+    </a>
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="label">Menu</span><span class="lines" aria-hidden="true"></span>
+    </button>
+
+    <nav id="site-nav" class="site-nav" aria-label="Main navigation">
       <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html" aria-current="page">About</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="articles.html">Articles</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="index.html"><span class="nav-index">01</span>Home</a></li>
+        <li><a href="about.html" aria-current="page"><span class="nav-index">02</span>About</a></li>
+        <li><a href="projects.html"><span class="nav-index">03</span>Projects</a></li>
+        <li><a href="articles.html"><span class="nav-index">04</span>Articles</a></li>
+        <li><a href="contact.html"><span class="nav-index">05</span>Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
-    <section class="about-hero">
-      <p class="eyebrow">Get to know me</p>
+  <div class="progress" aria-hidden="true"><span></span></div>
 
-      <h1>I like turning ideas into things people can explore.</h1>
-
-      <p class="about-lead">
-        Hi, I’m Christine Joy Espiritu—also known as Tinapay. I am a Computer
+  <main id="main">
+    <section class="page-hero wrap">
+      <p class="eyebrow" data-reveal>Get to know me</p>
+      <h1 class="long" data-split style="--d: 0.15s">I like turning ideas into things people can explore.</h1>
+      <p class="lead" data-reveal style="--d: 0.6s">
+        Hi, I’m <strong>Christine Joy Espiritu</strong>, also known as Tinapay. I am a Computer
         Science student and live host who enjoys building thoughtful web
         experiences through technology, creativity, and clear communication.
       </p>
     </section>
 
-    <section class="about-statement" aria-labelledby="point-of-view-heading">
-      <p class="eyebrow">My point of view</p>
+    <div class="wrap"><div class="rule" data-reveal="line"></div></div>
 
-      <blockquote id="point-of-view-heading">
-        I believe good digital experiences should be useful first, but they
-        should also feel warm, clear, and made with care.
-      </blockquote>
-    </section>
-
-    <section class="about-columns">
-      <div>
-        <p class="eyebrow">Beyond the screen</p>
-        <h2>Creativity is part of how I learn.</h2>
-      </div>
-
-      <div class="about-copy">
-        <p>
-          I enjoy organizing ideas, exploring design, and giving meaning to
-          the things I create. My experience as a live host has also taught me
-          how to communicate clearly, adjust quickly, and understand what keeps
-          people engaged.
-        </p>
-
-        <p>
-          Outside of coding, I enjoy learning Korean, exploring art and visual
-          storytelling, and building small creative routines that help me stay
-          curious.
-        </p>
-
-        <ul class="about-interests" aria-label="Personal interests">
-          <li>Live hosting</li>
-          <li>Visual storytelling</li>
-          <li>UI/UX design</li>
-          <li>Korean learning</li>
-          <li>Creative projects</li>
-        </ul>
+    <section class="quote-block" aria-labelledby="point-of-view-heading">
+      <div class="wrap">
+        <p class="eyebrow" data-reveal>My point of view</p>
+        <blockquote id="point-of-view-heading" data-fill>
+          I believe good digital experiences should be useful first, but they
+          should also feel warm, clear, and made with care.
+        </blockquote>
       </div>
     </section>
 
-    <section class="growth-section" aria-labelledby="growing-heading">
-      <p class="eyebrow">Currently growing</p>
-      <h2 id="growing-heading">Where I am headed</h2>
+    <section class="section">
+      <div class="wrap split">
+        <div>
+          <p class="eyebrow" data-reveal>Beyond the screen</p>
+          <h2 data-split>Creativity is part of how I learn.</h2>
+        </div>
 
-      <div class="growth-list">
-        <article class="growth-item">
-          <p class="growth-label">Now</p>
-          <p>Building JavaScript projects and strengthening my frontend skills.</p>
-        </article>
-
-        <article class="growth-item">
-          <p class="growth-label">Next</p>
-          <p>Learning AI-assisted development and improving my UI/UX thinking.</p>
-        </article>
-
-        <article class="growth-item">
-          <p class="growth-label">Always</p>
-          <p>Creating work that feels useful, warm, and personal.</p>
-        </article>
+        <div class="copy" data-stagger="0.12">
+          <p data-reveal>
+            I enjoy organizing ideas, exploring design, and giving meaning to
+            the things I create. My experience as a live host has also taught me
+            how to communicate clearly, adjust quickly, and understand what keeps
+            people engaged.
+          </p>
+          <p data-reveal>
+            Outside of coding, I enjoy learning Korean, exploring art and visual
+            storytelling, and building small creative routines that help me stay
+            curious.
+          </p>
+          <ul class="interests" aria-label="Personal interests" data-reveal>
+            <li>Live hosting</li>
+            <li>Visual storytelling</li>
+            <li>UI/UX design</li>
+            <li>Korean learning</li>
+            <li>Creative projects</li>
+          </ul>
+        </div>
       </div>
     </section>
 
-    <section class="about-history" aria-labelledby="experience-heading">
-      <p class="eyebrow">Work history</p>
-      <h2 id="experience-heading">Experience</h2>
-
-      <article class="experience-row">
-        <p class="experience-date">2026 — Present</p>
-
-        <div>
-          <p class="experience-company">Nexplay</p>
-          <h3>Live Host</h3>
-          <p>
-            Host live selling and engagement sessions for partnered brands,
-            build real-time audience interaction, and adjust engagement
-            strategies using live metrics.
-          </p>
+    <section class="section" aria-labelledby="growing-heading">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="section-mark" data-reveal>Currently growing</p>
+          <h2 class="section-title" id="growing-heading" data-split>Where I am headed</h2>
         </div>
-      </article>
 
-      <article class="experience-row">
-        <p class="experience-date">2025 — 2026</p>
-
-        <div>
-          <p class="experience-company">Unicharm</p>
-          <h3>Live Host / Operator</h3>
-          <p>
-            Managed product listings, carts, and customer interactions during
-            live sessions while maintaining organized workflows and tracking
-            engagement analytics.
-          </p>
+        <div class="growth" data-stagger="0.15">
+          <article class="growth-item" data-reveal>
+            <p class="growth-label">Now</p>
+            <p>Building JavaScript projects and strengthening my frontend skills.</p>
+          </article>
+          <article class="growth-item" data-reveal>
+            <p class="growth-label">Next</p>
+            <p>Learning AI-assisted development and improving my UI/UX thinking.</p>
+          </article>
+          <article class="growth-item" data-reveal>
+            <p class="growth-label">Always</p>
+            <p>Creating work that feels useful, warm, and personal.</p>
+          </article>
         </div>
-      </article>
-
-      <article class="experience-row">
-        <p class="experience-date">2023</p>
-
-        <div>
-          <p class="experience-company">McDonald's</p>
-          <h3>Service Crew</h3>
-          <p>
-            Delivered customer service, resolved concerns efficiently, and
-            maintained accuracy in a fast-paced environment.
-          </p>
-        </div>
-      </article>
+      </div>
     </section>
 
-    <section class="about-history" aria-labelledby="education-heading">
-      <p class="eyebrow">Academic path</p>
-      <h2 id="education-heading">Education</h2>
-
-      <article class="experience-row">
-        <p class="experience-date">2023 — Present</p>
-
-        <div>
-          <p class="experience-company">Far Eastern University</p>
-          <h3>BS Computer Science</h3>
-          <p>Specializing in Software Engineering.</p>
+    <section class="section" aria-labelledby="experience-heading">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="section-mark" data-reveal>Work history</p>
+          <h2 class="section-title" id="experience-heading" data-split>Experience</h2>
         </div>
-      </article>
 
-      <article class="experience-row">
-        <p class="experience-date">2021 — 2023</p>
+        <div class="rows">
+          <article class="row" data-reveal>
+            <p class="row-date">2026 — Present</p>
+            <div>
+              <p class="row-org">Nexplay</p>
+              <h3>Live Host</h3>
+              <p>
+                Host live selling and engagement sessions for partnered brands,
+                build real-time audience interaction, and adjust engagement
+                strategies using live metrics.
+              </p>
+            </div>
+          </article>
 
-        <div>
-          <p class="experience-company">Polytechnic University of the Philippines</p>
-          <h3>Senior High School</h3>
+          <article class="row" data-reveal>
+            <p class="row-date">2025 — 2026</p>
+            <div>
+              <p class="row-org">Unicharm</p>
+              <h3>Live Host / Operator</h3>
+              <p>
+                Managed product listings, carts, and customer interactions during
+                live sessions while maintaining organized workflows and tracking
+                engagement analytics.
+              </p>
+            </div>
+          </article>
+
+          <article class="row" data-reveal>
+            <p class="row-date">2023</p>
+            <div>
+              <p class="row-org">McDonald's</p>
+              <h3>Service Crew</h3>
+              <p>
+                Delivered customer service, resolved concerns efficiently, and
+                maintained accuracy in a fast-paced environment.
+              </p>
+            </div>
+          </article>
         </div>
-      </article>
+      </div>
+    </section>
 
-      <article class="experience-row">
-        <p class="experience-date">2016 — 2021</p>
-
-        <div>
-          <p class="experience-company">San Juan City Science High School</p>
-          <h3>Junior High School</h3>
+    <section class="section" aria-labelledby="education-heading">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="section-mark" data-reveal>Academic path</p>
+          <h2 class="section-title" id="education-heading" data-split>Education</h2>
         </div>
-      </article>
+
+        <div class="rows">
+          <article class="row" data-reveal>
+            <p class="row-date">2023 — Present</p>
+            <div>
+              <p class="row-org">Far Eastern University</p>
+              <h3>BS Computer Science</h3>
+              <p>Specializing in Software Engineering.</p>
+            </div>
+          </article>
+
+          <article class="row" data-reveal>
+            <p class="row-date">2021 — 2023</p>
+            <div>
+              <p class="row-org">Polytechnic University of the Philippines</p>
+              <h3>Senior High School</h3>
+            </div>
+          </article>
+
+          <article class="row" data-reveal>
+            <p class="row-date">2016 — 2021</p>
+            <div>
+              <p class="row-org">San Juan City Science High School</p>
+              <h3>Junior High School</h3>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div class="wrap">
+        <p class="eyebrow" data-reveal>Let’s connect</p>
+        <h2 data-split>See what I have been <em>building.</em></h2>
+        <div data-reveal>
+          <a class="pill-button" href="projects.html">View My Projects <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
     </section>
   </main>
 
-  <footer>
-    <p>© 2026 Christine Joy Espiritu. All rights reserved.</p>
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div>
+        <p class="footer-mark">Tinapay</p>
+        <small>© 2026 Christine Joy Espiritu. All rights reserved.</small>
+      </div>
+      <ul class="footer-links">
+        <li><a href="https://www.linkedin.com/in/tinapay/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://github.com/tinapaaay" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.instagram.com/_tina_pay/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="#top">Back to top ↑</a></li>
+      </ul>
+    </div>
   </footer>
 </body>
 </html>
