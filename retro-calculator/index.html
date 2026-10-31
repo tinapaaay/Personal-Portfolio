@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Typewriter Calculator</title>
+<meta name="description" content="A working retro typewriter-style calculator with a paper tape that prints every calculation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dseg@0.46.0/css/dseg.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== Background layers ===== -->
+<div class="bg" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+  <svg class="shape s-ring" viewBox="0 0 200 200"><circle cx="100" cy="100" r="90" /></svg>
+  <svg class="shape s-star" viewBox="0 0 200 200"><path d="M100 0 L114 86 L200 100 L114 114 L100 200 L86 114 L0 100 L86 86Z"/></svg>
+  <svg class="shape s-dial" viewBox="0 0 200 200">
+    <circle cx="100" cy="100" r="80"/>
+    <g class="ticks"></g>
+  </svg>
+  <div class="cursor-glow"></div>
+  <div class="grain"></div>
+</div>
+
+<!-- ===== Header ===== -->
+<header class="top">
+  <div class="brand">
+    <span class="brand-mark">⌨</span>
+    <span>No. 190 <em>Adding Machine</em></span>
+  </div>
+  <nav class="top-actions">
+    <button class="chip" id="soundBtn" aria-pressed="true" title="Toggle sound (S)">
+      <span class="dot"></span> Sound on
+    </button>
+    <button class="chip" id="tapeBtn" title="Tear off the paper tape">Tear tape</button>
+  </nav>
+</header>
+
+<!-- ===== Ticker ===== -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>ADD ✳ SUBTRACT ✳ MULTIPLY ✳ DIVIDE ✳ PERCENT ✳ EST. 1958 ✳ PRECISION MECHANICS ✳ </span>
+    <span>ADD ✳ SUBTRACT ✳ MULTIPLY ✳ DIVIDE ✳ PERCENT ✳ EST. 1958 ✳ PRECISION MECHANICS ✳ </span>
+  </div>
+</div>
+
+<main class="stage">
+  <section class="intro">
+    <p class="eyebrow">Model 190 · Electro-mechanical</p>
+    <h1>Every sum,<br><span>typed out.</span></h1>
+    <p class="lede">A working calculator built like a typewriter. Hit the keys (or your keyboard), pull the lever to clear, and watch every result print onto the paper tape.</p>
+    <ul class="legend">
+      <li><kbd>0–9</kbd> <kbd>.</kbd> digits</li>
+      <li><kbd>+</kbd> <kbd>−</kbd> <kbd>×</kbd> <kbd>÷</kbd> operators</li>
+      <li><kbd>Enter</kbd> equals</li>
+      <li><kbd>Esc</kbd> clear · <kbd>⌫</kbd> delete</li>
+    </ul>
+  </section>
+
+  <section class="machine-wrap" id="machineWrap">
+    <!-- paper tape coming out of the carriage -->
+    <div class="paper" aria-label="Calculation history">
+      <div class="paper-fade"></div>
+      <ol class="tape" id="tape" aria-live="polite"></ol>
+    </div>
+
+    <div class="machine" id="machine">
+      <!-- carriage -->
+      <div class="carriage" id="carriage">
+        <button class="knob knob-l" id="knobL" title="Feed paper"><span></span></button>
+        <button class="lever" id="lever" title="Carriage return: clear all (Esc)" aria-label="Clear all">
+          <span class="lever-arm"></span>
+        </button>
+        <div class="display" role="status" aria-live="polite">
+          <span class="ghost" aria-hidden="true">8.8.8.8.8.8.8.8.8.8.</span>
+          <span class="digits" id="display">0</span>
+          <span class="op-indicator" id="opInd"></span>
+        </div>
+        <button class="knob knob-r" id="knobR" title="Toggle sound"><span></span></button>
+      </div>
+
+      <!-- type basket -->
+      <div class="basket" aria-hidden="true">
+        <div class="fan"></div>
+        <div class="typebar" id="typebar"></div>
+        <div class="guide"></div>
+      </div>
+
+      <!-- keys -->
+      <div class="keys" id="keys">
+        <button class="key red"   data-action="clear"   data-k="Escape">AC</button>
+        <button class="key"       data-action="sign"    data-k="n">±</button>
+        <button class="key"       data-action="percent" data-k="%">%</button>
+        <button class="key yellow" data-action="op" data-op="/" data-k="/">÷</button>
+
+        <button class="key" data-action="digit" data-k="7">7</button>
+        <button class="key" data-action="digit" data-k="8">8</button>
+        <button class="key" data-action="digit" data-k="9">9</button>
+        <button class="key yellow" data-action="op" data-op="*" data-k="*">×</button>
+
+        <button class="key" data-action="digit" data-k="4">4</button>
+        <button class="key" data-action="digit" data-k="5">5</button>
+        <button class="key" data-action="digit" data-k="6">6</button>
+        <button class="key yellow" data-action="op" data-op="-" data-k="-">−</button>
+
+        <button class="key" data-action="digit" data-k="1">1</button>
+        <button class="key" data-action="digit" data-k="2">2</button>
+        <button class="key" data-action="digit" data-k="3">3</button>
+        <button class="key yellow" data-action="op" data-op="+" data-k="+">+</button>
+
+        <button class="key" data-action="digit" data-k="0">0</button>
+        <button class="key" data-action="dot" data-k=".">.</button>
+        <button class="key" data-action="back" data-k="Backspace" aria-label="Delete">⌫</button>
+        <button class="key green" data-action="equals" data-k="Enter">=</button>
+      </div>
+
+      <button class="spacebar" data-action="equals" aria-label="Equals">
+        <span>TOTAL</span>
+      </button>
+
+      <div class="plate"><span>CALCULATOR</span></div>
+      <div class="feet"><i></i><i></i></div>
+    </div>
+    <div class="shadow"></div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>Built with HTML, CSS &amp; a little JavaScript.</span>
+  <span class="hint">Tip: the left knob feeds a blank line, the right knob toggles sound.</span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
