@@ -15,7 +15,7 @@ This project is part of the [Personal Portfolio project on roadmap.sh](https://r
 
 ## Features
 
-- Plum editorial design: cream paper, one deep plum accent, and large Bodoni Moda serif type
+- Plum editorial design: cream paper, one deep plum accent, Plus Jakarta Sans headlines and a Bodoni Moda wordmark. The full system is in [DESIGN.md](DESIGN.md) (Google's DESIGN.md format; check it with `npx -y @google/design.md@0.4.0 lint DESIGN.md`)
 - Live project previews: each project runs inside a browser-style window (GitHub Pages), with a desktop / mobile toggle and click-to-try
 - Pinned horizontal scroller of live projects on the home page
 - Scroll animations with GSAP (ScrollTrigger + SplitText): letter-by-letter hero, the name spreading as you scroll, masked headline reveals, words lighting up as you read, and a plum circle that floods the screen
