@@ -333,13 +333,14 @@
         const drop = quote.querySelector(".drop");
         if (!drop) return;
         const text = quote.querySelectorAll(".wrap .cap, .wrap blockquote, .wrap .rule");
+        const token = (name) => getComputedStyle(root).getPropertyValue(name).trim();
         gsap.timeline({
           scrollTrigger: { trigger: quote, start: "top top", end: "+=110%", pin: true, scrub: 1 },
         })
           .to(drop, { scale: 5.2, ease: "power2.in", duration: 1 }, 0)
-          .to(text, { color: "#ece5da", duration: 0.25 }, 0.3)
-          .to(quote.querySelectorAll("blockquote em"), { color: "#d8cdbc", duration: 0.25 }, 0.3)
-          .to(quote, { backgroundColor: "#3d1426", duration: 0.05 }, 0.95);
+          .to(text, { color: token("--cream"), duration: 0.25 }, 0.3)
+          .to(quote.querySelectorAll("blockquote em"), { color: token("--cream-3"), duration: 0.25 }, 0.3)
+          .to(quote, { backgroundColor: token("--plum"), duration: 0.05 }, 0.95);
       });
     });
 
@@ -457,10 +458,45 @@
 
     const say = (html) => { if (note) note.innerHTML = html; };
 
+    // Inline errors: mark the field, say what's missing, and clear it as they type.
+    const messages = {
+      name: { valueMissing: "Please add your name." },
+      email: { valueMissing: "Please add your email.", typeMismatch: "Please check your email address." },
+      message: { valueMissing: "Please write a short message." },
+    };
+    const fields = [...form.querySelectorAll(".field input, .field textarea")];
+    const showError = (input) => {
+      const field = input.closest(".field");
+      let error = field.querySelector(".field-error");
+      const problem = input.validity.valueMissing ? "valueMissing" : input.validity.typeMismatch ? "typeMismatch" : null;
+      if (!problem) {
+        field.classList.remove("is-invalid");
+        input.removeAttribute("aria-invalid");
+        input.removeAttribute("aria-describedby");
+        if (error) error.remove();
+        return true;
+      }
+      if (!error) {
+        error = document.createElement("p");
+        error.className = "field-error";
+        error.id = `${input.id}-error`;
+        field.appendChild(error);
+      }
+      error.textContent = (messages[input.name] || {})[problem] || "Please check this field.";
+      field.classList.add("is-invalid");
+      input.setAttribute("aria-invalid", "true");
+      input.setAttribute("aria-describedby", error.id);
+      return false;
+    };
+    fields.forEach((input) => input.addEventListener("input", () => {
+      if (input.closest(".field").classList.contains("is-invalid")) showError(input);
+    }));
+
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      if (!form.checkValidity()) {
-        form.reportValidity();
+      const invalid = fields.filter((input) => !showError(input));
+      if (invalid.length) {
+        invalid[0].focus();
         return;
       }
       const data = Object.fromEntries(new FormData(form));
