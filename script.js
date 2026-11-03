@@ -1,5 +1,6 @@
 /* Tinapay — plum editorial
-   Smooth scroll, reveals, hero intro, header state, mobile menu. */
+   Live project previews, Lenis smooth scroll, and GSAP scroll scenes.
+   Falls back to light CSS animations if the libraries don't load. */
 
 (function () {
   "use strict";
@@ -9,129 +10,350 @@
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const hasGsap = !!(window.gsap && window.ScrollTrigger);
+  if (hasGsap) root.classList.add("has-gsap");
+
+  let lenis = null;
 
   document.addEventListener("DOMContentLoaded", () => {
     splitHeroName();
     setupHeader();
     setupMenu();
-    setupReveals();
     setupForm();
-    const smooth = setupSmoothScroll();
-    setupAnchors(smooth);
-    setupParallax(smooth);
+    setupLive();
 
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => document.body.classList.add("is-loaded"));
-    });
+    if (hasGsap) {
+      gsap.registerPlugin(ScrollTrigger);
+      if (window.SplitText) gsap.registerPlugin(SplitText);
+      if (!reduceMotion && window.Lenis) setupLenis();
+      setupAnchors();
+      if (reduceMotion) {
+        document.body.classList.add("is-loaded");
+      } else {
+        // Wait for fonts so split lines measure correctly.
+        const go = () => scenes();
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(go);
+        else go();
+      }
+    } else {
+      setupFallbackSmoothScroll();
+      setupAnchors();
+      setupFallbackReveals();
+      requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.add("is-loaded")));
+    }
   });
 
-  /* ---------- smooth scroll ----------
-     Eases mouse-wheel and trackpad scrolling toward a target.
-     Touch and keyboard keep native scrolling. */
-  function setupSmoothScroll() {
-    const api = {
-      active: false,
-      to(y) { window.scrollTo({ top: y, behavior: reduceMotion ? "auto" : "smooth" }); },
-      onScroll(fn) { window.addEventListener("scroll", fn, { passive: true }); },
-    };
-    if (reduceMotion || !finePointer) return api;
+  /* =========================================================
+     Live previews: a real website running in a browser frame
+     ========================================================= */
+  function setupLive() {
+    const lives = [...document.querySelectorAll(".live")];
+    if (!lives.length) return;
 
-    root.classList.add("smooth-scroll");
-    api.active = true;
+    const smallScreen = window.matchMedia("(max-width: 720px)").matches;
 
-    let current = window.scrollY;
-    let target = current;
-    let running = false;
-    const listeners = [];
-    const ease = 0.1;
+    lives.forEach((live) => {
+      const screen = live.querySelector(".live-screen");
+      const viewport = live.querySelector(".live-viewport");
+      const iframe = live.querySelector("iframe");
+      const cover = live.querySelector(".live-cover");
+      if (smallScreen) live.dataset.mode = "mobile";
+      if (!live.dataset.mode) live.dataset.mode = "desktop";
 
-    const maxScroll = () => document.documentElement.scrollHeight - window.innerHeight;
-    const clamp = (v) => Math.max(0, Math.min(v, maxScroll()));
+      const layout = () => {
+        const w = screen.clientWidth;
+        const h = screen.clientHeight;
+        if (!w || !h) return;
+        let vw, vh, s, x = 0, y = 0;
+        if (live.dataset.mode === "mobile" && w > 520) {
+          // Phone in the middle of the frame
+          vw = 390; vh = 844;
+          s = Math.min((h * 0.88) / vh, 1);
+          x = (w - vw * s) / 2;
+          y = (h - vh * s) / 2;
+        } else {
+          // Fill the frame (desktop width, or phone width on small screens)
+          vw = live.dataset.mode === "mobile" ? 390 : 1280;
+          s = w / vw;
+          vh = h / s;
+        }
+        live.classList.toggle("is-fill", live.dataset.mode === "mobile" && w <= 520);
+        viewport.style.width = vw + "px";
+        viewport.style.height = vh + "px";
+        viewport.style.transform = `translate(${x}px, ${y}px) scale(${s})`;
+      };
 
-    function tick() {
-      current += (target - current) * ease;
-      if (Math.abs(target - current) < 0.5) {
-        current = target;
-        running = false;
-      }
-      window.scrollTo(0, current);
-      listeners.forEach((fn) => fn());
-      if (running) requestAnimationFrame(tick);
+      if ("ResizeObserver" in window) new ResizeObserver(layout).observe(screen);
+      window.addEventListener("resize", layout);
+      layout();
+
+      live.querySelectorAll(".live-modes button").forEach((btn) => {
+        btn.setAttribute("aria-pressed", String(btn.dataset.mode === live.dataset.mode));
+        btn.addEventListener("click", () => {
+          live.dataset.mode = btn.dataset.mode;
+          live.querySelectorAll(".live-modes button").forEach((b) =>
+            b.setAttribute("aria-pressed", String(b === btn)));
+          layout();
+        });
+      });
+
+      iframe.addEventListener("load", () => {
+        if (iframe.src) live.classList.add("is-loaded");
+      });
+
+      // Click to use the site; leave the frame to keep scrolling the page.
+      cover.addEventListener("click", () => {
+        load(live);
+        live.classList.add("is-active");
+        iframe.focus();
+      });
+      live.addEventListener("mouseleave", () => live.classList.remove("is-active"));
+    });
+
+    document.addEventListener("pointerdown", (e) => {
+      lives.forEach((live) => { if (!live.contains(e.target)) live.classList.remove("is-active"); });
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") lives.forEach((l) => l.classList.remove("is-active"));
+    });
+
+    function load(live) {
+      const iframe = live.querySelector("iframe");
+      if (!iframe.src) iframe.src = live.dataset.src;
     }
 
-    function start() {
-      if (!running) {
-        running = true;
-        requestAnimationFrame(tick);
-      }
+    if (!("IntersectionObserver" in window)) {
+      lives.forEach(load);
+      return;
     }
-
-    window.addEventListener("wheel", (e) => {
-      if (e.ctrlKey || document.body.classList.contains("menu-open")) return;
-      // Let scrollable inner elements (like the message box) scroll themselves.
-      const inner = e.target.closest && e.target.closest("textarea");
-      if (inner && inner.scrollHeight > inner.clientHeight) return;
-
-      e.preventDefault();
-      let delta = e.deltaY;
-      if (e.deltaMode === 1) delta *= 32;
-      else if (e.deltaMode === 2) delta *= window.innerHeight;
-      if (!running) current = window.scrollY;
-      target = clamp(target + delta);
-      start();
-    }, { passive: false });
-
-    // Keep in sync when the page is moved some other way (keyboard, scrollbar drag).
-    window.addEventListener("scroll", () => {
-      if (!running) {
-        current = target = window.scrollY;
-        listeners.forEach((fn) => fn());
-      }
-    }, { passive: true });
-
-    window.addEventListener("resize", () => { target = clamp(target); });
-
-    api.to = (y) => {
-      if (!running) current = window.scrollY;
-      target = clamp(y);
-      start();
-    };
-    api.onScroll = (fn) => listeners.push(fn);
-    return api;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          load(entry.target);
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: "60% 120% 60% 120%" });
+    lives.forEach((l) => io.observe(l));
   }
 
-  function setupAnchors(smooth) {
+  /* =========================================================
+     Smooth scroll
+     ========================================================= */
+  function setupLenis() {
+    lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1, smoothWheel: true });
+    lenis.on("scroll", ScrollTrigger.update);
+    gsap.ticker.add((time) => lenis.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
+  }
+
+  function scrollToY(y) {
+    if (lenis) lenis.scrollTo(y, { duration: 1.4 });
+    else if (fallbackScroll) fallbackScroll(y);
+    else window.scrollTo({ top: y, behavior: reduceMotion ? "auto" : "smooth" });
+  }
+
+  function setupAnchors() {
     document.querySelectorAll('a[href^="#"]').forEach((link) => {
       link.addEventListener("click", (e) => {
         const id = link.getAttribute("href").slice(1);
-        const el = id ? document.getElementById(id) : null;
+        const el = id && id !== "top" ? document.getElementById(id) : null;
         if (!el && id !== "top") return;
         e.preventDefault();
-        const y = el && id !== "top" ? el.getBoundingClientRect().top + window.scrollY - 80 : 0;
-        smooth.to(y);
+        scrollToY(el ? el.getBoundingClientRect().top + window.scrollY - 80 : 0);
         if (el && el.id === "main") el.focus({ preventScroll: true });
       });
     });
   }
 
-  /* ---------- hero name letters ---------- */
+  /* =========================================================
+     GSAP scroll scenes
+     ========================================================= */
+  function scenes() {
+    const mm = gsap.matchMedia();
+    const ease = "expo.out";
+
+    // --- hero intro + scroll ---
+    const hero = document.querySelector(".hero");
+    if (hero) {
+      const chars = hero.querySelectorAll(".hero-name .ch");
+      const portrait = hero.querySelector(".hero-portrait");
+      const plinth = hero.querySelector(".hero-plinth");
+      const shadow = hero.querySelector(".hero-shadow");
+      const sides = hero.querySelectorAll(".hero-left, .hero-right");
+
+      // Intro and scroll scenes move different layers, so they never collide.
+      gsap.timeline({ defaults: { ease } })
+        .from(".site-header", { y: -30, opacity: 0, duration: 1.2 }, 0.2)
+        .from(plinth, { scale: 0.2, duration: 1.8 }, 0)
+        .from(hero.querySelectorAll(".ch-in"), { yPercent: 105, opacity: 0, duration: 1.5, stagger: 0.07 }, 0.15)
+        .from(portrait, { y: 120, opacity: 0, duration: 1.8 }, 0.4)
+        .from(shadow, { opacity: 0, duration: 2 }, 0.9)
+        .from(hero.querySelectorAll(".hero-left > *, .hero-right-in"), { y: 30, opacity: 0, duration: 1.2, stagger: 0.08 }, 1);
+
+      mm.add("(min-width: 721px)", () => {
+        const mid = (chars.length - 1) / 2;
+        gsap.timeline({
+          scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true },
+        })
+          .to(chars, { x: (i) => (i - mid) * 90, ease: "none" }, 0)
+          .to(hero.querySelector(".hero-name"), { yPercent: -60, opacity: 0.25, ease: "none" }, 0)
+          .to(hero.querySelector(".hero-stage"), { y: 90, scale: 1.05, transformOrigin: "50% 100%", ease: "none" }, 0)
+          .to(sides, { y: -80, opacity: 0, ease: "none" }, 0);
+      });
+    }
+
+    // --- headings: words rise out of masked lines ---
+    if (window.SplitText) {
+      document.querySelectorAll(".title, .display").forEach((el) => {
+        SplitText.create(el, {
+          type: "lines,words",
+          mask: "lines",
+          autoSplit: true,
+          onSplit(self) {
+            return gsap.from(self.words, {
+              yPercent: 115,
+              duration: 1.3,
+              ease,
+              stagger: 0.05,
+              scrollTrigger: { trigger: el, start: "top 88%", once: true },
+            });
+          },
+        });
+      });
+
+      // Intro statement: words light up as you read
+      document.querySelectorAll(".intro-statement").forEach((el) => {
+        const split = SplitText.create(el, { type: "words" });
+        gsap.fromTo(split.words, { opacity: 0.14 }, {
+          opacity: 1,
+          stagger: 0.06,
+          ease: "none",
+          scrollTrigger: { trigger: el, start: "top 80%", end: "bottom 45%", scrub: true },
+        });
+      });
+
+      // Footer wordmark rises letter by letter
+      document.querySelectorAll(".footer-word").forEach((el) => {
+        const split = SplitText.create(el, { type: "chars" });
+        gsap.from(split.chars, {
+          yPercent: 100,
+          stagger: 0.06,
+          ease: "none",
+          scrollTrigger: { trigger: el, start: "top bottom", end: "bottom bottom", scrub: true },
+        });
+      });
+    }
+
+    // --- general reveals ---
+    const reveals = gsap.utils.toArray("[data-reveal]");
+    gsap.set(reveals, { opacity: 0, y: 46 });
+    ScrollTrigger.batch(reveals, {
+      start: "top 90%",
+      once: true,
+      onEnter: (batch) => gsap.to(batch, { opacity: 1, y: 0, duration: 1.2, ease, stagger: 0.1, overwrite: "auto" }),
+    });
+
+    // --- parallax ---
+    gsap.utils.toArray("[data-speed]").forEach((el) => {
+      const speed = parseFloat(el.dataset.speed) || 0;
+      gsap.fromTo(el, { y: speed * 400 }, {
+        y: speed * -400,
+        ease: "none",
+        scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: true },
+      });
+    });
+
+    // --- live works: pinned horizontal scroll ---
+    const works = document.querySelector(".works");
+    if (works) {
+      const track = works.querySelector(".works-track");
+      const count = works.querySelector(".works-count b");
+      const bar = works.querySelector(".works-progress i");
+      const total = works.querySelectorAll(".work-slide").length;
+
+      mm.add("(min-width: 961px)", () => {
+        works.classList.add("is-pinned");
+        const distance = () => Math.max(0, track.scrollWidth - window.innerWidth);
+        gsap.to(track, {
+          x: () => -distance(),
+          ease: "none",
+          scrollTrigger: {
+            trigger: works,
+            pin: true,
+            start: "top top",
+            end: () => "+=" + distance(),
+            scrub: 1,
+            invalidateOnRefresh: true,
+            onUpdate(self) {
+              if (bar) bar.style.transform = `scaleX(${self.progress})`;
+              if (count) count.textContent = String(Math.min(total, 1 + Math.floor(self.progress * total))).padStart(2, "0");
+            },
+          },
+        });
+        gsap.utils.toArray(works.querySelectorAll(".work-slide .live")).forEach((el, i) => {
+          if (i === 0) return;
+          gsap.from(el, { rotate: 3, scale: 0.9, ease: "none",
+            scrollTrigger: { trigger: works, start: "top top", end: () => "+=" + window.innerWidth * (i * 0.8), scrub: true } });
+        });
+        return () => works.classList.remove("is-pinned");
+      });
+    }
+
+    // --- projects page: previews open up as they enter ---
+    gsap.utils.toArray(".feature .live").forEach((el) => {
+      gsap.fromTo(el,
+        { clipPath: "inset(14% 10% 14% 10% round 14px)", scale: 0.94 },
+        { clipPath: "inset(0% 0% 0% 0% round 14px)", scale: 1, ease: "none",
+          scrollTrigger: { trigger: el, start: "top 95%", end: "top 35%", scrub: true } });
+    });
+
+    // --- quote: the plum drop grows and floods the screen ---
+    mm.add("(min-width: 721px)", () => {
+      document.querySelectorAll(".quote").forEach((quote) => {
+        const drop = quote.querySelector(".drop");
+        if (!drop) return;
+        const text = quote.querySelectorAll(".wrap .cap, .wrap blockquote, .wrap .rule");
+        gsap.timeline({
+          scrollTrigger: { trigger: quote, start: "top top", end: "+=110%", pin: true, scrub: 1 },
+        })
+          .to(drop, { scale: 5.2, ease: "power2.in", duration: 1 }, 0)
+          .to(text, { color: "#ece5da", duration: 0.25 }, 0.3)
+          .to(quote.querySelectorAll("blockquote em"), { color: "#d8cdbc", duration: 0.25 }, 0.3)
+          .to(quote, { backgroundColor: "#3d1426", duration: 0.05 }, 0.95);
+      });
+    });
+
+    // --- skill rows slide in ---
+    gsap.utils.toArray(".skill h3").forEach((el) => {
+      gsap.from(el, { x: -60, ease: "none",
+        scrollTrigger: { trigger: el, start: "top bottom", end: "top 60%", scrub: true } });
+    });
+
+    // Recalculate after images and live frames settle.
+    window.addEventListener("load", () => ScrollTrigger.refresh());
+  }
+
+  /* =========================================================
+     Shared bits
+     ========================================================= */
   function splitHeroName() {
     const name = document.querySelector(".hero-name");
     if (!name) return;
     const text = name.textContent.trim();
-    name.setAttribute("aria-label", text);
     name.textContent = "";
     [...text].forEach((ch, i) => {
       const span = document.createElement("span");
       span.className = "ch";
-      span.setAttribute("aria-hidden", "true");
-      span.textContent = ch;
+      const inner = document.createElement("span");
+      inner.className = "ch-in";
+      inner.textContent = ch;
+      span.appendChild(inner);
       span.style.transitionDelay = `${0.05 * i}s`;
       name.appendChild(span);
     });
   }
 
-  /* ---------- header ---------- */
   function setupHeader() {
     const header = document.querySelector(".site-header");
     if (!header) return;
@@ -140,7 +362,6 @@
     window.addEventListener("scroll", update, { passive: true });
   }
 
-  /* ---------- mobile menu ---------- */
   function setupMenu() {
     const toggle = document.querySelector(".menu-toggle");
     if (!toggle) return;
@@ -149,6 +370,7 @@
       document.body.classList.toggle("menu-open", open);
       toggle.setAttribute("aria-expanded", String(open));
       if (label) label.textContent = open ? "Close" : "Menu";
+      if (lenis) open ? lenis.stop() : lenis.start();
     };
     toggle.addEventListener("click", () => setOpen(!document.body.classList.contains("menu-open")));
     document.addEventListener("keydown", (e) => { if (e.key === "Escape") setOpen(false); });
@@ -156,53 +378,6 @@
     document.querySelectorAll(".site-nav a").forEach((a) => a.addEventListener("click", () => setOpen(false)));
   }
 
-  /* ---------- reveal on scroll ---------- */
-  function setupReveals() {
-    const items = document.querySelectorAll("[data-reveal]");
-    if (!("IntersectionObserver" in window) || reduceMotion) {
-      items.forEach((el) => el.classList.add("is-in"));
-      return;
-    }
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-in");
-          io.unobserve(entry.target);
-        }
-      });
-    }, { rootMargin: "0px 0px -10% 0px", threshold: 0.12 });
-    items.forEach((el) => io.observe(el));
-  }
-
-  /* ---------- gentle parallax ---------- */
-  function setupParallax(smooth) {
-    if (reduceMotion) return;
-    const items = [...document.querySelectorAll("[data-speed]")];
-    if (!items.length) return;
-    let ticking = false;
-    const update = () => {
-      ticking = false;
-      const vh = window.innerHeight;
-      items.forEach((el) => {
-        const r = el.getBoundingClientRect();
-        if (r.bottom < -200 || r.top > vh + 200) return;
-        const offset = (r.top + r.height / 2 - vh / 2) * parseFloat(el.dataset.speed);
-        el.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0)`;
-      });
-    };
-    const request = () => {
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(update);
-      }
-    };
-    smooth.onScroll(request);
-    window.addEventListener("scroll", request, { passive: true });
-    window.addEventListener("resize", request);
-    update();
-  }
-
-  /* ---------- contact form ---------- */
   function setupForm() {
     const form = document.querySelector(".form");
     if (!form) return;
@@ -217,5 +392,52 @@
       if (note) note.textContent = `Thank you, ${name}. Your message is noted.`;
       form.reset();
     });
+  }
+
+  /* =========================================================
+     Fallback (no GSAP): eased wheel scroll + fade-up reveals
+     ========================================================= */
+  let fallbackScroll = null;
+
+  function setupFallbackSmoothScroll() {
+    if (reduceMotion || !finePointer) return;
+    root.classList.add("smooth-scroll");
+    let current = window.scrollY;
+    let target = current;
+    let running = false;
+    const maxScroll = () => document.documentElement.scrollHeight - window.innerHeight;
+    const clamp = (v) => Math.max(0, Math.min(v, maxScroll()));
+    const tick = () => {
+      current += (target - current) * 0.1;
+      if (Math.abs(target - current) < 0.5) { current = target; running = false; }
+      window.scrollTo(0, current);
+      if (running) requestAnimationFrame(tick);
+    };
+    const start = () => { if (!running) { running = true; requestAnimationFrame(tick); } };
+    window.addEventListener("wheel", (e) => {
+      if (e.ctrlKey || document.body.classList.contains("menu-open")) return;
+      e.preventDefault();
+      let d = e.deltaY;
+      if (e.deltaMode === 1) d *= 32; else if (e.deltaMode === 2) d *= window.innerHeight;
+      if (!running) current = window.scrollY;
+      target = clamp(target + d);
+      start();
+    }, { passive: false });
+    window.addEventListener("scroll", () => { if (!running) current = target = window.scrollY; }, { passive: true });
+    fallbackScroll = (y) => { if (!running) current = window.scrollY; target = clamp(y); start(); };
+  }
+
+  function setupFallbackReveals() {
+    const items = document.querySelectorAll("[data-reveal]");
+    if (!("IntersectionObserver" in window) || reduceMotion) {
+      items.forEach((el) => el.classList.add("is-in"));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) { entry.target.classList.add("is-in"); io.unobserve(entry.target); }
+      });
+    }, { rootMargin: "0px 0px -10% 0px", threshold: 0.12 });
+    items.forEach((el) => io.observe(el));
   }
 })();

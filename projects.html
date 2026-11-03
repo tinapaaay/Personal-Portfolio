@@ -13,6 +13,10 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="favicon_io/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="favicon_io/apple-touch-icon.png">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
   <script src="script.js" defer></script>
 </head>
 <body id="top">
@@ -42,11 +46,11 @@
       <div class="wrap page-hero-grid">
         <div class="side" data-reveal>
           <p class="cap">Selected work<span class="rule"></span></p>
-          <p class="it">Five featured projects,<br>ten small studies.</p>
+          <p class="it">8 live projects,<br>11 small studies.</p>
         </div>
         <div>
           <h1 class="display" id="page-title" data-reveal style="--d: 0.1s">Things I am <em>building.</em></h1>
-          <p class="lead" data-reveal style="--d: 0.25s">My learning projects in web development — larger pieces where I combine visual direction, responsive design, accessibility, and JavaScript.</p>
+          <p class="lead" data-reveal style="--d: 0.25s">Every project below is the real website, running live. Click a window to try it, switch to mobile view, or open it in a new tab.</p>
         </div>
       </div>
     </section>
@@ -56,72 +60,191 @@
         <h2 class="visually-hidden" id="featured-heading">Featured projects</h2>
 
         <article class="feature">
-          <a class="feature-art" href="https://github.com/tinapaaay/Pugon---Savings-Tracker" target="_blank" rel="noopener" aria-label="Pugon repository" data-reveal>
-            <img src="images/projects/pugon.png" alt="Pugon savings tracker dashboard with goal cards and progress bars" loading="lazy">
-          </a>
-          <div class="feature-body" data-reveal style="--d: 0.12s">
+          <figure class="live" data-src="https://tinapaaay.github.io/feelings-tracker/">
+            <div class="live-bar">
+              <span class="live-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="live-url">tinapaaay.github.io/feelings-tracker</span>
+              <span class="live-modes" role="group" aria-label="Preview size"><button type="button" data-mode="desktop">Desktop</button><button type="button" data-mode="mobile">Mobile</button></span>
+              <a class="live-open" href="https://tinapaaay.github.io/feelings-tracker/" target="_blank" rel="noopener" aria-label="Open Little Feelings in a new tab">↗</a>
+            </div>
+            <div class="live-screen">
+              <div class="live-viewport"><iframe title="Little Feelings — live website" tabindex="-1" referrerpolicy="no-referrer"></iframe></div>
+              <button class="live-cover" type="button" aria-label="Try Little Feelings live"><span class="cap">Click to try it live</span></button>
+            </div>
+          </figure>
+          <div class="feature-body" data-reveal>
             <p class="sec-num">01</p>
-            <p class="kind cap">JavaScript Web App</p>
-            <h3>Pugon</h3>
-            <p>A cozy gamified savings tracker where financial goals become dream recipes. Users can add savings, unlock recipe milestones, and keep their progress using localStorage.</p>
-            <ul class="tags cap"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>localStorage</li></ul>
-            <a class="link cap" href="https://github.com/tinapaaay/Pugon---Savings-Tracker" target="_blank" rel="noopener">View repository <span aria-hidden="true">↗</span></a>
+            <p class="kind cap">JavaScript Web App · Node backend</p>
+            <h3>Little Feelings</h3>
+            <p>A feelings journal inspired by Inside Out. Spin the character wheel to pick an emotion, write the story, attach photos, and keep each moment as a glowing memory orb on your shelf.</p>
+            <ul class="tags cap"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Node.js</li><li>SQLite</li></ul>
+            <p class="feature-links"><a class="link cap" href="https://tinapaaay.github.io/feelings-tracker/" target="_blank" rel="noopener">Live site <span aria-hidden="true">↗</span></a><a class="link cap" href="https://github.com/tinapaaay/feelings-tracker" target="_blank" rel="noopener">Code <span aria-hidden="true">↗</span></a></p>
           </div>
         </article>
 
         <article class="feature">
-          <a class="feature-art" href="https://github.com/tinapaaay/Salin-Filipino-English-Dictionary" target="_blank" rel="noopener" aria-label="Salin repository" data-reveal>
-            <img src="images/projects/salin.png" alt="Salin Filipino dictionary interface with word cards and search tools" loading="lazy">
-          </a>
-          <div class="feature-body" data-reveal style="--d: 0.12s">
+          <figure class="live" data-src="https://tinapaaay.github.io/CSS_Casebook_MVP_v1/">
+            <div class="live-bar">
+              <span class="live-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="live-url">tinapaaay.github.io/css_casebook_mvp_v1</span>
+              <span class="live-modes" role="group" aria-label="Preview size"><button type="button" data-mode="desktop">Desktop</button><button type="button" data-mode="mobile">Mobile</button></span>
+              <a class="live-open" href="https://tinapaaay.github.io/CSS_Casebook_MVP_v1/" target="_blank" rel="noopener" aria-label="Open CSS Casebook in a new tab">↗</a>
+            </div>
+            <div class="live-screen">
+              <div class="live-viewport"><iframe title="CSS Casebook — live website" tabindex="-1" referrerpolicy="no-referrer"></iframe></div>
+              <button class="live-cover" type="button" aria-label="Try CSS Casebook live"><span class="cap">Click to try it live</span></button>
+            </div>
+          </figure>
+          <div class="feature-body" data-reveal>
             <p class="sec-num">02</p>
+            <p class="kind cap">Learning Platform Prototype</p>
+            <h3>CSS Casebook</h3>
+            <p>Learn CSS by solving debugging investigations — 48 cases with live editing, original / current / target comparisons, a three-step hint system, and checks based on the rendered layout.</p>
+            <ul class="tags cap"><li>JavaScript</li><li>CSS</li><li>Sandboxed iframes</li><li>localStorage</li></ul>
+            <p class="feature-links"><a class="link cap" href="https://tinapaaay.github.io/CSS_Casebook_MVP_v1/" target="_blank" rel="noopener">Live site <span aria-hidden="true">↗</span></a><a class="link cap" href="https://github.com/tinapaaay/CSS_Casebook_MVP_v1" target="_blank" rel="noopener">Code <span aria-hidden="true">↗</span></a></p>
+          </div>
+        </article>
+
+        <article class="feature">
+          <figure class="live" data-src="https://tinapaaay.github.io/pomodoro-site/">
+            <div class="live-bar">
+              <span class="live-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="live-url">tinapaaay.github.io/pomodoro-site</span>
+              <span class="live-modes" role="group" aria-label="Preview size"><button type="button" data-mode="desktop">Desktop</button><button type="button" data-mode="mobile">Mobile</button></span>
+              <a class="live-open" href="https://tinapaaay.github.io/pomodoro-site/" target="_blank" rel="noopener" aria-label="Open Neumorphic Pomodoro in a new tab">↗</a>
+            </div>
+            <div class="live-screen">
+              <div class="live-viewport"><iframe title="Neumorphic Pomodoro — live website" tabindex="-1" referrerpolicy="no-referrer"></iframe></div>
+              <button class="live-cover" type="button" aria-label="Try Neumorphic Pomodoro live"><span class="cap">Click to try it live</span></button>
+            </div>
+          </figure>
+          <div class="feature-body" data-reveal>
+            <p class="sec-num">03</p>
+            <p class="kind cap">Productivity Web App</p>
+            <h3>Neumorphic Pomodoro</h3>
+            <p>A local-first Pomodoro timer with customizable focus sessions, task planning, ambient sounds, and a progress history that stays in your browser.</p>
+            <ul class="tags cap"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>localStorage</li></ul>
+            <p class="feature-links"><a class="link cap" href="https://tinapaaay.github.io/pomodoro-site/" target="_blank" rel="noopener">Live site <span aria-hidden="true">↗</span></a><a class="link cap" href="https://github.com/tinapaaay/pomodoro-site" target="_blank" rel="noopener">Code <span aria-hidden="true">↗</span></a></p>
+          </div>
+        </article>
+
+        <article class="feature">
+          <figure class="live" data-src="https://tinapaaay.github.io/Pugon---Savings-Tracker/">
+            <div class="live-bar">
+              <span class="live-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="live-url">tinapaaay.github.io/pugon---savings-tracker</span>
+              <span class="live-modes" role="group" aria-label="Preview size"><button type="button" data-mode="desktop">Desktop</button><button type="button" data-mode="mobile">Mobile</button></span>
+              <a class="live-open" href="https://tinapaaay.github.io/Pugon---Savings-Tracker/" target="_blank" rel="noopener" aria-label="Open Pugon in a new tab">↗</a>
+            </div>
+            <div class="live-screen">
+              <div class="live-viewport"><iframe title="Pugon — live website" tabindex="-1" referrerpolicy="no-referrer"></iframe></div>
+              <img class="live-poster" src="images/projects/pugon.png" alt="" loading="lazy">
+              <button class="live-cover" type="button" aria-label="Try Pugon live"><span class="cap">Click to try it live</span></button>
+            </div>
+          </figure>
+          <div class="feature-body" data-reveal>
+            <p class="sec-num">04</p>
+            <p class="kind cap">JavaScript Web App</p>
+            <h3>Pugon</h3>
+            <p>A cozy gamified savings tracker where financial goals become dream recipes. Add savings, unlock recipe milestones, and keep your progress with localStorage.</p>
+            <ul class="tags cap"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>localStorage</li></ul>
+            <p class="feature-links"><a class="link cap" href="https://tinapaaay.github.io/Pugon---Savings-Tracker/" target="_blank" rel="noopener">Live site <span aria-hidden="true">↗</span></a><a class="link cap" href="https://github.com/tinapaaay/Pugon---Savings-Tracker" target="_blank" rel="noopener">Code <span aria-hidden="true">↗</span></a></p>
+          </div>
+        </article>
+
+        <article class="feature">
+          <figure class="live" data-src="https://tinapaaay.github.io/Salin-Filipino-English-Dictionary/">
+            <div class="live-bar">
+              <span class="live-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="live-url">tinapaaay.github.io/salin-filipino-english-dictionary</span>
+              <span class="live-modes" role="group" aria-label="Preview size"><button type="button" data-mode="desktop">Desktop</button><button type="button" data-mode="mobile">Mobile</button></span>
+              <a class="live-open" href="https://tinapaaay.github.io/Salin-Filipino-English-Dictionary/" target="_blank" rel="noopener" aria-label="Open Salin in a new tab">↗</a>
+            </div>
+            <div class="live-screen">
+              <div class="live-viewport"><iframe title="Salin — live website" tabindex="-1" referrerpolicy="no-referrer"></iframe></div>
+              <img class="live-poster" src="images/projects/salin.png" alt="" loading="lazy">
+              <button class="live-cover" type="button" aria-label="Try Salin live"><span class="cap">Click to try it live</span></button>
+            </div>
+          </figure>
+          <div class="feature-body" data-reveal>
+            <p class="sec-num">05</p>
             <p class="kind cap">JavaScript Web App</p>
             <h3>Salin</h3>
             <p>A Filipino word companion with search, category filters, a Word of the Day section, and saved words stored in localStorage.</p>
             <ul class="tags cap"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
-            <a class="link cap" href="https://github.com/tinapaaay/Salin-Filipino-English-Dictionary" target="_blank" rel="noopener">View repository <span aria-hidden="true">↗</span></a>
+            <p class="feature-links"><a class="link cap" href="https://tinapaaay.github.io/Salin-Filipino-English-Dictionary/" target="_blank" rel="noopener">Live site <span aria-hidden="true">↗</span></a><a class="link cap" href="https://github.com/tinapaaay/Salin-Filipino-English-Dictionary" target="_blank" rel="noopener">Code <span aria-hidden="true">↗</span></a></p>
           </div>
         </article>
 
         <article class="feature">
-          <a class="feature-art" href="https://github.com/tinapaaay/Tribute-Page" target="_blank" rel="noopener" aria-label="Norman Borlaug Tribute Page repository" data-reveal>
-            <img src="images/projects/tribute-page.png" alt="Norman Borlaug tribute page with editorial typography and portrait image" loading="lazy">
-          </a>
-          <div class="feature-body" data-reveal style="--d: 0.12s">
-            <p class="sec-num">03</p>
+          <figure class="live" data-src="https://tinapaaay.github.io/Tribute-Page/">
+            <div class="live-bar">
+              <span class="live-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="live-url">tinapaaay.github.io/tribute-page</span>
+              <span class="live-modes" role="group" aria-label="Preview size"><button type="button" data-mode="desktop">Desktop</button><button type="button" data-mode="mobile">Mobile</button></span>
+              <a class="live-open" href="https://tinapaaay.github.io/Tribute-Page/" target="_blank" rel="noopener" aria-label="Open Norman Borlaug Tribute in a new tab">↗</a>
+            </div>
+            <div class="live-screen">
+              <div class="live-viewport"><iframe title="Norman Borlaug Tribute — live website" tabindex="-1" referrerpolicy="no-referrer"></iframe></div>
+              <img class="live-poster" src="images/projects/tribute-page.png" alt="" loading="lazy">
+              <button class="live-cover" type="button" aria-label="Try Norman Borlaug Tribute live"><span class="cap">Click to try it live</span></button>
+            </div>
+          </figure>
+          <div class="feature-body" data-reveal>
+            <p class="sec-num">06</p>
             <p class="kind cap">Editorial Website</p>
             <h3>Norman Borlaug Tribute</h3>
             <p>An editorial-style biography page with a photo hero, quote section, responsive timeline, and reading-focused typography.</p>
             <ul class="tags cap"><li>HTML</li><li>CSS</li><li>Responsive Design</li></ul>
-            <a class="link cap" href="https://github.com/tinapaaay/Tribute-Page" target="_blank" rel="noopener">View repository <span aria-hidden="true">↗</span></a>
+            <p class="feature-links"><a class="link cap" href="https://tinapaaay.github.io/Tribute-Page/" target="_blank" rel="noopener">Live site <span aria-hidden="true">↗</span></a><a class="link cap" href="https://github.com/tinapaaay/Tribute-Page" target="_blank" rel="noopener">Code <span aria-hidden="true">↗</span></a></p>
           </div>
         </article>
 
         <article class="feature">
-          <a class="feature-art" href="https://github.com/tinapaaay/Technical-Documentation" target="_blank" rel="noopener" aria-label="CSS Layout Field Notes repository" data-reveal>
-            <img src="images/projects/technical-documentation.png" alt="CSS Layout Field Notes documentation page with a sidebar navigation" loading="lazy">
-          </a>
-          <div class="feature-body" data-reveal style="--d: 0.12s">
-            <p class="sec-num">04</p>
+          <figure class="live" data-src="https://tinapaaay.github.io/Technical-Documentation/">
+            <div class="live-bar">
+              <span class="live-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="live-url">tinapaaay.github.io/technical-documentation</span>
+              <span class="live-modes" role="group" aria-label="Preview size"><button type="button" data-mode="desktop">Desktop</button><button type="button" data-mode="mobile">Mobile</button></span>
+              <a class="live-open" href="https://tinapaaay.github.io/Technical-Documentation/" target="_blank" rel="noopener" aria-label="Open CSS Layout Field Notes in a new tab">↗</a>
+            </div>
+            <div class="live-screen">
+              <div class="live-viewport"><iframe title="CSS Layout Field Notes — live website" tabindex="-1" referrerpolicy="no-referrer"></iframe></div>
+              <img class="live-poster" src="images/projects/technical-documentation.png" alt="" loading="lazy">
+              <button class="live-cover" type="button" aria-label="Try CSS Layout Field Notes live"><span class="cap">Click to try it live</span></button>
+            </div>
+          </figure>
+          <div class="feature-body" data-reveal>
+            <p class="sec-num">07</p>
             <p class="kind cap">Documentation Website</p>
             <h3>CSS Layout Field Notes</h3>
             <p>A technical documentation page with a sticky sidebar, smooth anchor navigation, highlighted sections, and expandable learning notes.</p>
             <ul class="tags cap"><li>CSS Grid</li><li>Sticky Layout</li><li>Accessibility</li></ul>
-            <a class="link cap" href="https://github.com/tinapaaay/Technical-Documentation" target="_blank" rel="noopener">View repository <span aria-hidden="true">↗</span></a>
+            <p class="feature-links"><a class="link cap" href="https://tinapaaay.github.io/Technical-Documentation/" target="_blank" rel="noopener">Live site <span aria-hidden="true">↗</span></a><a class="link cap" href="https://github.com/tinapaaay/Technical-Documentation" target="_blank" rel="noopener">Code <span aria-hidden="true">↗</span></a></p>
           </div>
         </article>
 
         <article class="feature">
-          <a class="feature-art" href="https://github.com/tinapaaay/Product-Landing-Page" target="_blank" rel="noopener" aria-label="Aqua Nook repository" data-reveal>
-            <img src="images/projects/product-landing-page.png" alt="Aqua Nook product landing page for aquascaping supplies" loading="lazy">
-          </a>
-          <div class="feature-body" data-reveal style="--d: 0.12s">
-            <p class="sec-num">05</p>
+          <figure class="live" data-src="https://tinapaaay.github.io/Product-Landing-Page/">
+            <div class="live-bar">
+              <span class="live-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="live-url">tinapaaay.github.io/product-landing-page</span>
+              <span class="live-modes" role="group" aria-label="Preview size"><button type="button" data-mode="desktop">Desktop</button><button type="button" data-mode="mobile">Mobile</button></span>
+              <a class="live-open" href="https://tinapaaay.github.io/Product-Landing-Page/" target="_blank" rel="noopener" aria-label="Open Aqua Nook in a new tab">↗</a>
+            </div>
+            <div class="live-screen">
+              <div class="live-viewport"><iframe title="Aqua Nook — live website" tabindex="-1" referrerpolicy="no-referrer"></iframe></div>
+              <img class="live-poster" src="images/projects/product-landing-page.png" alt="" loading="lazy">
+              <button class="live-cover" type="button" aria-label="Try Aqua Nook live"><span class="cap">Click to try it live</span></button>
+            </div>
+          </figure>
+          <div class="feature-body" data-reveal>
+            <p class="sec-num">08</p>
             <p class="kind cap">Product Landing Page</p>
             <h3>Aqua Nook</h3>
             <p>A responsive landing page for beginner aquascaping kits with immersive visuals, product options, an email form, and a video section.</p>
             <ul class="tags cap"><li>HTML</li><li>CSS Grid</li><li>Forms</li></ul>
-            <a class="link cap" href="https://github.com/tinapaaay/Product-Landing-Page" target="_blank" rel="noopener">View repository <span aria-hidden="true">↗</span></a>
+            <p class="feature-links"><a class="link cap" href="https://tinapaaay.github.io/Product-Landing-Page/" target="_blank" rel="noopener">Live site <span aria-hidden="true">↗</span></a><a class="link cap" href="https://github.com/tinapaaay/Product-Landing-Page" target="_blank" rel="noopener">Code <span aria-hidden="true">↗</span></a></p>
           </div>
         </article>
       </div>
@@ -137,16 +260,17 @@
           </div>
         </div>
         <div class="index">
-          <a class="index-row" data-reveal href="https://github.com/tinapaaay/Single-Page-CV" target="_blank" rel="noopener"><p class="sec-num">01</p><h3>Single-Page CV</h3><p>A semantic CV website built with HTML, SEO meta tags, Open Graph tags, and a favicon.</p><span class="arrow" aria-hidden="true">↗</span></a>
-          <a class="index-row" data-reveal href="https://github.com/tinapaaay/Changelog-Component" target="_blank" rel="noopener"><p class="sec-num">02</p><h3>Changelog Component</h3><p>A responsive timeline component built to practice CSS positioning, pseudo-elements, and media queries.</p><span class="arrow" aria-hidden="true">↗</span></a>
-          <a class="index-row" data-reveal href="https://github.com/tinapaaay/Testimonial-Cards" target="_blank" rel="noopener"><p class="sec-num">03</p><h3>Testimonial Cards</h3><p>A responsive collection of testimonial cards using CSS Grid, Flexbox, profile images, and varied card layouts.</p><span class="arrow" aria-hidden="true">↗</span></a>
-          <a class="index-row" data-reveal href="https://github.com/tinapaaay/Datepicker-UI" target="_blank" rel="noopener"><p class="sec-num">04</p><h3>Datepicker UI</h3><p>A static calendar user interface built with HTML and CSS Grid, ready to become interactive with JavaScript later.</p><span class="arrow" aria-hidden="true">↗</span></a>
-          <a class="index-row" data-reveal href="https://github.com/tinapaaay/Accessible-Form-UI" target="_blank" rel="noopener"><p class="sec-num">05</p><h3>Accessible Form UI</h3><p>A static sign-up form with accessible labels, focus states, ARIA attributes, error-message areas, and a progress bar.</p><span class="arrow" aria-hidden="true">↗</span></a>
-          <a class="index-row" data-reveal href="https://github.com/tinapaaay/Image-Grid-Layout" target="_blank" rel="noopener"><p class="sec-num">06</p><h3>Image Grid Layout</h3><p>A responsive six-image gallery using CSS Grid, local image assets, and different grid-item spans.</p><span class="arrow" aria-hidden="true">↗</span></a>
-          <a class="index-row" data-reveal href="https://github.com/tinapaaay/CSS-Tooltip-UI" target="_blank" rel="noopener"><p class="sec-num">07</p><h3>CSS Tooltip UI</h3><p>A CSS-only navigation tooltip component with hover effects, keyboard focus support, smooth transitions, and accessible markup.</p><span class="arrow" aria-hidden="true">↗</span></a>
-          <a class="index-row" data-reveal href="https://github.com/tinapaaay/Pricing-Comparison-Table" target="_blank" rel="noopener"><p class="sec-num">08</p><h3>Pricing Comparison Table</h3><p>A responsive and accessible pricing comparison page using a semantic HTML table, captions, scopes, merged cells, and CSS.</p><span class="arrow" aria-hidden="true">↗</span></a>
-          <a class="index-row" data-reveal href="https://github.com/tinapaaay/Blog-Post-Page" target="_blank" rel="noopener"><p class="sec-num">09</p><h3>Blog Post Page</h3><p>A semantic and responsive blog post page using meaningful text elements, accessible images, code blocks, quotes, and a reading-focused layout.</p><span class="arrow" aria-hidden="true">↗</span></a>
-          <a class="index-row" data-reveal href="https://github.com/tinapaaay/Pricing-Cards" target="_blank" rel="noopener"><p class="sec-num">10</p><h3>Pricing Cards</h3><p>A responsive three-card pricing component using Flexbox, equal-height cards, a highlighted recommended plan, and interactive button states.</p><span class="arrow" aria-hidden="true">↗</span></a>
+          <a class="index-row" data-reveal href="https://tinapaaay.github.io/Basic-HTML-Website/" target="_blank" rel="noopener"><p class="sec-num">01</p><h3>Basic HTML Website</h3><p>A multi-page website built with semantic HTML — home, projects, articles, and contact pages joined by one navigation bar.</p><span class="arrow" aria-hidden="true">↗</span></a>
+          <a class="index-row" data-reveal href="https://tinapaaay.github.io/Single-Page-CV/" target="_blank" rel="noopener"><p class="sec-num">02</p><h3>Single-Page CV</h3><p>A semantic CV website built with HTML, SEO meta tags, Open Graph tags, and a favicon.</p><span class="arrow" aria-hidden="true">↗</span></a>
+          <a class="index-row" data-reveal href="https://tinapaaay.github.io/Changelog-Component/" target="_blank" rel="noopener"><p class="sec-num">03</p><h3>Changelog Component</h3><p>A responsive timeline component built to practice CSS positioning, pseudo-elements, and media queries.</p><span class="arrow" aria-hidden="true">↗</span></a>
+          <a class="index-row" data-reveal href="https://tinapaaay.github.io/Testimonial-Cards/" target="_blank" rel="noopener"><p class="sec-num">04</p><h3>Testimonial Cards</h3><p>A responsive collection of testimonial cards using CSS Grid, Flexbox, profile images, and varied card layouts.</p><span class="arrow" aria-hidden="true">↗</span></a>
+          <a class="index-row" data-reveal href="https://tinapaaay.github.io/Datepicker-UI/" target="_blank" rel="noopener"><p class="sec-num">05</p><h3>Datepicker UI</h3><p>A static calendar interface built with HTML and CSS Grid, ready to become interactive with JavaScript later.</p><span class="arrow" aria-hidden="true">↗</span></a>
+          <a class="index-row" data-reveal href="https://tinapaaay.github.io/Accessible-Form-UI/" target="_blank" rel="noopener"><p class="sec-num">06</p><h3>Accessible Form UI</h3><p>A sign-up form with accessible labels, focus states, ARIA attributes, error-message areas, and a progress bar.</p><span class="arrow" aria-hidden="true">↗</span></a>
+          <a class="index-row" data-reveal href="https://tinapaaay.github.io/Image-Grid-Layout/" target="_blank" rel="noopener"><p class="sec-num">07</p><h3>Image Grid Layout</h3><p>A responsive six-image gallery using CSS Grid, local image assets, and different grid-item spans.</p><span class="arrow" aria-hidden="true">↗</span></a>
+          <a class="index-row" data-reveal href="https://tinapaaay.github.io/CSS-Tooltip-UI/" target="_blank" rel="noopener"><p class="sec-num">08</p><h3>CSS Tooltip UI</h3><p>A CSS-only navigation tooltip with hover effects, keyboard focus support, smooth transitions, and accessible markup.</p><span class="arrow" aria-hidden="true">↗</span></a>
+          <a class="index-row" data-reveal href="https://tinapaaay.github.io/Pricing-Comparison-Table/" target="_blank" rel="noopener"><p class="sec-num">09</p><h3>Pricing Comparison Table</h3><p>An accessible pricing comparison page using a semantic table, captions, scopes, merged cells, and CSS.</p><span class="arrow" aria-hidden="true">↗</span></a>
+          <a class="index-row" data-reveal href="https://tinapaaay.github.io/Blog-Post-Page/" target="_blank" rel="noopener"><p class="sec-num">10</p><h3>Blog Post Page</h3><p>A semantic, responsive blog post with meaningful text elements, accessible images, code blocks, and quotes.</p><span class="arrow" aria-hidden="true">↗</span></a>
+          <a class="index-row" data-reveal href="https://tinapaaay.github.io/Pricing-Cards/" target="_blank" rel="noopener"><p class="sec-num">11</p><h3>Pricing Cards</h3><p>A three-card pricing component using Flexbox, equal-height cards, a highlighted plan, and interactive button states.</p><span class="arrow" aria-hidden="true">↗</span></a>
         </div>
       </div>
     </section>

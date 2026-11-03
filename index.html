@@ -13,6 +13,10 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="favicon_io/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="favicon_io/apple-touch-icon.png">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
   <script src="script.js" defer></script>
 </head>
 <body id="top">
@@ -52,7 +56,7 @@
         <p class="cap">Christine Joy Espiritu</p>
         <a class="link cap" href="projects.html">View the work <span aria-hidden="true">→</span></a>
       </div>
-      <p class="hero-right cap">Computer Science<span class="rule"></span>Frontend Developer<span class="rule"></span>Live Host</p>
+      <p class="hero-right cap"><span class="hero-right-in">Computer Science<span class="rule"></span>Frontend Developer<span class="rule"></span>Live Host</span></p>
     </section>
 
     <!-- Intro -->
@@ -64,7 +68,7 @@
           <p class="cap" id="intro-heading">About me</p>
         </div>
         <div>
-          <p class="intro-statement" data-reveal>I like turning ideas into things people can <em>explore</em> — thoughtful, organized, and a little bit creative.</p>
+          <p class="intro-statement">I like turning ideas into things people can <em>explore</em> — thoughtful, organized, and a little bit creative.</p>
           <div class="intro-cols" data-reveal style="--d: 0.15s">
             <p>I am studying Computer Science with a specialization in Software Engineering at Far Eastern University.</p>
             <p>I am currently developing my skills in HTML, CSS, JavaScript, UI/UX design, and web development.</p>
@@ -171,59 +175,106 @@
       </div>
     </section>
 
-    <!-- Featured work -->
-    <section class="section" aria-labelledby="work-heading">
-      <div class="wrap">
-        <div class="sec-head">
-          <div data-reveal>
-            <p class="sec-num">04</p>
-            <span class="rule"></span>
-            <p class="cap">Selected work</p>
-          </div>
-          <div data-reveal>
-            <h2 class="title" id="work-heading">Featured <em>projects</em></h2>
-            <p class="lead">A few projects where I turn what I am learning into working web experiences.</p>
-          </div>
+    <!-- Live works -->
+    <section class="works" aria-labelledby="work-heading">
+      <div class="wrap works-head">
+        <div>
+          <p class="cap" data-reveal>04 · Selected work<span class="rule"></span></p>
+          <h2 class="title" id="work-heading">Live <em>projects</em></h2>
+          <p class="lead" data-reveal>These are the real websites, running right here. Click any window to try it.</p>
         </div>
-        <div class="work-grid">
-          <article class="work-card" data-reveal>
-            <a href="projects.html">
-              <div class="work-frame">
-                <img src="images/projects/pugon.png" alt="Pugon savings tracker dashboard with goal cards and progress bars" loading="lazy">
-              </div>
-              <div class="work-info">
-                <p class="sec-num">01</p>
-                <h3>Pugon</h3>
-                <ul class="tags cap"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
-              </div>
-            </a>
-          </article>
-          <article class="work-card" data-reveal style="--d: 0.12s">
-            <a href="projects.html">
-              <div class="work-frame">
-                <img src="images/projects/salin.png" alt="Salin Filipino dictionary interface with word cards and search tools" loading="lazy">
-              </div>
-              <div class="work-info">
-                <p class="sec-num">02</p>
-                <h3>Salin</h3>
-                <ul class="tags cap"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
-              </div>
-            </a>
-          </article>
-          <article class="work-card" data-reveal style="--d: 0.24s">
-            <a href="projects.html">
-              <div class="work-frame">
-                <img src="images/projects/tribute-page.png" alt="Norman Borlaug tribute page with editorial typography and portrait image" loading="lazy">
-              </div>
-              <div class="work-info">
-                <p class="sec-num">03</p>
-                <h3>Borlaug Tribute</h3>
-                <ul class="tags cap"><li>HTML</li><li>CSS</li><li>Responsive</li></ul>
-              </div>
-            </a>
-          </article>
+        <div data-reveal>
+          <p class="works-count"><b>01</b> / 04</p>
+          <div class="works-progress" aria-hidden="true"><i></i></div>
         </div>
-        <p class="work-foot" data-reveal><a class="btn cap" href="projects.html">View all projects <span aria-hidden="true">→</span></a></p>
+      </div>
+      <div class="works-track">
+          <article class="work-slide">
+            <figure class="live" data-src="https://tinapaaay.github.io/feelings-tracker/">
+              <div class="live-bar">
+                <span class="live-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="live-url">tinapaaay.github.io/feelings-tracker</span>
+                <span class="live-modes" role="group" aria-label="Preview size"><button type="button" data-mode="desktop">Desktop</button><button type="button" data-mode="mobile">Mobile</button></span>
+                <a class="live-open" href="https://tinapaaay.github.io/feelings-tracker/" target="_blank" rel="noopener" aria-label="Open Little Feelings in a new tab">↗</a>
+              </div>
+              <div class="live-screen">
+                <div class="live-viewport"><iframe title="Little Feelings — live website" tabindex="-1" referrerpolicy="no-referrer"></iframe></div>
+                <button class="live-cover" type="button" aria-label="Try Little Feelings live"><span class="cap">Click to try it live</span></button>
+              </div>
+            </figure>
+            <div class="work-slide-info">
+              <p class="sec-num">01</p>
+              <h3>Little Feelings</h3>
+              <ul class="tags cap"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+              <a class="link cap" href="https://tinapaaay.github.io/feelings-tracker/" target="_blank" rel="noopener">Live site <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+          <article class="work-slide">
+            <figure class="live" data-src="https://tinapaaay.github.io/CSS_Casebook_MVP_v1/">
+              <div class="live-bar">
+                <span class="live-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="live-url">tinapaaay.github.io/css_casebook_mvp_v1</span>
+                <span class="live-modes" role="group" aria-label="Preview size"><button type="button" data-mode="desktop">Desktop</button><button type="button" data-mode="mobile">Mobile</button></span>
+                <a class="live-open" href="https://tinapaaay.github.io/CSS_Casebook_MVP_v1/" target="_blank" rel="noopener" aria-label="Open CSS Casebook in a new tab">↗</a>
+              </div>
+              <div class="live-screen">
+                <div class="live-viewport"><iframe title="CSS Casebook — live website" tabindex="-1" referrerpolicy="no-referrer"></iframe></div>
+                <button class="live-cover" type="button" aria-label="Try CSS Casebook live"><span class="cap">Click to try it live</span></button>
+              </div>
+            </figure>
+            <div class="work-slide-info">
+              <p class="sec-num">02</p>
+              <h3>CSS Casebook</h3>
+              <ul class="tags cap"><li>JavaScript</li><li>CSS</li><li>Sandboxed iframes</li></ul>
+              <a class="link cap" href="https://tinapaaay.github.io/CSS_Casebook_MVP_v1/" target="_blank" rel="noopener">Live site <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+          <article class="work-slide">
+            <figure class="live" data-src="https://tinapaaay.github.io/pomodoro-site/">
+              <div class="live-bar">
+                <span class="live-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="live-url">tinapaaay.github.io/pomodoro-site</span>
+                <span class="live-modes" role="group" aria-label="Preview size"><button type="button" data-mode="desktop">Desktop</button><button type="button" data-mode="mobile">Mobile</button></span>
+                <a class="live-open" href="https://tinapaaay.github.io/pomodoro-site/" target="_blank" rel="noopener" aria-label="Open Neumorphic Pomodoro in a new tab">↗</a>
+              </div>
+              <div class="live-screen">
+                <div class="live-viewport"><iframe title="Neumorphic Pomodoro — live website" tabindex="-1" referrerpolicy="no-referrer"></iframe></div>
+                <button class="live-cover" type="button" aria-label="Try Neumorphic Pomodoro live"><span class="cap">Click to try it live</span></button>
+              </div>
+            </figure>
+            <div class="work-slide-info">
+              <p class="sec-num">03</p>
+              <h3>Neumorphic Pomodoro</h3>
+              <ul class="tags cap"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+              <a class="link cap" href="https://tinapaaay.github.io/pomodoro-site/" target="_blank" rel="noopener">Live site <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+          <article class="work-slide">
+            <figure class="live" data-src="https://tinapaaay.github.io/Pugon---Savings-Tracker/">
+              <div class="live-bar">
+                <span class="live-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="live-url">tinapaaay.github.io/pugon---savings-tracker</span>
+                <span class="live-modes" role="group" aria-label="Preview size"><button type="button" data-mode="desktop">Desktop</button><button type="button" data-mode="mobile">Mobile</button></span>
+                <a class="live-open" href="https://tinapaaay.github.io/Pugon---Savings-Tracker/" target="_blank" rel="noopener" aria-label="Open Pugon in a new tab">↗</a>
+              </div>
+              <div class="live-screen">
+                <div class="live-viewport"><iframe title="Pugon — live website" tabindex="-1" referrerpolicy="no-referrer"></iframe></div>
+                <img class="live-poster" src="images/projects/pugon.png" alt="" loading="lazy">
+                <button class="live-cover" type="button" aria-label="Try Pugon live"><span class="cap">Click to try it live</span></button>
+              </div>
+            </figure>
+            <div class="work-slide-info">
+              <p class="sec-num">04</p>
+              <h3>Pugon</h3>
+              <ul class="tags cap"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+              <a class="link cap" href="https://tinapaaay.github.io/Pugon---Savings-Tracker/" target="_blank" rel="noopener">Live site <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+        <div class="work-end">
+          <p class="sec-num">+15</p>
+          <p class="title">More on the <em>projects</em> page</p>
+          <a class="btn cap" href="projects.html">View all projects <span aria-hidden="true">→</span></a>
+        </div>
       </div>
     </section>
 

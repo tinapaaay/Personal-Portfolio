@@ -15,17 +15,18 @@ This project is part of the [Personal Portfolio project on roadmap.sh](https://r
 ## Features
 
 - Plum editorial design: cream paper, one deep plum accent, and large Bodoni Moda serif type
-- Poster-style hero where the portrait overlaps a giant "TINAPAY" wordmark on a plum half-circle
-- Smooth, eased scrolling for mouse and trackpad (native scrolling on touch and with reduced motion)
-- Letter-by-letter hero intro, fade-up reveals, gentle parallax, and plum hover fills on list rows
-- Full-screen plum mobile menu and a reduced-motion fallback
-- Responsive layout for desktop and mobile screens
+- Live project previews: each project runs inside a browser-style window (GitHub Pages), with a desktop / mobile toggle and click-to-try
+- Pinned horizontal scroller of live projects on the home page
+- Scroll animations with GSAP (ScrollTrigger + SplitText): letter-by-letter hero, the name spreading as you scroll, masked headline reveals, words lighting up as you read, and a plum circle that floods the screen
+- Lenis smooth scrolling (native on touch and with reduced motion), with a CSS-only fallback if the libraries don't load
+- Full-screen plum mobile menu and responsive layout for desktop and mobile
 
 ## Built With
 
 - HTML5
 - CSS3
-- Vanilla JavaScript (no libraries)
+- Vanilla JavaScript
+- GSAP, ScrollTrigger, SplitText, and Lenis (from CDN)
 - Git and GitHub
 
 ## What I Practiced
