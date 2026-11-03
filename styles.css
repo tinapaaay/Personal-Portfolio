@@ -1148,7 +1148,7 @@ html.lenis, html.lenis body { height: auto; }
 
 /* Contact: direct email line */
 .contact-direct { display: flex; flex-direction: column; gap: 4px; margin-bottom: 2rem; }
-.contact-direct a { font-family: var(--serif); font-size: clamp(1.1rem, 2vw, 1.5rem); font-weight: 500; letter-spacing: -0.02em; border-bottom: 1px solid var(--line); align-self: flex-start; padding-bottom: 4px; transition: color 0.3s, border-color 0.3s; word-break: break-all; }
+.contact-direct a { font-family: var(--serif); font-size: clamp(1.1rem, 2vw, 1.5rem); font-weight: 500; letter-spacing: -0.02em; border-bottom: 1px solid var(--line); align-self: flex-start; padding-bottom: 4px; transition: color 0.3s, border-color 0.3s; }
 .contact-direct a:hover { color: var(--plum); border-color: var(--plum); }
 .form-note a { color: var(--plum); text-decoration: underline; }
 .btn:disabled { opacity: 0.6; cursor: progress; }
