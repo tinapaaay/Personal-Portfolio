@@ -35,7 +35,7 @@ No automated test command is provided by this repository. The following manual c
 1. Open every top-level page and follow shared navigation, project links, case studies, and the PDF download.
 2. Check desktop/mobile preview toggles and click-to-interact behavior, including phone/data-saver loading.
 3. Check reduced-motion and blocked-CDN behavior. Test the contact form only with an intentional test message and verify delivery separately.
-4. Open `works/leemo-cocktails/` and `retro-calculator/` directly and check their controls.
+4. Open `retro-calculator/` directly and check its controls.
 5. Inspect the browser console and Network panel for missing assets or script errors; check keyboard access, phone width, and 200% zoom.
 
 ## Deployment
@@ -48,5 +48,6 @@ Update the README and this guide when entry points, dependencies, behavior, or d
 
 ## Bundled websites
 
-- [Leemo Cocktails](../works/leemo-cocktails/README.md)
 - [Typewriter Calculator](../retro-calculator/README.md)
+
+Leemo Cocktails moved to its own repository, [tinapaaay/leemo-cocktails](https://github.com/tinapaaay/leemo-cocktails), live at [tinapaaay.github.io/leemo-cocktails](https://tinapaaay.github.io/leemo-cocktails/). The portfolio embeds it like the other external projects.
