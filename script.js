@@ -51,6 +51,9 @@
     if (!lives.length) return;
 
     const smallScreen = window.matchMedia("(max-width: 720px)").matches;
+    const saveData = !!(navigator.connection && navigator.connection.saveData);
+    // On phones and data-saver, a live site loads only when tapped.
+    const autoLoad = !smallScreen && !saveData;
 
     lives.forEach((live) => {
       const screen = live.querySelector(".live-screen");
@@ -58,6 +61,10 @@
       const iframe = live.querySelector("iframe");
       const cover = live.querySelector(".live-cover");
       if (smallScreen) live.dataset.mode = "mobile";
+      if (!autoLoad) {
+        const label = live.querySelector(".live-cover span");
+        if (label) label.textContent = "Tap to load the live site";
+      }
       if (!live.dataset.mode) live.dataset.mode = "desktop";
 
       const layout = () => {
@@ -119,9 +126,11 @@
 
     function load(live) {
       const iframe = live.querySelector("iframe");
+      live.classList.add("is-requested");
       if (!iframe.src) iframe.src = live.dataset.src;
     }
 
+    if (!autoLoad) return;
     if (!("IntersectionObserver" in window)) {
       lives.forEach(load);
       return;
@@ -382,15 +391,41 @@
     const form = document.querySelector(".form");
     if (!form) return;
     const note = form.querySelector(".form-note");
-    form.addEventListener("submit", (e) => {
+    const button = form.querySelector('button[type="submit"]');
+    const endpoint = form.dataset.endpoint;
+    const email = form.dataset.email;
+
+    const say = (html) => { if (note) note.innerHTML = html; };
+
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
       if (!form.checkValidity()) {
         form.reportValidity();
         return;
       }
-      const name = form.querySelector("#name").value.trim().split(" ")[0];
-      if (note) note.textContent = `Thank you, ${name}. Your message is noted.`;
-      form.reset();
+      const data = Object.fromEntries(new FormData(form));
+      if (data._honey) return; // bot filled the hidden field
+      const first = String(data.name).trim().split(" ")[0];
+
+      button.disabled = true;
+      say("Sending…");
+      try {
+        const res = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({ ...data, _template: "table" }),
+        });
+        const json = await res.json().catch(() => ({}));
+        if (!res.ok || json.success === "false" || json.success === false) throw new Error(json.message || "failed");
+        say(`Thank you, ${first}. Your message is on its way — I’ll reply soon.`);
+        form.reset();
+      } catch (err) {
+        // Fall back to the visitor's own email app with the message filled in.
+        const mail = `mailto:${email}?subject=${encodeURIComponent("Hello from your portfolio")}&body=${encodeURIComponent(`${data.message}\n\n— ${data.name} (${data.email})`)}`;
+        say(`Sorry, that didn’t send. <a href="${mail}">Send it by email instead</a>.`);
+      } finally {
+        button.disabled = false;
+      }
     });
   }
 

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Casebook — Case Study | Christine Joy Espiritu</title>
+  <meta name="description" content="How Christine Joy Espiritu built CSS Casebook, a debugging-first platform for learning CSS.">
+  <meta name="author" content="Christine Joy Espiritu">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="CSS Casebook — Case Study | Christine Joy Espiritu">
+  <meta property="og:description" content="How Christine Joy Espiritu built CSS Casebook, a debugging-first platform for learning CSS.">
+  <meta property="og:url" content="https://tinapaaay.github.io/Personal-Portfolio/case-css-casebook.html">
+  <meta property="og:image" content="https://tinapaaay.github.io/Personal-Portfolio/images/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ece5da">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="favicon_io/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="favicon_io/apple-touch-icon.png">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body id="top">
+  <a class="skip-link cap" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="brand cap" href="index.html" aria-label="Tinapay home">More than<br>just code<span class="rule"></span></a>
+    <nav id="site-nav" class="site-nav cap" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html"><span class="nav-num">01</span>Home</a></li>
+        <li><a href="about.html"><span class="nav-num">02</span>About</a></li>
+        <li><a href="projects.html" aria-current="page"><span class="nav-num">03</span>Work</a></li>
+        <li><a href="articles.html"><span class="nav-num">04</span>Writing</a></li>
+        <li><a href="contact.html"><span class="nav-num">05</span>Contact</a></li>
+      </ul>
+      <p class="nav-foot cap">Christine Joy Espiritu · Portfolio ’26</p>
+    </nav>
+    <p class="header-end cap"><a href="contact.html">Let’s talk →</a><br>Portfolio ’26</p>
+    <button class="menu-toggle cap" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="label">Menu</span><span class="bars" aria-hidden="true"></span>
+    </button>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="page-hero case-hero" aria-labelledby="page-title">
+      <div class="wrap">
+        <p class="cap" data-reveal><a href="projects.html">← All projects</a><span class="rule"></span>Case study · 02</p>
+        <h1 class="display" id="page-title" data-reveal>CSS <em>Casebook.</em></h1>
+        <p class="lead" data-reveal>Every bug has a story. A learning platform where you master CSS by investigating broken interfaces, testing a theory, and understanding exactly why the fix works.</p>
+        <dl class="case-meta" data-reveal>
+          <div><dt class="cap">Type</dt><dd>Learning platform prototype</dd></div>
+          <div><dt class="cap">Built with</dt><dd>HTML, CSS, JavaScript</dd></div>
+          <div><dt class="cap">Scope</dt><dd>16 chapters · 48 cases</dd></div>
+          <div><dt class="cap">Links</dt><dd><a href="https://tinapaaay.github.io/CSS_Casebook_MVP_v1/" target="_blank" rel="noopener">Live ↗</a> · <a href="https://github.com/tinapaaay/CSS_Casebook_MVP_v1" target="_blank" rel="noopener">Code ↗</a></dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="case-preview" aria-label="Live preview">
+      <div class="wrap">
+        <figure class="live" data-src="https://tinapaaay.github.io/CSS_Casebook_MVP_v1/">
+          <div class="live-bar">
+            <span class="live-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="live-url">tinapaaay.github.io/css_casebook_mvp_v1</span>
+            <span class="live-modes" role="group" aria-label="Preview size"><button type="button" data-mode="desktop">Desktop</button><button type="button" data-mode="mobile">Mobile</button></span>
+            <a class="live-open" href="https://tinapaaay.github.io/CSS_Casebook_MVP_v1/" target="_blank" rel="noopener" aria-label="Open CSS Casebook in a new tab">↗</a>
+          </div>
+          <div class="live-screen">
+            <div class="live-viewport"><iframe title="CSS Casebook — live website" tabindex="-1" referrerpolicy="no-referrer"></iframe></div>
+            <img class="live-poster" src="images/projects/css-casebook.png" alt="" loading="lazy">
+            <button class="live-cover" type="button" aria-label="Try CSS Casebook live"><span class="cap">Click to try it live</span></button>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="idea-heading">
+      <div class="wrap case-grid">
+        <div data-reveal><p class="sec-num">01</p><span class="rule"></span><p class="cap">The idea</p></div>
+        <div class="case-copy">
+          <h2 class="title" id="idea-heading">Learn CSS the way you <em>use it.</em></h2>
+          <p data-reveal>Real CSS work is mostly debugging: something looks wrong, and you have to find out why. CSS Casebook turns that into the lesson. Each case is a broken interface with a clear target, and you solve it by editing the CSS live.</p>
+          <p data-reveal>A Field Guide sits alongside the cases with three lessons per chapter, short reviews, and progress summaries — no account needed.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section tint" aria-labelledby="features-heading">
+      <div class="wrap case-grid">
+        <div data-reveal><p class="sec-num">02</p><span class="rule"></span><p class="cap">What it does</p></div>
+        <div class="case-copy">
+          <h2 class="title" id="features-heading">Features</h2>
+          <ul class="case-list" data-reveal>
+            <li><b>Live editing.</b> Change the CSS and see the preview update instantly.</li>
+            <li><b>Original, current, and target.</b> Compare where the case started, where it is now, and where it should end up.</li>
+            <li><b>Three-step hints.</b> Hints get more specific only when you ask for them.</li>
+            <li><b>Clear feedback.</b> Specific unresolved notes while you work, and a full resolution report when you solve it.</li>
+            <li><b>Saved progress.</b> Drafts, hints, lessons, reviews, and completed cases are kept in the browser.</li>
+            <li><b>Built for every screen.</b> Mobile workspace tabs with arrow-key navigation, reduced-motion support, and visible focus states.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="how-heading">
+      <div class="wrap case-grid">
+        <div data-reveal><p class="sec-num">03</p><span class="rule"></span><p class="cap">How it works</p></div>
+        <div class="case-copy">
+          <h2 class="title" id="how-heading">Key <em>decisions</em></h2>
+          <div class="case-cards">
+            <article data-reveal>
+              <h3>Check the result, not the text</h3>
+              <p>Fixes are validated against the rendered layout, so any correct CSS passes — not just one exact answer.</p>
+            </article>
+            <article data-reveal>
+              <h3>Sandboxed previews</h3>
+              <p>Each case runs in an isolated iframe, so full multi-selector CSS works without breaking the Casebook's own interface.</p>
+            </article>
+            <article data-reveal>
+              <h3>One engine, 48 cases</h3>
+              <p>A shared case engine handles the editor, preview, hints, checking, and reset. Case content lives in a separate data file.</p>
+            </article>
+            <article data-reveal>
+              <h3>Interactive labs</h3>
+              <p>A Flexbox control room lets you change direction, wrapping, and alignment, and shows the generated CSS as you go.</p>
+            </article>
+            <article data-reveal>
+              <h3>Safe progress</h3>
+              <p>Progress imports are validated before replacing anything, and a failed save restores the previous records.</p>
+            </article>
+            <article data-reveal>
+              <h3>No build step</h3>
+              <p>Plain HTML, CSS, and JavaScript. Open the page and it runs — no installs, no bundler.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark" aria-labelledby="quality-heading">
+      <div class="wrap case-grid">
+        <div data-reveal><p class="sec-num">04</p><span class="rule"></span><p class="cap">Quality</p></div>
+        <div class="case-copy">
+          <h2 class="title" id="quality-heading">Checked at every <em>size.</em></h2>
+          <p data-reveal>Browser regression tests cover all 48 starter and recommended solution pairs across the four main pages at five screen widths, plus dependency-free tests for saved progress. A manual smoke-test checklist is run before each release.</p>
+          <p data-reveal class="case-small">The neumorphic edition also fixed seven recommended solutions that the checker had been rejecting.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing dark" aria-labelledby="closing-heading">
+      <div class="wrap closing-grid">
+        <h2 class="display" id="closing-heading" data-reveal>See every <em>project.</em></h2>
+        <div class="closing-side" data-reveal style="--d: 0.15s">
+          <p class="lead">Eight live projects and eleven smaller studies.</p>
+          <a class="btn cap" href="projects.html">Back to projects <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top cap">
+        <p>© 2026 Christine Joy Espiritu</p>
+        <ul class="footer-links">
+          <li><a href="resume.html">Résumé</a></li>
+          <li><a href="https://www.linkedin.com/in/tinapay/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/tinapaaay" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://www.instagram.com/_tina_pay/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com/01eyojenitsirhc/" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+        <a class="to-top" href="#top">Back to top ↑</a>
+      </div>
+      <p class="footer-word" aria-hidden="true">TINAPAY</p>
+    </div>
+  </footer>
+</body>
+</html>

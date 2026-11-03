@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How I Put Live Websites Inside My Portfolio | Christine Joy Espiritu</title>
+  <meta name="description" content="Notes on showing projects as real, running websites instead of screenshots.">
+  <meta name="author" content="Christine Joy Espiritu">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How I Put Live Websites Inside My Portfolio | Christine Joy Espiritu">
+  <meta property="og:description" content="Notes on showing projects as real, running websites instead of screenshots.">
+  <meta property="og:url" content="https://tinapaaay.github.io/Personal-Portfolio/article-live-previews.html">
+  <meta property="og:image" content="https://tinapaaay.github.io/Personal-Portfolio/images/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ece5da">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="favicon_io/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="favicon_io/apple-touch-icon.png">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body id="top">
+  <a class="skip-link cap" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="brand cap" href="index.html" aria-label="Tinapay home">More than<br>just code<span class="rule"></span></a>
+    <nav id="site-nav" class="site-nav cap" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html"><span class="nav-num">01</span>Home</a></li>
+        <li><a href="about.html"><span class="nav-num">02</span>About</a></li>
+        <li><a href="projects.html"><span class="nav-num">03</span>Work</a></li>
+        <li><a href="articles.html" aria-current="page"><span class="nav-num">04</span>Writing</a></li>
+        <li><a href="contact.html"><span class="nav-num">05</span>Contact</a></li>
+      </ul>
+      <p class="nav-foot cap">Christine Joy Espiritu · Portfolio ’26</p>
+    </nav>
+    <p class="header-end cap"><a href="contact.html">Let’s talk →</a><br>Portfolio ’26</p>
+    <button class="menu-toggle cap" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="label">Menu</span><span class="bars" aria-hidden="true"></span>
+    </button>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <article class="post" aria-labelledby="page-title">
+      <header class="page-hero post-hero">
+        <div class="wrap post-wrap">
+          <p class="cap" data-reveal><a href="articles.html">← All articles</a><span class="rule"></span>Notes · November 2026 · 4 min read</p>
+          <h1 class="title post-title" id="page-title" data-reveal>How I put live websites inside my <em>portfolio</em></h1>
+          <p class="lead" data-reveal>Screenshots show what a project looked like. I wanted visitors to see what it actually does.</p>
+        </div>
+      </header>
+
+      <div class="wrap post-wrap post-body">
+        <p>When I rebuilt this portfolio, I had a simple goal for the projects page: no more static pictures. Every project should run right on the page, so anyone can click around a real app without leaving.</p>
+
+        <h2>1. Publish every project</h2>
+        <p>A live preview needs a live site. Each of my project repositories is published with <strong>GitHub Pages</strong>, which serves the files in a repo as a website at <code>tinapaaay.github.io/repo-name</code>. Most of my projects are plain HTML, CSS, and JavaScript, so they work there with no changes.</p>
+
+        <h2>2. Show the site in a browser frame</h2>
+        <p>Each project sits inside an <code>&lt;iframe&gt;</code>, wrapped in a small browser window with a URL bar. An iframe shows another web page inside yours — exactly what a preview needs.</p>
+
+        <h2>3. Shrink a desktop site to fit</h2>
+        <p>The tricky part: a project designed for a 1280px-wide screen looks squashed in a 700px box. Instead of letting it reflow, I render the iframe at full desktop width and scale it down with CSS:</p>
+        <pre><code>const scale = frameWidth / 1280;
+viewport.style.width = "1280px";
+viewport.style.height = frameHeight / scale + "px";
+viewport.style.transform = `scale(${scale})`;</code></pre>
+        <p>The site thinks it's on a laptop, but it fits neatly in the frame. A <strong>Mobile</strong> button switches the iframe to 390px wide and shows it inside a phone outline.</p>
+
+        <h2>4. Don't trap the scroll</h2>
+        <p>If the mouse is over an iframe, the scroll wheel scrolls the project instead of the page — which feels like being stuck. So previews start "asleep": a transparent cover sits on top, and clicking it lets you use the site. Move the mouse away and the page scrolls normally again.</p>
+
+        <h2>5. Load only what's needed</h2>
+        <p>Eight live websites at once is heavy. An <code>IntersectionObserver</code> loads each one only when you scroll near it. On phones, or when data saver is on, nothing loads until you tap — until then a screenshot stands in.</p>
+
+        <h2>What I learned</h2>
+        <ul>
+          <li>Publishing small projects early pays off — they become part of the portfolio for free.</li>
+          <li>Scaling with <code>transform</code> keeps the original design intact, instead of a squeezed version.</li>
+          <li>Interactive embeds need clear rules about who gets the mouse and the scroll.</li>
+          <li>Performance is part of the design, especially on phones.</li>
+        </ul>
+
+        <p class="post-end"><a class="btn cap" href="projects.html">See the live projects <span aria-hidden="true">→</span></a></p>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top cap">
+        <p>© 2026 Christine Joy Espiritu</p>
+        <ul class="footer-links">
+          <li><a href="resume.html">Résumé</a></li>
+          <li><a href="https://www.linkedin.com/in/tinapay/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/tinapaaay" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://www.instagram.com/_tina_pay/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com/01eyojenitsirhc/" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+        <a class="to-top" href="#top">Back to top ↑</a>
+      </div>
+      <p class="footer-word" aria-hidden="true">TINAPAY</p>
+    </div>
+  </footer>
+</body>
+</html>

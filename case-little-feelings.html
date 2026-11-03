@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Little Feelings — Case Study | Christine Joy Espiritu</title>
+  <meta name="description" content="How Christine Joy Espiritu built Little Feelings, a feelings journal with a Node.js and SQLite backend.">
+  <meta name="author" content="Christine Joy Espiritu">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Little Feelings — Case Study | Christine Joy Espiritu">
+  <meta property="og:description" content="How Christine Joy Espiritu built Little Feelings, a feelings journal with a Node.js and SQLite backend.">
+  <meta property="og:url" content="https://tinapaaay.github.io/Personal-Portfolio/case-little-feelings.html">
+  <meta property="og:image" content="https://tinapaaay.github.io/Personal-Portfolio/images/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ece5da">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="favicon_io/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="favicon_io/apple-touch-icon.png">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body id="top">
+  <a class="skip-link cap" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="brand cap" href="index.html" aria-label="Tinapay home">More than<br>just code<span class="rule"></span></a>
+    <nav id="site-nav" class="site-nav cap" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html"><span class="nav-num">01</span>Home</a></li>
+        <li><a href="about.html"><span class="nav-num">02</span>About</a></li>
+        <li><a href="projects.html" aria-current="page"><span class="nav-num">03</span>Work</a></li>
+        <li><a href="articles.html"><span class="nav-num">04</span>Writing</a></li>
+        <li><a href="contact.html"><span class="nav-num">05</span>Contact</a></li>
+      </ul>
+      <p class="nav-foot cap">Christine Joy Espiritu · Portfolio ’26</p>
+    </nav>
+    <p class="header-end cap"><a href="contact.html">Let’s talk →</a><br>Portfolio ’26</p>
+    <button class="menu-toggle cap" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="label">Menu</span><span class="bars" aria-hidden="true"></span>
+    </button>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="page-hero case-hero" aria-labelledby="page-title">
+      <div class="wrap">
+        <p class="cap" data-reveal><a href="projects.html">← All projects</a><span class="rule"></span>Case study · 01</p>
+        <h1 class="display" id="page-title" data-reveal>Little <em>Feelings.</em></h1>
+        <p class="lead" data-reveal>A feelings journal inspired by Inside Out. Pick how you feel, write the story, and keep it as a glowing memory orb on your shelf — with private accounts backed by a real server.</p>
+        <dl class="case-meta" data-reveal>
+          <div><dt class="cap">Type</dt><dd>Full-stack web app</dd></div>
+          <div><dt class="cap">Front end</dt><dd>HTML, CSS, JavaScript</dd></div>
+          <div><dt class="cap">Back end</dt><dd>Node.js, SQLite</dd></div>
+          <div><dt class="cap">Links</dt><dd><a href="https://tinapaaay.github.io/feelings-tracker/" target="_blank" rel="noopener">Live ↗</a> · <a href="https://github.com/tinapaaay/feelings-tracker" target="_blank" rel="noopener">Code ↗</a></dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="case-preview" aria-label="Live preview">
+      <div class="wrap">
+        <figure class="live" data-src="https://tinapaaay.github.io/feelings-tracker/">
+          <div class="live-bar">
+            <span class="live-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="live-url">tinapaaay.github.io/feelings-tracker</span>
+            <span class="live-modes" role="group" aria-label="Preview size"><button type="button" data-mode="desktop">Desktop</button><button type="button" data-mode="mobile">Mobile</button></span>
+            <a class="live-open" href="https://tinapaaay.github.io/feelings-tracker/" target="_blank" rel="noopener" aria-label="Open Little Feelings in a new tab">↗</a>
+          </div>
+          <div class="live-screen">
+            <div class="live-viewport"><iframe title="Little Feelings — live website" tabindex="-1" referrerpolicy="no-referrer"></iframe></div>
+            <img class="live-poster" src="images/projects/little-feelings.png" alt="" loading="lazy">
+            <button class="live-cover" type="button" aria-label="Try Little Feelings live"><span class="cap">Click to try it live</span></button>
+          </div>
+        </figure>
+        <p class="live-note"><b>Guest mode.</b> This preview runs the browser-only journal. Accounts, photo storage, and sync need the Node.js server, which GitHub Pages can't run.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="idea-heading">
+      <div class="wrap case-grid">
+        <div data-reveal><p class="sec-num">01</p><span class="rule"></span><p class="cap">The idea</p></div>
+        <div class="case-copy">
+          <h2 class="title" id="idea-heading">A gentle place to <em>check in.</em></h2>
+          <p data-reveal>Most mood trackers feel like forms. I wanted checking in to feel playful: a rotating wheel of characters where the one in the center is the feeling you choose, a short note, and a memory that rolls onto a wooden shelf.</p>
+          <p data-reveal>It starts as a browser-only guest journal, and grows into private accounts so memories and photos survive across devices and server restarts.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section tint" aria-labelledby="features-heading">
+      <div class="wrap case-grid">
+        <div data-reveal><p class="sec-num">02</p><span class="rule"></span><p class="cap">What it does</p></div>
+        <div class="case-copy">
+          <h2 class="title" id="features-heading">Features</h2>
+          <ul class="case-list" data-reveal>
+            <li><b>Check in with a character wheel.</b> Spin to the emotion you feel; the center character is your choice.</li>
+            <li><b>Write and attach.</b> Add a note and up to four photos (PNG, JPEG, WebP, or GIF).</li>
+            <li><b>Revisit and edit.</b> Open any memory orb to edit it — the original date and kept photos are preserved.</li>
+            <li><b>Own your data.</b> Download a complete JSON backup, restore it later, or import memories from the guest journal.</li>
+            <li><b>Insights.</b> Emotion counts and daily summaries over a date range.</li>
+            <li><b>Leave cleanly.</b> Delete your account, memories, photos, and sessions in one step.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="how-heading">
+      <div class="wrap case-grid">
+        <div data-reveal><p class="sec-num">03</p><span class="rule"></span><p class="cap">How it works</p></div>
+        <div class="case-copy">
+          <h2 class="title" id="how-heading">Key <em>decisions</em></h2>
+          <div class="case-cards">
+            <article data-reveal>
+              <h3>No runtime dependencies</h3>
+              <p>The server uses Node's built-in HTTP and SQLite modules (Node 22.13+), so there's nothing extra to install or keep updated.</p>
+            </article>
+            <article data-reveal>
+              <h3>Private by default</h3>
+              <p>Passwords use salted scrypt hashes, only hashed session tokens are stored, and sessions live in HTTP-only, SameSite=Strict cookies.</p>
+            </article>
+            <article data-reveal>
+              <h3>Safe requests</h3>
+              <p>Modifying requests need a CSRF token and the exact site origin. Sign-in endpoints are rate-limited.</p>
+            </article>
+            <article data-reveal>
+              <h3>Careful with images</h3>
+              <p>Uploads are checked against real file signatures, stored in the database, and served only to their owner.</p>
+            </article>
+            <article data-reveal>
+              <h3>Imports that can't half-fail</h3>
+              <p>Imports run as one transaction, skip duplicates when retried, and roll back if anything goes wrong.</p>
+            </article>
+            <article data-reveal>
+              <h3>Ready to deploy</h3>
+              <p>A Dockerfile, a health endpoint, and a one-command database snapshot make it straightforward to host and back up.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark" aria-labelledby="quality-heading">
+      <div class="wrap case-grid">
+        <div data-reveal><p class="sec-num">04</p><span class="rule"></span><p class="cap">Quality</p></div>
+        <div class="case-copy">
+          <h2 class="title" id="quality-heading">Tested, not <em>hoped.</em></h2>
+          <p data-reveal>Integration tests cover authentication, private memory and photo access, CSRF and origin checks, image validation, editing, import rollback and duplicates, pagination, insights, backups, restart persistence, deletion, logout, and rate limiting. CI runs them on Node 22 and 24.</p>
+          <p data-reveal class="case-small">Not yet included: email verification and password-recovery mail. Character artwork belongs to Disney/Pixar and is used for a personal, non-commercial prototype.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing dark" aria-labelledby="closing-heading">
+      <div class="wrap closing-grid">
+        <h2 class="display" id="closing-heading" data-reveal>Next: <em>CSS Casebook.</em></h2>
+        <div class="closing-side" data-reveal style="--d: 0.15s">
+          <p class="lead">A debugging-first way to learn CSS, with 48 playable cases.</p>
+          <a class="btn cap" href="case-css-casebook.html">Read the case study <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top cap">
+        <p>© 2026 Christine Joy Espiritu</p>
+        <ul class="footer-links">
+          <li><a href="resume.html">Résumé</a></li>
+          <li><a href="https://www.linkedin.com/in/tinapay/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/tinapaaay" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://www.instagram.com/_tina_pay/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com/01eyojenitsirhc/" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+        <a class="to-top" href="#top">Back to top ↑</a>
+      </div>
+      <p class="footer-word" aria-hidden="true">TINAPAY</p>
+    </div>
+  </footer>
+</body>
+</html>

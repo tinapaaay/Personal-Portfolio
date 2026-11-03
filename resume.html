@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Résumé | Christine Joy Espiritu</title>
+  <meta name="description" content="Résumé of Christine Joy Espiritu, Computer Science student and aspiring frontend developer.">
+  <meta name="author" content="Christine Joy Espiritu">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Résumé | Christine Joy Espiritu">
+  <meta property="og:description" content="Résumé of Christine Joy Espiritu, Computer Science student and aspiring frontend developer.">
+  <meta property="og:url" content="https://tinapaaay.github.io/Personal-Portfolio/resume.html">
+  <meta property="og:image" content="https://tinapaaay.github.io/Personal-Portfolio/images/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon_io/favicon.ico" type="image/x-icon">
+  <style>
+    :root { --cream: #ece5da; --plum: #3d1426; --ink: #2a161f; --muted: #5f4b54; --line: rgba(61, 20, 38, 0.18); }
+    * { box-sizing: border-box; }
+    html { background: var(--cream); }
+    body { margin: 0; font-family: "Plus Jakarta Sans", system-ui, sans-serif; color: var(--ink); font-size: 10.5pt; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+    .sheet { max-width: 210mm; min-height: 297mm; margin: 24px auto; padding: 16mm 16mm 14mm; background: #fffdf9; box-shadow: 0 30px 60px -30px rgba(42, 15, 27, 0.35); }
+    .toolbar { max-width: 210mm; margin: 24px auto 0; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 0 4px; font-size: 13px; }
+    .toolbar a { color: var(--plum); }
+    .toolbar .btn { background: var(--plum); color: var(--cream); padding: 10px 18px; border-radius: 999px; text-decoration: none; font-weight: 500; }
+    header { display: grid; grid-template-columns: 1fr auto; gap: 8px 24px; align-items: end; padding-bottom: 6mm; border-bottom: 2px solid var(--plum); }
+    h1 { margin: 0; font-size: 26pt; line-height: 1; letter-spacing: -0.03em; font-weight: 600; }
+    h1 span { font-family: "Bodoni Moda", serif; font-weight: 500; color: var(--plum); font-size: 14pt; letter-spacing: 0.08em; display: block; margin-bottom: 6px; }
+    .role { margin: 6px 0 0; color: var(--muted); font-weight: 500; }
+    .contact { list-style: none; margin: 0; padding: 0; text-align: right; font-size: 9.5pt; }
+    .contact a { color: var(--ink); text-decoration: none; }
+    .badge { display: inline-block; margin-top: 8px; padding: 3px 10px; border-radius: 999px; background: var(--plum); color: var(--cream); font-size: 8.5pt; font-weight: 500; }
+    h2 { margin: 6mm 0 2.5mm; font-size: 9pt; letter-spacing: 0.2em; text-transform: uppercase; color: var(--plum); font-weight: 600; }
+    p { margin: 0; }
+    .summary { color: #3b2a32; }
+    .item { display: grid; grid-template-columns: 30mm 1fr; gap: 0 6mm; padding: 2.2mm 0; border-top: 1px solid var(--line); }
+    .item:first-of-type { border-top: 0; }
+    .when { color: var(--muted); font-size: 9pt; padding-top: 1px; }
+    .item h3 { margin: 0; font-size: 10.5pt; font-weight: 600; }
+    .item h3 small { font-weight: 500; color: var(--muted); font-size: 9.5pt; }
+    .item p { color: #3b2a32; font-size: 9.5pt; margin-top: 1px; }
+    .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0 10mm; }
+    .skills { display: grid; gap: 1.5mm; }
+    .skills div { display: grid; grid-template-columns: 30mm 1fr; gap: 6mm; font-size: 9.5pt; }
+    .skills b { font-weight: 600; }
+    .proj { padding: 1.6mm 0; border-top: 1px solid var(--line); font-size: 9.5pt; }
+    .proj:first-of-type { border-top: 0; }
+    .proj b { font-weight: 600; }
+    .proj a { color: var(--plum); text-decoration: none; font-size: 8.5pt; }
+    @media print {
+      html, body { background: #fff; }
+      .toolbar { display: none; }
+      body { font-size: 9.4pt; line-height: 1.42; }
+      .sheet { margin: 0; box-shadow: none; max-width: none; min-height: 0; padding: 10mm 13mm 8mm; }
+      h1 { font-size: 22pt; }
+      h2 { margin: 4mm 0 1.6mm; }
+      header { padding-bottom: 4mm; }
+      .item { padding: 1.5mm 0; }
+      .proj { padding: 1.1mm 0; }
+      .item p, .proj, .skills div, .contact { font-size: 8.8pt; }
+      @page { size: A4; margin: 0; }
+    }
+    @media (max-width: 720px) {
+      .sheet { margin: 12px; padding: 20px; min-height: 0; }
+      header, .cols, .item, .skills div { grid-template-columns: 1fr; }
+      .contact { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <a href="about.html">← Back to portfolio</a>
+    <a class="btn" href="resume.pdf" download>Download PDF</a>
+  </div>
+
+  <main class="sheet">
+    <header>
+      <div>
+        <h1><span>TINAPAY</span>Christine Joy Espiritu</h1>
+        <p class="role">Computer Science Student · Aspiring Frontend Developer · Live Host</p>
+        <span class="badge">Open to internships</span>
+      </div>
+      <ul class="contact">
+        <li><a href="mailto:01eyojenitsirhc@gmail.com">01eyojenitsirhc@gmail.com</a></li>
+        <li><a href="https://www.linkedin.com/in/tinapay/">linkedin.com/in/tinapay</a></li>
+        <li><a href="https://github.com/tinapaaay">github.com/tinapaaay</a></li>
+      </ul>
+    </header>
+
+    <h2>Profile</h2>
+    <p class="summary">Computer Science student specializing in Software Engineering at Far Eastern University. I build thoughtful, organized web experiences with HTML, CSS, and JavaScript — from accessible UI components to full-stack apps with Node.js and SQLite. Live hosting has taught me to communicate clearly, adapt quickly, and keep people engaged.</p>
+
+    <h2>Selected projects</h2>
+    <div class="proj"><b>Little Feelings</b> — Feelings journal with private accounts: Node.js + SQLite backend, hashed passwords, CSRF protection, photo uploads, JSON backups, and integration tests in CI. <a href="https://tinapaaay.github.io/feelings-tracker/">Live ↗</a></div>
+    <div class="proj"><b>CSS Casebook</b> — Learn-CSS-by-debugging platform: 48 cases, live editor, sandboxed previews, layout-based checking, and browser regression tests at five widths. <a href="https://tinapaaay.github.io/CSS_Casebook_MVP_v1/">Live ↗</a></div>
+    <div class="proj"><b>Neumorphic Pomodoro</b> — Local-first focus timer with task planning, ambient sounds, and progress history. <a href="https://tinapaaay.github.io/pomodoro-site/">Live ↗</a></div>
+    <div class="proj"><b>Pugon · Salin</b> — Gamified savings tracker and Filipino word companion built with vanilla JavaScript and localStorage. <a href="https://github.com/tinapaaay">GitHub ↗</a></div>
+
+    <h2>Experience</h2>
+    <div class="item"><p class="when">2026 — Present</p><div><h3>Live Host <small>· Nexplay</small></h3><p>Host live selling and engagement sessions for partnered brands, build real-time audience interaction, and adjust engagement strategies using live metrics.</p></div></div>
+    <div class="item"><p class="when">2025 — 2026</p><div><h3>Live Host / Operator <small>· Unicharm</small></h3><p>Managed product listings, carts, and customer interactions during live sessions while keeping workflows organized and tracking engagement analytics.</p></div></div>
+    <div class="item"><p class="when">2023</p><div><h3>Service Crew <small>· McDonald’s</small></h3><p>Delivered customer service, resolved concerns efficiently, and maintained accuracy in a fast-paced environment.</p></div></div>
+
+    <div class="cols">
+      <div>
+        <h2>Education</h2>
+        <div class="item"><p class="when">2023 — Present</p><div><h3>BS Computer Science</h3><p>Far Eastern University · Software Engineering</p></div></div>
+        <div class="item"><p class="when">2021 — 2023</p><div><h3>Senior High School</h3><p>Polytechnic University of the Philippines</p></div></div>
+        <div class="item"><p class="when">2016 — 2021</p><div><h3>Junior High School</h3><p>San Juan City Science High School</p></div></div>
+      </div>
+      <div>
+        <h2>Certifications</h2>
+        <div class="item"><p class="when">2026</p><div><h3>Responsive Web Design</h3><p>freeCodeCamp</p></div></div>
+        <div class="item"><p class="when">2026</p><div><h3>Project Management Ready</h3><p>Project Management Institute</p></div></div>
+        <div class="item"><p class="when">2025</p><div><h3>IT Specialist in Python</h3><p>Pearson</p></div></div>
+        <div class="item"><p class="when">2025</p><div><h3>Using Git with VS Code</h3><p>LinkedIn Learning</p></div></div>
+      </div>
+    </div>
+
+    <h2>Skills</h2>
+    <div class="skills">
+      <div><b>Frontend</b><span>HTML, CSS, JavaScript, responsive design, accessibility</span></div>
+      <div><b>Programming</b><span>Python, Java, Node.js, SQLite, Git, VS Code</span></div>
+      <div><b>Workflow</b><span>Agile, project management, data analysis, research</span></div>
+      <div><b>Communication</b><span>Live hosting, product marketing, customer support, sales</span></div>
+      <div><b>AI-assisted</b><span>AI-assisted coding, prompt writing, UI ideation</span></div>
+    </div>
+  </main>
+</body>
+</html>

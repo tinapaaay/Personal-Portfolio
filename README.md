@@ -8,9 +8,10 @@ This project is part of the [Personal Portfolio project on roadmap.sh](https://r
 
 - Home
 - About
-- Projects
+- Projects (with two case studies)
 - Articles
 - Contact
+- Résumé
 
 ## Features
 
@@ -19,6 +20,11 @@ This project is part of the [Personal Portfolio project on roadmap.sh](https://r
 - Pinned horizontal scroller of live projects on the home page
 - Scroll animations with GSAP (ScrollTrigger + SplitText): letter-by-letter hero, the name spreading as you scroll, masked headline reveals, words lighting up as you read, and a plum circle that floods the screen
 - Lenis smooth scrolling (native on touch and with reduced motion), with a CSS-only fallback if the libraries don't load
+- Case studies for Little Feelings and CSS Casebook, and a first article on building the live previews
+- Contact form that sends real messages through FormSubmit, with an email fallback
+- Printable résumé page and one-page PDF download
+- Share image and Open Graph tags for link previews
+- Live previews load only on tap on phones and with data saver on
 - Full-screen plum mobile menu and responsive layout for desktop and mobile
 
 ## Built With
