@@ -345,7 +345,7 @@
 
     // --- skill rows slide in ---
     gsap.utils.toArray(".skill h3").forEach((el) => {
-      gsap.from(el, { x: -60, ease: "none",
+      gsap.from(el, { x: 60, ease: "none",
         scrollTrigger: { trigger: el, start: "top bottom", end: "top 60%", scrub: true } });
     });
 
