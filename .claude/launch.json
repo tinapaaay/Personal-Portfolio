@@ -1,0 +1,28 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "portfolio",
+      "url": "http://localhost:5520",
+      "port": 5520
+    },
+    {
+      "name": "retro-calculator",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": [
+        "-c",
+        "cd '/private/tmp/claude-501/-Users-mac-Downloads-09-Web-Code-and-Other-Files-Projects-projects-beginner-Personal-Portfolio/5ef03f4c-e279-49bc-b495-2798cb5a1542/scratchpad/calc' && exec python3 -m http.server 5531"
+      ],
+      "port": 5531
+    },
+    {
+      "name": "portfolio-check",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": [
+        "-c",
+        "cd '/private/tmp/claude-501/-Users-mac-Downloads-09-Web-Code-and-Other-Files-Projects-projects-beginner-Personal-Portfolio/8354690f-6fe4-4254-89d0-d583add03915/scratchpad/site' && exec python3 -m http.server 5533"
+      ],
+      "port": 5533
+    }
+  ]
+}

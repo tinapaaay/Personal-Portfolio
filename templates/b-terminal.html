@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>tinapay — B / Terminal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0d10;
+    --panel: #12161b;
+    --edge: #222a33;
+    --text: #e6edf3;
+    --muted: #7d8a96;
+    --lime: #b6ff3b;
+    --cyan: #5ee7ff;
+    --pink: #ff6bcb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: "Space Grotesk", sans-serif; min-height: 100vh;
+    background-image: radial-gradient(circle at 1px 1px, #1c232b 1px, transparent 0); background-size: 26px 26px; }
+  a { color: inherit; text-decoration: none; }
+  .mono { font-family: "JetBrains Mono", monospace; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; font-family: "JetBrains Mono", monospace; font-size: 14px; }
+  nav .logo { color: var(--lime); font-weight: 800; }
+  nav .links { display: flex; gap: 24px; color: var(--muted); }
+  nav .links a:hover { color: var(--text); }
+
+  /* hero terminal */
+  .hero { padding: 60px 0 40px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center; }
+  .hero h1 { font-size: clamp(48px, 7vw, 96px); line-height: .95; letter-spacing: -.04em; font-weight: 700; }
+  .hero h1 .hl { color: var(--lime); }
+  .hero p { color: var(--muted); font-size: 18px; margin-top: 22px; max-width: 42ch; line-height: 1.55; }
+  .cta { display: flex; gap: 12px; margin-top: 30px; }
+  .btn { font-family: "JetBrains Mono", monospace; font-size: 14px; padding: 13px 20px; border-radius: 8px; border: 1px solid var(--edge); transition: .2s; }
+  .btn.primary { background: var(--lime); color: #0b0d10; border-color: var(--lime); font-weight: 800; }
+  .btn:hover { transform: translateY(-2px); border-color: var(--lime); }
+
+  .term { background: var(--panel); border: 1px solid var(--edge); border-radius: 12px; overflow: hidden; box-shadow: 0 30px 80px -20px rgba(182,255,59,.15); }
+  .term-top { display: flex; gap: 7px; padding: 12px 14px; border-bottom: 1px solid var(--edge); }
+  .term-top i { width: 11px; height: 11px; border-radius: 50%; background: #2c3540; }
+  .term-top i:nth-child(1) { background: #ff5f57; } .term-top i:nth-child(2) { background: #febc2e; } .term-top i:nth-child(3) { background: #28c840; }
+  .term-body { padding: 20px; font-family: "JetBrains Mono", monospace; font-size: 14px; line-height: 1.9; }
+  .term-body .p { color: var(--lime); }
+  .term-body .c { color: var(--muted); }
+  .term-body .k { color: var(--cyan); }
+  .term-body .s { color: var(--pink); }
+  .caret { display: inline-block; width: 8px; height: 16px; background: var(--lime); vertical-align: middle; animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* bento works */
+  .label { font-family: "JetBrains Mono", monospace; font-size: 13px; color: var(--muted); margin: 60px 0 18px; }
+  .label b { color: var(--lime); font-weight: 400; }
+  .bento { display: grid; grid-template-columns: repeat(6, 1fr); grid-auto-rows: 160px; gap: 16px; }
+  .card { background: var(--panel); border: 1px solid var(--edge); border-radius: 16px; padding: 22px; position: relative; overflow: hidden; transition: .25s; display: flex; flex-direction: column; }
+  .card:hover { border-color: var(--lime); transform: translateY(-3px); }
+  .card .tag { font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; }
+  .card h3 { font-size: 28px; letter-spacing: -.02em; margin-top: 6px; }
+  .card .desc { color: var(--muted); font-size: 15px; margin-top: 8px; line-height: 1.5; max-width: 38ch; }
+  .card .go { margin-top: auto; font-family: "JetBrains Mono", monospace; font-size: 13px; color: var(--lime); }
+  .live-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 10px var(--lime); margin-right: 6px; }
+
+  .c1 { grid-column: span 4; grid-row: span 3; }
+  .c2 { grid-column: span 2; grid-row: span 2; }
+  .c3 { grid-column: span 2; grid-row: span 2; }
+  .c4 { grid-column: span 2; grid-row: span 1; justify-content: center; }
+  .c5 { grid-column: span 2; grid-row: span 1; justify-content: center; }
+
+  .preview { margin-top: 18px; flex: 1; border-radius: 10px; border: 1px solid var(--edge); overflow: hidden; background: #0e1216; position: relative; }
+  .preview iframe { width: 200%; height: 200%; border: 0; transform: scale(.5); transform-origin: 0 0; pointer-events: none; }
+
+  .mini-ring { width: 120px; height: 120px; margin: 18px auto 0; border-radius: 50%; display: grid; place-items: center;
+    background: conic-gradient(var(--cyan) 0 68%, #1d252e 68% 100%); position: relative; }
+  .mini-ring::before { content: ""; position: absolute; inset: 9px; border-radius: 50%; background: var(--panel); }
+  .mini-ring span { position: relative; font-family: "JetBrains Mono", monospace; font-weight: 800; font-size: 22px; }
+  .mini-todo { margin-top: 16px; display: grid; gap: 8px; font-family: "JetBrains Mono", monospace; font-size: 13px; }
+  .mini-todo div::before { content: "[ ] "; color: var(--pink); }
+  .mini-todo .d { color: var(--muted); text-decoration: line-through; }
+  .mini-todo .d::before { content: "[x] "; }
+
+  .stat { font-size: 44px; font-weight: 700; letter-spacing: -.03em; }
+  .stat small { font-size: 14px; color: var(--muted); font-weight: 400; font-family: "JetBrains Mono", monospace; display: block; }
+  .stack { display: flex; flex-wrap: wrap; gap: 8px; }
+  .stack span { font-family: "JetBrains Mono", monospace; font-size: 12px; border: 1px solid var(--edge); border-radius: 6px; padding: 5px 9px; }
+
+  footer { margin: 80px 0 30px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--edge); padding-top: 26px; font-family: "JetBrains Mono", monospace; font-size: 13px; color: var(--muted); }
+  footer a:hover { color: var(--lime); }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; }
+    nav .links { display: none; }
+    .bento { grid-template-columns: 1fr 1fr; grid-auto-rows: auto; }
+    .c1, .c2, .c3, .c4, .c5 { grid-column: span 2; grid-row: auto; min-height: 160px; }
+    .c1 .preview { height: 260px; flex: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav>
+    <a class="logo" href="#">~/tinapay</a>
+    <div class="links"><a href="#work">./work</a><a href="#about">./about</a><a href="#contact">./contact</a></div>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <h1>Hi, I’m <span class="hl">tinapay.</span><br>I make the web feel soft.</h1>
+      <p>Front-end developer building focused little tools with HTML, CSS and JavaScript — one component at a time.</p>
+      <div class="cta">
+        <a class="btn primary" href="#work">view work →</a>
+        <a class="btn" href="https://github.com/tinapaaay" target="_blank">github ↗</a>
+      </div>
+    </div>
+    <div class="term">
+      <div class="term-top"><i></i><i></i><i></i></div>
+      <div class="term-body">
+        <div><span class="p">tinapay@web</span> <span class="c">~</span> $ whoami</div>
+        <div>front-end dev · <span class="s">neumorphism</span> enjoyer</div>
+        <div><span class="p">tinapay@web</span> <span class="c">~</span> $ ls projects/</div>
+        <div><span class="k">pomodoro-site/</span>  <span class="k">pomodoro-timer/</span>  <span class="k">todo-list/</span></div>
+        <div><span class="p">tinapay@web</span> <span class="c">~</span> $ <span class="caret"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <p class="label" id="work"><b>//</b> selected work — 03 projects</p>
+
+  <div class="bento">
+    <a class="card c1" href="https://tinapaaay.github.io/pomodoro-site/" target="_blank">
+      <span class="tag"><span class="live-dot"></span>live · featured</span>
+      <h3>Pomodoro Site</h3>
+      <p class="desc">A complete focus-timer website. Work, break, repeat.</p>
+      <div class="preview"><iframe src="https://tinapaaay.github.io/pomodoro-site/" loading="lazy" title="Pomodoro Site preview"></iframe></div>
+    </a>
+
+    <a class="card c2" href="https://github.com/tinapaaay/neumorphism/tree/main/Pomodoro%20Timer" target="_blank">
+      <span class="tag">neumorphism · js</span>
+      <h3>Pomodoro Timer</h3>
+      <div class="mini-ring"><span>17:00</span></div>
+      <span class="go">source ↗</span>
+    </a>
+
+    <a class="card c3" href="https://github.com/tinapaaay/neumorphism/tree/main/To%20do%20list" target="_blank">
+      <span class="tag">neumorphism · dom</span>
+      <h3>To-do List</h3>
+      <div class="mini-todo"><div class="d">learn flexbox</div><div>build portfolio</div><div>touch grass</div></div>
+      <span class="go">source ↗</span>
+    </a>
+
+    <div class="card c4"><div class="stat">03<small>projects shipped</small></div></div>
+    <div class="card c5"><div class="stack"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Git</span><span>GitHub Pages</span></div></div>
+  </div>
+
+  <footer id="contact">
+    <span>© 2026 tinapay</span>
+    <a href="#">$ mail --to tinapay ↗</a>
+  </footer>
+</div>
+</body>
+</html>

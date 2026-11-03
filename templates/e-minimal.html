@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>tinapay — E / Minimal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #fafaf9; --text: #111; --muted: #9a9a97; --line: #e7e6e3; --accent: #3a5bff; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: "Geist", sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+  header { display: flex; justify-content: space-between; padding: 40px 0; font-size: 14px; }
+  header nav { display: flex; gap: 22px; color: var(--muted); }
+  header nav a:hover { color: var(--text); }
+
+  .intro { padding: 16vh 0 14vh; }
+  .intro h1 { font-weight: 300; font-size: clamp(30px, 4.6vw, 44px); line-height: 1.2; letter-spacing: -.025em; }
+  .intro h1 b { font-weight: 500; }
+  .intro h1 .m { color: var(--muted); }
+  .status { margin-top: 32px; font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+  .status i { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+  .fade { opacity: 0; transform: translateY(12px); animation: in .9s cubic-bezier(.2,.8,.2,1) forwards; }
+  @keyframes in { to { opacity: 1; transform: none; } }
+
+  h2 { font-size: 13px; font-weight: 400; color: var(--muted); margin-bottom: 18px; }
+
+  .list a { display: grid; grid-template-columns: 1fr auto; align-items: baseline; padding: 22px 0; border-top: 1px solid var(--line); position: relative; }
+  .list a:last-child { border-bottom: 1px solid var(--line); }
+  .list .t { font-size: 20px; font-weight: 400; letter-spacing: -.015em; transition: transform .4s cubic-bezier(.2,.8,.2,1); }
+  .list .d { display: block; font-size: 14px; color: var(--muted); margin-top: 2px; }
+  .list .y { font-size: 13px; color: var(--muted); transition: color .3s; }
+  .list a:hover .t { transform: translateX(8px); }
+  .list a:hover .y { color: var(--accent); }
+
+  /* floating preview that follows cursor */
+  .peek { position: fixed; top: 0; left: 0; width: 240px; aspect-ratio: 4/3; border-radius: 10px; pointer-events: none; opacity: 0; scale: .9;
+    transition: opacity .25s, scale .35s cubic-bezier(.2,.8,.2,1); z-index: 5; overflow: hidden; display: grid; place-items: center; background: #fff; box-shadow: 0 20px 50px -15px rgba(0,0,0,.25); }
+  .peek.on { opacity: 1; scale: 1; }
+  .peek > div { display: none; }
+  .peek > div.on { display: grid; place-items: center; width: 100%; height: 100%; }
+  .pv-site { background: var(--accent); color: #fff; font-size: 44px; font-weight: 300; letter-spacing: -.03em; }
+  .pv-timer { background: #eef0f4; }
+  .pv-timer span { width: 120px; height: 120px; border-radius: 50%; display: grid; place-items: center; font-size: 22px; box-shadow: 6px 6px 12px #c9ced8, -6px -6px 12px #fff; }
+  .pv-todo { background: #111; color: #fff; font-size: 14px; }
+  .pv-todo ul { list-style: none; display: grid; gap: 8px; }
+  .pv-todo li::before { content: "○  "; color: #777; }
+  .pv-todo li.x { color: #777; text-decoration: line-through; }
+  .pv-todo li.x::before { content: "●  "; }
+
+  .about { padding: 16vh 0 0; }
+  .about p { font-size: 18px; font-weight: 300; max-width: 46ch; }
+  .about p + p { margin-top: 16px; }
+  .skills { margin-top: 28px; font-size: 14px; color: var(--muted); }
+
+  footer { padding: 16vh 0 50px; display: flex; justify-content: space-between; align-items: end; font-size: 14px; }
+  footer .mail { font-size: clamp(22px, 3vw, 28px); font-weight: 300; letter-spacing: -.02em; border-bottom: 1px solid var(--text); }
+  footer .mail:hover { color: var(--accent); border-color: var(--accent); }
+  footer .s { display: flex; gap: 18px; color: var(--muted); }
+  footer .s a:hover { color: var(--text); }
+
+  @media (max-width: 600px) { .peek { display: none; } footer { flex-direction: column; align-items: start; gap: 24px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="fade"><a href="#">tinapay</a><nav><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></nav></header>
+
+  <section class="intro">
+    <h1 class="fade" style="animation-delay:.1s"><b>tinapay</b> <span class="m">is a front-end developer</span> making small, considered things for the web.</h1>
+    <p class="status fade" style="animation-delay:.3s"><i></i>Currently open to new projects</p>
+  </section>
+
+  <section id="work" class="fade" style="animation-delay:.45s">
+    <h2>Selected work</h2>
+    <div class="list">
+      <a href="https://tinapaaay.github.io/pomodoro-site/" target="_blank" data-p="site">
+        <span><span class="t">Pomodoro Site</span><span class="d">A live focus-timer website</span></span><span class="y">Live ↗</span>
+      </a>
+      <a href="https://github.com/tinapaaay/neumorphism/tree/main/Pomodoro%20Timer" target="_blank" data-p="timer">
+        <span><span class="t">Pomodoro Timer</span><span class="d">Neumorphic UI study</span></span><span class="y">Code ↗</span>
+      </a>
+      <a href="https://github.com/tinapaaay/neumorphism/tree/main/To%20do%20list" target="_blank" data-p="todo">
+        <span><span class="t">To-do List</span><span class="d">Neumorphic task manager</span></span><span class="y">Code ↗</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <h2>About</h2>
+    <p>I like interfaces that stay out of the way — clear, calm, and a little bit delightful when you touch them.</p>
+    <p class="skills">HTML — CSS — JavaScript — Git</p>
+  </section>
+
+  <footer id="contact">
+    <a class="mail" href="#">hello@tinapay</a>
+    <div class="s"><a href="https://github.com/tinapaaay" target="_blank">GitHub</a><span>© 2026</span></div>
+  </footer>
+</div>
+
+<div class="peek" id="peek">
+  <div class="pv-site" data-k="site">25:00</div>
+  <div class="pv-timer" data-k="timer"><span>05:00</span></div>
+  <div class="pv-todo" data-k="todo"><ul><li class="x">plan</li><li>build</li><li>ship</li></ul></div>
+</div>
+
+<script>
+  const peek = document.getElementById('peek');
+  let x = 0, y = 0, cx = 0, cy = 0;
+  addEventListener('pointermove', e => { x = e.clientX + 24; y = e.clientY - 90; });
+  (function loop() { cx += (x - cx) * .15; cy += (y - cy) * .15; peek.style.translate = `${cx}px ${cy}px`; requestAnimationFrame(loop); })();
+  document.querySelectorAll('.list a').forEach(a => {
+    a.addEventListener('mouseenter', () => {
+      peek.querySelectorAll('[data-k]').forEach(d => d.classList.toggle('on', d.dataset.k === a.dataset.p));
+      peek.classList.add('on');
+    });
+    a.addEventListener('mouseleave', () => peek.classList.remove('on'));
+  });
+</script>
+</body>
+</html>

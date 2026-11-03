@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>tinapay — C / Neumorphic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #e4e9f0;
+    --hi: #ffffff;
+    --lo: #b8c1cf;
+    --text: #3d4757;
+    --muted: #8691a3;
+    --accent: #6c7cff;
+    --accent2: #ff8fab;
+    --out: 9px 9px 18px var(--lo), -9px -9px 18px var(--hi);
+    --out-sm: 5px 5px 10px var(--lo), -5px -5px 10px var(--hi);
+    --in: inset 6px 6px 12px var(--lo), inset -6px -6px 12px var(--hi);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: "Nunito", sans-serif; overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 26px 0; }
+  .logo { width: 52px; height: 52px; border-radius: 16px; box-shadow: var(--out-sm); display: grid; place-items: center; font-weight: 900; color: var(--accent); font-size: 22px; }
+  .pills { display: flex; gap: 6px; padding: 6px; border-radius: 99px; box-shadow: var(--in); }
+  .pills a { padding: 10px 18px; border-radius: 99px; font-weight: 700; font-size: 14px; color: var(--muted); transition: .3s; }
+  .pills a.on, .pills a:hover { box-shadow: var(--out-sm); color: var(--accent); }
+
+  /* hero */
+  .hero { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: center; padding: 50px 0 80px; }
+  .hello { display: inline-flex; gap: 10px; align-items: center; padding: 10px 18px; border-radius: 99px; box-shadow: var(--in); font-weight: 700; font-size: 14px; color: var(--muted); }
+  .hello i { width: 10px; height: 10px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 8px #4ade80; }
+  h1 { font-size: clamp(56px, 8vw, 110px); font-weight: 900; line-height: .95; letter-spacing: -.04em; margin: 22px 0 18px; }
+  h1 span { display: inline-block; color: transparent; background: linear-gradient(120deg, var(--accent), var(--accent2)); -webkit-background-clip: text; background-clip: text; }
+  .hero p { font-size: 19px; color: var(--muted); line-height: 1.6; max-width: 40ch; }
+  .btns { display: flex; gap: 16px; margin-top: 30px; }
+  .btn { padding: 16px 26px; border-radius: 18px; box-shadow: var(--out-sm); font-weight: 800; transition: .15s; cursor: pointer; border: 0; background: var(--bg); color: var(--text); font: inherit; font-weight: 800; }
+  .btn:active { box-shadow: var(--in); transform: scale(.98); }
+  .btn.acc { color: var(--accent); }
+
+  /* interactive timer in hero */
+  .dial-wrap { display: grid; place-items: center; }
+  .dial { width: min(380px, 80vw); aspect-ratio: 1; border-radius: 50%; box-shadow: var(--out); display: grid; place-items: center; position: relative; animation: float 6s ease-in-out infinite; }
+  @keyframes float { 50% { transform: translateY(-14px); } }
+  .dial svg { position: absolute; inset: 9%; width: 82%; height: 82%; transform: rotate(-90deg); }
+  .dial circle { fill: none; stroke-width: 10; stroke-linecap: round; }
+  .dial .track { stroke: transparent; }
+  .dial .prog { stroke: url(#g); stroke-dasharray: 1000; transition: stroke-dashoffset 1s linear; }
+  .dial-inner { width: 66%; aspect-ratio: 1; border-radius: 50%; box-shadow: var(--in); display: grid; place-items: center; text-align: center; }
+  .time { font-size: clamp(44px, 6vw, 68px); font-weight: 900; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+  .time-lbl { font-size: 13px; font-weight: 800; letter-spacing: .2em; color: var(--muted); text-transform: uppercase; }
+  .dial-ctrl { margin-top: 28px; display: flex; gap: 14px; }
+  .round { width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; font-size: 18px; }
+  .hint { margin-top: 14px; font-size: 13px; color: var(--muted); font-weight: 700; }
+
+  /* works */
+  h2 { font-size: 40px; font-weight: 900; letter-spacing: -.03em; margin-bottom: 8px; }
+  .sub { color: var(--muted); margin-bottom: 36px; font-weight: 600; }
+  .works { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .work { border-radius: 28px; box-shadow: var(--out); padding: 22px; transition: transform .4s cubic-bezier(.2,.9,.3,1.3), box-shadow .4s; opacity: 0; transform: translateY(40px); }
+  .work.show { opacity: 1; transform: none; }
+  .work:hover { transform: translateY(-8px); }
+  .work .shot { aspect-ratio: 1.1; border-radius: 20px; box-shadow: var(--in); display: grid; place-items: center; margin-bottom: 20px; overflow: hidden; }
+  .work h3 { font-size: 22px; font-weight: 900; }
+  .work p { color: var(--muted); font-size: 15px; margin: 6px 0 16px; line-height: 1.5; }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip { padding: 6px 12px; border-radius: 99px; box-shadow: var(--out-sm); font-size: 12px; font-weight: 800; color: var(--muted); }
+  .go { display: flex; justify-content: space-between; align-items: center; margin-top: 18px; font-weight: 800; color: var(--accent); }
+  .go .arrow { width: 42px; height: 42px; border-radius: 50%; box-shadow: var(--out-sm); display: grid; place-items: center; transition: .3s; }
+  .work:hover .arrow { transform: rotate(-45deg); color: var(--accent2); }
+
+  /* mini shots */
+  .m-ring { width: 55%; aspect-ratio: 1; border-radius: 50%; box-shadow: var(--out-sm); display: grid; place-items: center; font-weight: 900; font-size: 24px; }
+  .m-site { width: 80%; height: 70%; border-radius: 14px; box-shadow: var(--out-sm); padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+  .m-site .t { font-weight: 900; font-size: 30px; text-align: center; margin-top: 8px; }
+  .m-site .bar { height: 10px; border-radius: 99px; box-shadow: var(--in); position: relative; overflow: hidden; }
+  .m-site .bar::after { content: ""; position: absolute; inset: 0; width: 60%; border-radius: 99px; background: linear-gradient(90deg, var(--accent), var(--accent2)); animation: grow 3s ease-in-out infinite alternate; }
+  @keyframes grow { from { width: 15%; } to { width: 85%; } }
+  .m-todo { width: 78%; display: grid; gap: 10px; }
+  .m-todo div { padding: 10px 12px; border-radius: 12px; box-shadow: var(--out-sm); display: flex; gap: 10px; align-items: center; font-weight: 700; font-size: 13px; }
+  .m-todo b { width: 16px; height: 16px; border-radius: 6px; box-shadow: var(--in); flex: none; }
+  .m-todo .d { color: var(--muted); text-decoration: line-through; }
+  .m-todo .d b { background: var(--accent); box-shadow: none; }
+
+  footer { margin: 100px 0 40px; padding: 40px; border-radius: 32px; box-shadow: var(--in); text-align: center; }
+  footer h2 { margin-bottom: 18px; }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; }
+    .works { grid-template-columns: 1fr; }
+    .pills a:not(.on) { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="logo" href="#">t</a>
+    <div class="pills"><a class="on" href="#">Home</a><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></div>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <span class="hello"><i></i>Available for projects</span>
+      <h1>Hey, I’m<br><span>tinapay.</span></h1>
+      <p>I design and build soft, squishy interfaces you want to press. Try the timer →</p>
+      <div class="btns"><a class="btn acc" href="#work">See my work</a><a class="btn" href="#contact">Contact</a></div>
+    </div>
+
+    <div class="dial-wrap">
+      <div class="dial">
+        <svg viewBox="0 0 340 340"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#6c7cff"/><stop offset="1" stop-color="#ff8fab"/></linearGradient></defs>
+          <circle class="prog" id="prog" cx="170" cy="170" r="159"/></svg>
+        <div class="dial-inner"><div><div class="time" id="time">25:00</div><div class="time-lbl" id="lbl">Focus</div></div></div>
+      </div>
+      <div class="dial-ctrl">
+        <button class="btn round" id="play" aria-label="Start">▶</button>
+        <button class="btn round" id="reset" aria-label="Reset">↺</button>
+      </div>
+      <p class="hint">A tiny working version of my Pomodoro Timer</p>
+    </div>
+  </section>
+
+  <section id="work">
+    <h2>Things I’ve made</h2>
+    <p class="sub">Small projects, made with care.</p>
+    <div class="works">
+      <a class="work" href="https://tinapaaay.github.io/pomodoro-site/" target="_blank">
+        <div class="shot"><div class="m-site"><div class="t">25:00</div><div class="bar"></div><div class="bar" style="width:60%;margin:0 auto"></div></div></div>
+        <h3>Pomodoro Site</h3>
+        <p>A live focus-timer website for deep work sessions.</p>
+        <div class="chips"><span class="chip">Live</span><span class="chip">JS</span></div>
+        <div class="go">Visit site <span class="arrow">→</span></div>
+      </a>
+      <a class="work" href="https://github.com/tinapaaay/neumorphism/tree/main/Pomodoro%20Timer" target="_blank">
+        <div class="shot"><div class="m-ring">05:00</div></div>
+        <h3>Pomodoro Timer</h3>
+        <p>Neumorphic timer with soft shadows and press states.</p>
+        <div class="chips"><span class="chip">Neumorphism</span><span class="chip">CSS</span></div>
+        <div class="go">View code <span class="arrow">→</span></div>
+      </a>
+      <a class="work" href="https://github.com/tinapaaay/neumorphism/tree/main/To%20do%20list" target="_blank">
+        <div class="shot"><div class="m-todo"><div class="d"><b></b>Wake up</div><div><b></b>Code something</div><div><b></b>Repeat</div></div></div>
+        <h3>To-do List</h3>
+        <p>A soft-UI task list — add, check, clear.</p>
+        <div class="chips"><span class="chip">Neumorphism</span><span class="chip">DOM</span></div>
+        <div class="go">View code <span class="arrow">→</span></div>
+      </a>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <h2>Let’s build something soft.</h2>
+    <a class="btn acc" href="#">Say hello ✉</a>
+  </footer>
+</div>
+
+<script>
+  // mini pomodoro
+  const total = 25 * 60; let left = total, timer = null;
+  const timeEl = document.getElementById('time'), prog = document.getElementById('prog'), play = document.getElementById('play');
+  const C = 2 * Math.PI * 159; prog.style.strokeDasharray = C;
+  function draw() {
+    timeEl.textContent = String(Math.floor(left / 60)).padStart(2, '0') + ':' + String(left % 60).padStart(2, '0');
+    prog.style.strokeDashoffset = C * (1 - left / total);
+  }
+  play.onclick = () => {
+    if (timer) { clearInterval(timer); timer = null; play.textContent = '▶'; return; }
+    play.textContent = '❚❚';
+    timer = setInterval(() => { left = Math.max(0, left - 1); draw(); if (!left) clearInterval(timer); }, 1000);
+  };
+  document.getElementById('reset').onclick = () => { clearInterval(timer); timer = null; left = total; play.textContent = '▶'; draw(); };
+  draw();
+
+  // staggered scroll reveal
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { setTimeout(() => e.target.classList.add('show'), [...e.target.parentNode.children].indexOf(e.target) * 140); io.unobserve(e.target); }
+  }), { threshold: .2 });
+  document.querySelectorAll('.work').forEach(w => io.observe(w));
+</script>
+</body>
+</html>

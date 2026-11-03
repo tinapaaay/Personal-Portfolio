@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>tinapay — F / Cyberpunk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #07060d;
+    --panel: #0f0d1c;
+    --yellow: #fcee0a;
+    --pink: #ff2a6d;
+    --cyan: #05d9e8;
+    --text: #d1f7ff;
+    --muted: #6c7a99;
+    --cut: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 22px 100%, 0 calc(100% - 22px));
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: "Share Tech Mono", monospace; overflow-x: hidden;
+    background-image: linear-gradient(rgba(5,217,232,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(5,217,232,.06) 1px, transparent 1px);
+    background-size: 44px 44px; }
+  body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 50;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,.25) 0 1px, transparent 1px 3px); animation: flick 4s infinite; }
+  @keyframes flick { 0%,96%,100% { opacity: .6; } 97% { opacity: .9; } 98% { opacity: .4; } }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  .orb { font-family: "Orbitron", sans-serif; }
+
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; border-bottom: 1px solid rgba(5,217,232,.25); font-size: 14px; }
+  .logo { font-family: "Orbitron", sans-serif; font-weight: 900; color: var(--yellow); letter-spacing: .1em; }
+  nav .links { display: flex; gap: 26px; }
+  nav .links a { color: var(--muted); transition: .2s; }
+  nav .links a:hover { color: var(--cyan); text-shadow: 0 0 8px var(--cyan); }
+  nav .sys { color: var(--pink); }
+
+  /* hero */
+  .hero { padding: 80px 0 60px; position: relative; }
+  .tagline { color: var(--cyan); font-size: 14px; letter-spacing: .3em; }
+  .glitch { position: relative; font-family: "Orbitron", sans-serif; font-weight: 900; font-size: clamp(64px, 15vw, 210px); line-height: .9; color: var(--yellow); letter-spacing: -.02em; margin: 18px 0; text-transform: uppercase; }
+  .glitch::before, .glitch::after { content: attr(data-t); position: absolute; inset: 0; }
+  .glitch::before { color: var(--pink); animation: g1 3s infinite steps(1); clip-path: inset(0 0 60% 0); }
+  .glitch::after { color: var(--cyan); animation: g2 2.4s infinite steps(1); clip-path: inset(55% 0 0 0); }
+  @keyframes g1 { 0%,88%,97%,100% { opacity: 0; transform: none; } 90% { opacity: 1; transform: translate(-6px, -2px); } 94% { opacity: 1; transform: translate(5px, 2px); } }
+  @keyframes g2 { 0%,84%,95%,100% { opacity: 0; transform: none; } 86% { opacity: 1; transform: translate(6px, 2px); } 92% { opacity: 1; transform: translate(-4px, -1px); } }
+  .hero-row { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: end; }
+  .hero p { font-size: 18px; line-height: 1.6; max-width: 46ch; }
+  .hero p .hl { color: var(--pink); }
+  .hud { border: 1px solid var(--cyan); padding: 18px 20px; font-size: 13px; line-height: 2; position: relative; background: rgba(5,217,232,.04); }
+  .hud::before { content: "// STATUS"; position: absolute; top: -10px; left: 14px; background: var(--bg); padding: 0 8px; color: var(--cyan); }
+  .hud .row { display: flex; justify-content: space-between; }
+  .hud .ok { color: var(--yellow); }
+  .meter { height: 6px; background: rgba(255,255,255,.08); margin-top: 6px; }
+  .meter i { display: block; height: 100%; width: 78%; background: linear-gradient(90deg, var(--pink), var(--yellow)); animation: load 2.5s ease-out; }
+  @keyframes load { from { width: 0; } }
+
+  .btns { display: flex; gap: 16px; margin-top: 34px; }
+  .btn { font-family: "Orbitron", sans-serif; font-weight: 700; font-size: 14px; letter-spacing: .12em; padding: 16px 30px; clip-path: polygon(0 0, 100% 0, 100% 70%, calc(100% - 14px) 100%, 0 100%); transition: .2s; }
+  .btn.y { background: var(--yellow); color: var(--bg); }
+  .btn.y:hover { background: var(--pink); color: #fff; }
+  .btn.o { background: transparent; color: var(--cyan); box-shadow: inset 0 0 0 2px var(--cyan); }
+  .btn.o:hover { background: var(--cyan); color: var(--bg); }
+
+  /* ticker */
+  .ticker { background: var(--yellow); color: var(--bg); overflow: hidden; white-space: nowrap; padding: 10px 0; font-family: "Orbitron", sans-serif; font-weight: 900; font-size: 15px; transform: rotate(-1.5deg); margin: 30px -30px 70px; }
+  .ticker div { display: inline-block; animation: tick 20s linear infinite; }
+  @keyframes tick { to { transform: translateX(-50%); } }
+
+  /* works */
+  .sec { display: flex; align-items: baseline; gap: 16px; margin-bottom: 30px; }
+  .sec h2 { font-family: "Orbitron", sans-serif; font-weight: 900; font-size: clamp(32px, 5vw, 56px); text-transform: uppercase; }
+  .sec span { color: var(--pink); }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .card { position: relative; background: var(--panel); clip-path: var(--cut); padding: 2px; transition: transform .25s; }
+  .card::before { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, var(--cyan), transparent 40%, transparent 60%, var(--pink)); z-index: 0; }
+  .card .in { position: relative; z-index: 1; background: var(--panel); clip-path: var(--cut); padding: 22px; height: 100%; display: flex; flex-direction: column; }
+  .card:hover { transform: translateY(-6px); }
+  .card:hover::before { background: linear-gradient(135deg, var(--yellow), var(--pink)); }
+  .card .id { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
+  .card .id b { color: var(--yellow); font-weight: 400; }
+  .screen { margin: 16px 0 20px; aspect-ratio: 16/10; background: #05040a; border: 1px solid rgba(5,217,232,.3); display: grid; place-items: center; position: relative; overflow: hidden; }
+  .screen::after { content: ""; position: absolute; left: 0; right: 0; height: 30%; background: linear-gradient(transparent, rgba(5,217,232,.12), transparent); animation: scan 3s linear infinite; }
+  @keyframes scan { from { top: -30%; } to { top: 100%; } }
+  .neon-time { font-family: "Orbitron", sans-serif; font-weight: 900; font-size: clamp(34px, 4vw, 52px); color: var(--pink); text-shadow: 0 0 10px var(--pink), 0 0 30px var(--pink); }
+  .neon-ring { width: 46%; aspect-ratio: 1; border-radius: 50%; border: 3px solid var(--cyan); box-shadow: 0 0 14px var(--cyan), inset 0 0 14px var(--cyan); display: grid; place-items: center; font-family: "Orbitron"; font-weight: 700; color: var(--cyan); font-size: 20px; }
+  .neon-todo { font-size: 14px; line-height: 2; }
+  .neon-todo .d { color: var(--muted); text-decoration: line-through; }
+  .neon-todo span { color: var(--yellow); }
+  .card h3 { font-family: "Orbitron", sans-serif; font-size: 22px; font-weight: 700; text-transform: uppercase; }
+  .card p { color: var(--muted); font-size: 14px; line-height: 1.6; margin: 8px 0 18px; }
+  .card .tags { display: flex; gap: 8px; flex-wrap: wrap; font-size: 12px; }
+  .card .tags span { border: 1px solid var(--muted); padding: 3px 8px; }
+  .card .go { margin-top: auto; padding-top: 20px; color: var(--cyan); font-size: 14px; }
+  .card:hover .go { color: var(--yellow); }
+  .card:hover .go::after { content: " ▮"; animation: bl .6s steps(1) infinite; }
+  @keyframes bl { 50% { opacity: 0; } }
+
+  footer { margin: 100px 0 40px; padding-top: 30px; border-top: 1px solid rgba(5,217,232,.25); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+  footer h2 { font-family: "Orbitron", sans-serif; font-weight: 900; font-size: clamp(28px, 4vw, 44px); }
+  footer h2 span { color: var(--pink); }
+
+  @media (max-width: 860px) {
+    nav .links { display: none; }
+    .hero-row, .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="logo" href="#">TNPY_</a>
+    <div class="links"><a href="#work">[ work ]</a><a href="#about">[ about ]</a><a href="#contact">[ contact ]</a></div>
+    <span class="sys">● ONLINE</span>
+  </nav>
+
+  <section class="hero">
+    <div class="tagline">&gt; FRONT-END NETRUNNER // EST. 2026</div>
+    <h1 class="glitch" data-t="tinapay">tinapay</h1>
+    <div class="hero-row">
+      <div>
+        <p>Jacked into HTML, CSS and JavaScript. I build <span class="hl">interfaces</span> that glow, click and respond — one module at a time.</p>
+        <div class="btns"><a class="btn y" href="#work">VIEW WORK</a><a class="btn o" href="https://github.com/tinapaaay" target="_blank">GITHUB</a></div>
+      </div>
+      <div class="hud">
+        <div class="row"><span>HANDLE</span><span class="ok">tinapay</span></div>
+        <div class="row"><span>CLASS</span><span>front-end dev</span></div>
+        <div class="row"><span>PROJECTS</span><span class="ok">03 deployed</span></div>
+        <div class="row"><span>SKILL LVL</span><span>78%</span></div>
+        <div class="meter"><i></i></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="ticker"><div>
+  ✦ POMODORO SITE ✦ POMODORO TIMER ✦ TO-DO LIST ✦ HTML ✦ CSS ✦ JAVASCRIPT ✦ NEUMORPHISM ✦ OPEN TO WORK
+  ✦ POMODORO SITE ✦ POMODORO TIMER ✦ TO-DO LIST ✦ HTML ✦ CSS ✦ JAVASCRIPT ✦ NEUMORPHISM ✦ OPEN TO WORK
+</div></div>
+
+<div class="wrap">
+  <div class="sec" id="work"><h2>Missions</h2><span>// 03 complete</span></div>
+  <div class="grid">
+    <a class="card" href="https://tinapaaay.github.io/pomodoro-site/" target="_blank"><div class="in">
+      <div class="id"><span>MSN_001</span><b>● LIVE</b></div>
+      <div class="screen"><div class="neon-time">25:00</div></div>
+      <h3>Pomodoro Site</h3>
+      <p>Full focus-timer website. Work in sprints, rest on schedule.</p>
+      <div class="tags"><span>JS</span><span>GH-PAGES</span></div>
+      <span class="go">&gt; launch_site</span>
+    </div></a>
+    <a class="card" href="https://github.com/tinapaaay/neumorphism/tree/main/Pomodoro%20Timer" target="_blank"><div class="in">
+      <div class="id"><span>MSN_002</span><b>SOURCE</b></div>
+      <div class="screen"><div class="neon-ring">05:00</div></div>
+      <h3>Pomodoro Timer</h3>
+      <p>Neumorphic timer UI — soft shadows, pressable controls.</p>
+      <div class="tags"><span>CSS</span><span>JS</span><span>NEUMORPH</span></div>
+      <span class="go">&gt; view_code</span>
+    </div></a>
+    <a class="card" href="https://github.com/tinapaaay/neumorphism/tree/main/To%20do%20list" target="_blank"><div class="in">
+      <div class="id"><span>MSN_003</span><b>SOURCE</b></div>
+      <div class="screen"><div class="neon-todo"><div class="d">[x] init project</div><div><span>[ ]</span> add tasks</div><div><span>[ ]</span> clear list</div></div></div>
+      <h3>To-do List</h3>
+      <p>Neumorphic task manager. Add, check, delete.</p>
+      <div class="tags"><span>DOM</span><span>JS</span><span>NEUMORPH</span></div>
+      <span class="go">&gt; view_code</span>
+    </div></a>
+  </div>
+
+  <footer id="contact">
+    <h2>READY TO <span>CONNECT?</span></h2>
+    <a class="btn y" href="#">SEND SIGNAL</a>
+  </footer>
+</div>
+</body>
+</html>
