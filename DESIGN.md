@@ -62,15 +62,15 @@ typography:
   headline-md:
     fontFamily: Plus Jakarta Sans
     fontSize: 2.2rem
-    fontWeight: 400
+    fontWeight: 500
     lineHeight: 1.1
     letterSpacing: -0.025em
   headline-sm:
     fontFamily: Plus Jakarta Sans
     fontSize: 1.5rem
-    fontWeight: 400
+    fontWeight: 500
     lineHeight: 1.15
-    letterSpacing: -0.02em
+    letterSpacing: -0.025em
   body-lg:
     fontFamily: Manrope
     fontSize: 1.125rem
@@ -277,12 +277,12 @@ One plum, one paper, and the inks between them.
 Three faces, each with exactly one job.
 
 - **Bodoni Moda** (open source, Google Fonts) — the wordmark voice. Only the **TINAPAY** brand in the header, the giant hero and footer wordmarks, and the word stack. High contrast and wide tracking at small sizes, slightly negative tracking at large ones.
-- **Plus Jakarta Sans** (open source) — headings. Weight 500 for page and section titles with tight negative tracking (−0.035 to −0.04em) so big lines hold together; 400 for smaller card and row titles. Italic Plus Jakarta Sans in plum is the emphasis inside headlines.
+- **Plus Jakarta Sans** (open source) — headings. Weight 500 throughout, with negative tracking that tightens as size grows (−0.025em on card and row titles up to −0.04em on page titles) so big lines hold together. Italic Plus Jakarta Sans in plum is the emphasis inside headlines.
 - **Manrope** (open source) — all reading text, labels and links. Generous line height (1.7 for body, 1.75 for leads) because the page is read in short bursts and should feel airy.
 
 **Sizes are fluid.** The tokens record each level's largest size; in CSS most levels are `clamp()` values that scale with the viewport (`--fs-4xl` runs 3.4–9.5rem, `--fs-2xl` 2.2–4.2rem). The CSS names map as: `display` = `--fs-4xl`, `headline-xl` = `--fs-3xl`, `headline-lg` = `--fs-2xl`, `headline-md` = `--fs-xl`, `headline-sm` = `--fs-lg`, `body-lg` = `--fs-md`, `body-md` = `--fs-base`, `body-sm` = `--fs-sm`, `label-caps` = `--fs-xs`, `label-xs` = `--fs-2xs`.
 
-Uppercase appears only in labels, captions and main button labels, always tracked at 0.2em. Weights are 400 and 500, plus 600 for bold inside articles. The hero and footer wordmarks are sized to fit the screen width rather than following the scale. Reading text is held to about 30–34em.
+Uppercase appears only in labels, captions and main button labels, always tracked at 0.2em. Weights are 400 for reading text, 500 for headings, links and labels, plus 600 for bold inside articles. The hero and footer wordmarks are sized to fit the screen width rather than following the scale. Reading text is held to about 30–34em.
 
 ## Layout
 
@@ -324,6 +324,8 @@ Decorative shapes are 1.5px outlines: rings, rotated squares and small filled do
 **Project entry (`.feature`).** Category label (`category-label`), title, one short line, up to four tools, then one small button and plain text links.
 
 **Word stack and floating shapes.** Four words in Bodoni Moda; the filled, italic one follows the scroll, the rest are outlined. Shapes drift slowly around section headings.
+
+**Résumé page.** `resume.html` is a standalone, printable A4 sheet with its own inline styles; it does not load `styles.css`. It repeats the core tokens (cream, plum, ink, muted, line) by value, so when a token changes, update that page's `:root` too. Its toolbar button follows the uppercase `.btn` style.
 
 **Focus.** A 1.5px plum outline, 4px off the element; cream inside plum sections.
 

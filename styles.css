@@ -156,8 +156,8 @@ h1, h2, h3 { font-weight: 400; }
   font-family: var(--heading);
   font-weight: 500;
   font-size: var(--fs-2xl);
-  line-height: 1;
-  letter-spacing: -0.02em;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
 }
 
 .lead {
@@ -1020,7 +1020,6 @@ html.lenis, html.lenis body { height: auto; }
   letter-spacing: -0.025em;
 }
 .intro-statement, .quote blockquote { line-height: 1.18; }
-.title { letter-spacing: -0.035em; line-height: 1.04; }
 .field input, .field textarea { font-weight: 500; letter-spacing: -0.01em; }
 
 /* Room for descenders (g, y, p) inside the masked line reveals */
@@ -1160,7 +1159,7 @@ a.index-row .soon { color: var(--plum); }
 
 /* ---------- project text: one clear title, one line, quiet details ---------- */
 .feature-body { gap: var(--space-4); }
-.feature-body .kind { font-size: var(--fs-2xs); letter-spacing: 0.22em; color: var(--plum-soft); }
+.feature-body .kind { font-size: var(--fs-2xs); color: var(--plum-soft); }
 .feature-body h3 { margin-bottom: 2px; }
 .feature-text {
   max-width: 30em;
