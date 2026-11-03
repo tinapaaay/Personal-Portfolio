@@ -44,11 +44,7 @@ leemo-cocktails/
 │   ├── 4.png           # Mission Paloma
 │   ├── 5.png           # Midnight Old Fashioned
 │   └── 6.png           # Blue Hour
-├── README.md
-├── TESTING.md
-└── docs/
-    ├── requirements.md
-    └── app-flow.md
+└── README.md
 ```
 
 ## Edit the content
@@ -61,18 +57,22 @@ Drink content is inserted using HTML template strings. Keep it as trusted projec
 
 ## Deploy
 
-Upload `index.html` and the complete `img/` folder to a static web host, keeping the same relative paths and filename case. There is no backend, database, build output, or environment-variable configuration. Check that the host permits the external script and font origins, then use [the testing checklist](TESTING.md) on the deployed URL.
+Upload `index.html` and the complete `img/` folder to a static web host, keeping the same relative paths and filename case. There is no backend, database, build output, or environment-variable configuration. Check that the host permits the external script and font origins, then run the manual checks below on the deployed URL.
 
 ## Current scope and limitations
 
-This is a presentation site. **Book a table** scrolls to Visit; it does not submit a reservation. There is no ordering, payment, login, or application data storage. The phone number is displayed as text rather than a clickable call link.
+This is a presentation site. **Book a table** opens the booking section. The form validates a name, date, and available time locally, then shows a demo confirmation; nothing is sent or reserved. There is no ordering, payment, login, or application data storage. The phone number is displayed as text rather than a clickable call link.
 
 JavaScript generates the cocktail cards and artwork. With scripting disabled, the static sections remain but the cards and generated artwork are absent. Reduced motion skips the animation setup and allows horizontal menu scrolling. If GSAP or ScrollTrigger fails to load with reduced motion off, the script removes the loader styling, but the menu does not receive that reduced-motion scrolling rule; access to later cards needs review.
 
 The menu currently says “Spring list · 2024.” Confirm the menu, prices, business information, image permissions, and the general ritual copy against the individual drink recipes before using the page for a real business. No license file is included in this project.
 
-## Documentation
+## Maintenance and scope
 
-- [Technical requirements and implementation](docs/requirements.md)
-- [Page and interaction flow](docs/app-flow.md)
-- [Manual testing checklist](TESTING.md)
+The page is a static presentation with inline CSS, drink data, rendering, and motion in `index.html`, plus six local drink images in `img/`. GSAP/ScrollTrigger, Lenis, and Google Fonts load externally. Edit the `drinks` array for menu cards and the HTML for business information. Review all business details before production use.
+
+The current version also includes a drink-selection quiz and booking UI; these are frontend interactions. There is no reservation API, ordering backend, payment processing, or account system. Keep data used in HTML templates trusted.
+
+For local development, run `python3 -m http.server 5500` from this folder and open [localhost:5500](http://localhost:5500). Deploy the HTML and complete `img/` folder together.
+
+Before release, check menu scrolling, quiz outcomes, booking feedback, keyboard access, phone width, reduced motion, missing-CDN behavior, and image loading on the deployed URL. This checklist does not imply those checks have already passed.
