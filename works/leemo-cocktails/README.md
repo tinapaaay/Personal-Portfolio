@@ -59,7 +59,13 @@ Edit the HTML for the manifesto, menu season, ritual, opening hours, address, an
 
 ## Design tokens
 
-All shared values live in `:root` at the top of the stylesheet. Change them there rather than in individual rules.
+The design system itself — direction, colors, type, shapes, components, and do's and don'ts — is in [DESIGN.md](DESIGN.md), written in Google's DESIGN.md format so AI design and coding tools can read it. Check it after editing with:
+
+```sh
+npx -y @google/design.md@0.4.0 lint DESIGN.md
+```
+
+The table below maps that system to the CSS. All shared values live in `:root` at the top of the stylesheet. Change them there rather than in individual rules.
 
 | Group | Tokens | Notes |
 |---|---|---|
