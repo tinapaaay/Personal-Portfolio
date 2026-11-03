@@ -188,7 +188,7 @@ h1, h2, h3 { font-weight: 400; }
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
 }
-.brand { justify-self: start; }
+.brand { justify-self: start; font-family: var(--display); font-weight: 500; font-size: 1.15rem; letter-spacing: 0.14em; line-height: 1.2; color: var(--plum); }
 .brand .rule { margin-bottom: 0; }
 .site-header.is-scrolled .brand .rule { display: none; }
 
