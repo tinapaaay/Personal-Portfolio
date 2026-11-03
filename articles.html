@@ -3,155 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Articles | Christine Joy Espiritu</title>
-  <meta name="description" content="Learning notes and articles by Christine Joy Espiritu.">
-
+  <meta name="description" content="Articles and notes from Christine Joy Espiritu's web-development journey.">
+  <meta name="author" content="Christine Joy Espiritu">
+  <meta name="theme-color" content="#ece5da">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&family=Jost:wght@300;400;500&display=swap"
-    rel="stylesheet"
-  >
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="favicon_io/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="favicon_io/apple-touch-icon.png">
-
-  <script>
-    (function () {
-      var d = document.documentElement;
-      d.classList.add("js");
-      try {
-        if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-        if (sessionStorage.getItem("tp-nav")) {
-          sessionStorage.removeItem("tp-nav");
-          d.classList.add("from-nav");
-        } else if (!sessionStorage.getItem("tp-seen")) {
-          d.classList.add("show-loader");
-        }
-      } catch (e) {}
-    })();
-  </script>
   <script src="script.js" defer></script>
 </head>
-
 <body id="top">
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-    <symbol id="sprig" viewBox="0 0 300 200">
-      <path d="M8 192 Q120 150 292 28" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-      <g fill="currentColor">
-        <path d="M0 0 C12 -10 30 -9 46 0 C30 9 12 10 0 0Z" transform="translate(48 176) rotate(-80)"/>
-        <path d="M0 0 C12 -10 30 -9 46 0 C30 9 12 10 0 0Z" transform="translate(70 168) rotate(12)"/>
-        <path d="M0 0 C12 -10 30 -9 46 0 C30 9 12 10 0 0Z" transform="translate(100 155) rotate(-74)"/>
-        <path d="M0 0 C12 -10 30 -9 46 0 C30 9 12 10 0 0Z" transform="translate(128 141) rotate(8)"/>
-        <path d="M0 0 C12 -10 30 -9 46 0 C30 9 12 10 0 0Z" transform="translate(160 122) rotate(-70)"/>
-        <path d="M0 0 C12 -10 30 -9 46 0 C30 9 12 10 0 0Z" transform="translate(190 103) rotate(4)"/>
-        <path d="M0 0 C12 -10 30 -9 46 0 C30 9 12 10 0 0Z" transform="translate(218 82) rotate(-66)"/>
-        <path d="M0 0 C12 -10 30 -9 46 0 C30 9 12 10 0 0Z" transform="translate(246 62) rotate(0)"/>
-        <path d="M0 0 C12 -10 30 -9 46 0 C30 9 12 10 0 0Z" transform="translate(290 30) rotate(-34)"/>
-      </g>
-    </symbol>
-  </svg>
-
-  <div class="loader" aria-hidden="true">
-    <div class="loader-arch tex-clay"></div>
-    <div class="loader-foot">
-      <div>
-        <p class="mono">Loading experience</p>
-        <p class="mono">Christine Joy Espiritu — Tinapay</p>
-      </div>
-      <p class="loader-num">0%</p>
-    </div>
-  </div>
-  <div class="curtain" aria-hidden="true"></div>
-
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link cap" href="#main">Skip to content</a>
 
   <header class="site-header">
-    <a class="logo" href="index.html" aria-label="Tinapay home">
-      <img src="images/tinapay_logo.png" alt="Tinapay">
-    </a>
-
-    <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+    <a class="brand cap" href="index.html" aria-label="Tinapay home">More than<br>just code<span class="rule"></span></a>
+    <nav id="site-nav" class="site-nav cap" aria-label="Main navigation">
       <ul>
-        <li><a href="index.html"><span class="nav-index">01</span>Home</a></li>
-        <li><a href="about.html"><span class="nav-index">02</span>About</a></li>
-        <li><a href="projects.html"><span class="nav-index">03</span>Projects</a></li>
-        <li><a href="articles.html" aria-current="page"><span class="nav-index">04</span>Articles</a></li>
-        <li><a href="contact.html"><span class="nav-index">05</span>Contact</a></li>
+        <li><a href="index.html"><span class="nav-num">01</span>Home</a></li>
+        <li><a href="about.html"><span class="nav-num">02</span>About</a></li>
+        <li><a href="projects.html"><span class="nav-num">03</span>Work</a></li>
+        <li><a href="articles.html" aria-current="page"><span class="nav-num">04</span>Writing</a></li>
+        <li><a href="contact.html"><span class="nav-num">05</span>Contact</a></li>
       </ul>
-      <p class="nav-extra mono">Computer Science Student · Live Host</p>
+      <p class="nav-foot cap">Christine Joy Espiritu · Portfolio ’26</p>
     </nav>
-
-    <a class="header-cta line-link" href="contact.html">Let’s talk <span class="arrow" aria-hidden="true">→</span></a>
-
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-      <span class="label">Menu</span><span class="lines" aria-hidden="true"></span>
+    <p class="header-end cap"><a href="contact.html">Let’s talk →</a><br>Portfolio ’26</p>
+    <button class="menu-toggle cap" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="label">Menu</span><span class="bars" aria-hidden="true"></span>
     </button>
   </header>
 
-  <div class="scroll-meter" aria-hidden="true">
-    <span class="mono">Scrolled</span>
-    <b>0%</b>
-    <i></i>
-  </div>
-
-  <main id="main">
-
-    <section class="page-hero tone tone-linen">
-      <div class="leaves left" aria-hidden="true"></div>
-      <div class="wrap page-hero-inner">
-        <div>
-          <p class="label" data-reveal>Learning in public</p>
-          <h1 class="display" data-split style="--d: 0.1s">Articles &amp; <em>notes.</em></h1>
-          <p class="lead" data-reveal style="--d: 0.5s">Notes from my web-development journey.</p>
+  <main id="main" tabindex="-1">
+    <section class="page-hero" aria-labelledby="page-title">
+      <div class="orb" aria-hidden="true"></div>
+      <div class="wrap page-hero-grid">
+        <div class="side" data-reveal>
+          <p class="cap">Learning in public<span class="rule"></span></p>
+          <p class="it">Notes from my<br>web-development journey.</p>
         </div>
-        <div class="page-hero-visual">
-          <div class="shape pebble tex-olive" data-reveal="rise" data-speed="0.04"><div class="leaves" aria-hidden="true"></div></div>
-          <div class="mini shape circle tex-sand ring" data-reveal="pop" style="--d: 0.4s" aria-hidden="true"></div>
-          <div class="badge clay" data-reveal="pop" style="--d: 0.6s" aria-hidden="true">
-            <svg viewBox="0 0 100 100" aria-hidden="true">
-              <defs><path id="b-art" d="M50,50 m-40,0 a40,40 0 1,1 80,0 a40,40 0 1,1 -80,0"/></defs>
-              <text><textPath href="#b-art" textLength="248" lengthAdjust="spacing">Coming soon · Coming soon ·</textPath></text>
-            </svg>
-            <span class="badge-core">Notes</span>
-          </div>
+        <div>
+          <h1 class="display" id="page-title" data-reveal style="--d: 0.1s">Articles &amp; <em>notes.</em></h1>
         </div>
       </div>
     </section>
 
-    <section class="section tone tone-taupe" aria-label="Articles">
-      <div class="leaves" aria-hidden="true"></div>
+    <section class="section" aria-label="Articles">
       <div class="wrap">
-        <div class="index-list" data-stagger="0.12">
+        <div class="index">
           <article class="index-row" data-reveal>
-            <span class="index-num">01</span>
+            <p class="sec-num">01</p>
             <h2>My Journey Learning HTML and CSS</h2>
-            <p>What I am learning about semantic HTML, page structure, styling, and building websites from scratch.<br><span class="soon mono">Coming soon</span></p>
-            <span class="index-arrow" aria-hidden="true">—</span>
+            <p>What I am learning about semantic HTML, page structure, styling, and building websites from scratch.<br><span class="soon cap">Coming soon</span></p>
+            <span class="arrow" aria-hidden="true">—</span>
           </article>
           <article class="index-row" data-reveal>
-            <span class="index-num">02</span>
+            <p class="sec-num">02</p>
             <h2>Why I Want to Learn UI/UX Design</h2>
-            <p>My thoughts on creating websites that are not only functional but also thoughtful and easy to use.<br><span class="soon mono">Coming soon</span></p>
-            <span class="index-arrow" aria-hidden="true">—</span>
+            <p>My thoughts on creating websites that are not only functional but also thoughtful and easy to use.<br><span class="soon cap">Coming soon</span></p>
+            <span class="arrow" aria-hidden="true">—</span>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="closing tone tone-wood" aria-labelledby="closing-heading">
-      <div class="glow" style="top: -20vmax; right: -10vmax" aria-hidden="true"></div>
-      <div class="leaves left" aria-hidden="true"></div>
+    <section class="closing dark" aria-labelledby="closing-heading">
       <div class="wrap closing-grid">
-        <div>
-          <p class="label" data-reveal>Selected work</p>
-          <h2 class="display" id="closing-heading" data-split>See what I have been <em>building.</em></h2>
-          <div data-reveal><a class="pill" href="projects.html">View my projects <span aria-hidden="true">→</span></a></div>
-        </div>
-        <div class="closing-visual">
-          <div class="closing-arch shape arch tex-clay ring" data-reveal="rise"><div class="leaves" aria-hidden="true"></div></div>
-          <svg class="sprig" aria-hidden="true" data-speed="0.08"><use href="#sprig"/></svg>
+        <h2 class="display" id="closing-heading" data-reveal>See what I have been <em>building.</em></h2>
+        <div class="closing-side" data-reveal style="--d: 0.15s">
+          <p class="lead">Learning projects, practice components, and the apps I am proudest of.</p>
+          <a class="btn cap" href="projects.html">View my projects <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
@@ -159,8 +82,8 @@
 
   <footer class="site-footer">
     <div class="wrap">
-      <div class="footer-inner">
-        <p class="mono">© 2026 Christine Joy Espiritu</p>
+      <div class="footer-top cap">
+        <p>© 2026 Christine Joy Espiritu</p>
         <ul class="footer-links">
           <li><a href="https://www.linkedin.com/in/tinapay/" target="_blank" rel="noopener">LinkedIn</a></li>
           <li><a href="https://github.com/tinapaaay" target="_blank" rel="noopener">GitHub</a></li>
@@ -169,7 +92,7 @@
         </ul>
         <a class="to-top" href="#top">Back to top ↑</a>
       </div>
-      <p class="footer-word" aria-hidden="true">tinapay</p>
+      <p class="footer-word" aria-hidden="true">TINAPAY</p>
     </div>
   </footer>
 </body>

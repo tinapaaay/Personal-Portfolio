@@ -3,398 +3,248 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Christine Joy Espiritu | Portfolio</title>
-  <meta
-    name="description"
-    content="Personal portfolio of Christine Joy Espiritu, a Computer Science student and aspiring frontend developer."
-  >
+  <meta name="description" content="Personal portfolio of Christine Joy Espiritu, a Computer Science student and aspiring frontend developer.">
   <meta name="author" content="Christine Joy Espiritu">
-
+  <meta name="theme-color" content="#ece5da">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&family=Jost:wght@300;400;500&display=swap"
-    rel="stylesheet"
-  >
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="favicon_io/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="favicon_io/apple-touch-icon.png">
-
-  <script>
-    (function () {
-      var d = document.documentElement;
-      d.classList.add("js");
-      try {
-        if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-        if (sessionStorage.getItem("tp-nav")) {
-          sessionStorage.removeItem("tp-nav");
-          d.classList.add("from-nav");
-        } else if (!sessionStorage.getItem("tp-seen")) {
-          d.classList.add("show-loader");
-        }
-      } catch (e) {}
-    })();
-  </script>
   <script src="script.js" defer></script>
 </head>
-
 <body id="top">
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-    <symbol id="sprig" viewBox="0 0 300 200">
-      <path d="M8 192 Q120 150 292 28" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-      <g fill="currentColor">
-        <path d="M0 0 C12 -10 30 -9 46 0 C30 9 12 10 0 0Z" transform="translate(48 176) rotate(-80)"/>
-        <path d="M0 0 C12 -10 30 -9 46 0 C30 9 12 10 0 0Z" transform="translate(70 168) rotate(12)"/>
-        <path d="M0 0 C12 -10 30 -9 46 0 C30 9 12 10 0 0Z" transform="translate(100 155) rotate(-74)"/>
-        <path d="M0 0 C12 -10 30 -9 46 0 C30 9 12 10 0 0Z" transform="translate(128 141) rotate(8)"/>
-        <path d="M0 0 C12 -10 30 -9 46 0 C30 9 12 10 0 0Z" transform="translate(160 122) rotate(-70)"/>
-        <path d="M0 0 C12 -10 30 -9 46 0 C30 9 12 10 0 0Z" transform="translate(190 103) rotate(4)"/>
-        <path d="M0 0 C12 -10 30 -9 46 0 C30 9 12 10 0 0Z" transform="translate(218 82) rotate(-66)"/>
-        <path d="M0 0 C12 -10 30 -9 46 0 C30 9 12 10 0 0Z" transform="translate(246 62) rotate(0)"/>
-        <path d="M0 0 C12 -10 30 -9 46 0 C30 9 12 10 0 0Z" transform="translate(290 30) rotate(-34)"/>
-      </g>
-    </symbol>
-  </svg>
-
-  <div class="loader" aria-hidden="true">
-    <div class="loader-arch tex-clay"></div>
-    <div class="loader-foot">
-      <div>
-        <p class="mono">Loading experience</p>
-        <p class="mono">Christine Joy Espiritu — Tinapay</p>
-      </div>
-      <p class="loader-num">0%</p>
-    </div>
-  </div>
-  <div class="curtain" aria-hidden="true"></div>
-
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link cap" href="#main">Skip to content</a>
 
   <header class="site-header">
-    <a class="logo" href="index.html" aria-label="Tinapay home">
-      <img src="images/tinapay_logo.png" alt="Tinapay">
-    </a>
-
-    <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+    <a class="brand cap" href="index.html" aria-label="Tinapay home">More than<br>just code<span class="rule"></span></a>
+    <nav id="site-nav" class="site-nav cap" aria-label="Main navigation">
       <ul>
-        <li><a href="index.html" aria-current="page"><span class="nav-index">01</span>Home</a></li>
-        <li><a href="about.html"><span class="nav-index">02</span>About</a></li>
-        <li><a href="projects.html"><span class="nav-index">03</span>Projects</a></li>
-        <li><a href="articles.html"><span class="nav-index">04</span>Articles</a></li>
-        <li><a href="contact.html"><span class="nav-index">05</span>Contact</a></li>
+        <li><a href="index.html" aria-current="page"><span class="nav-num">01</span>Home</a></li>
+        <li><a href="about.html"><span class="nav-num">02</span>About</a></li>
+        <li><a href="projects.html"><span class="nav-num">03</span>Work</a></li>
+        <li><a href="articles.html"><span class="nav-num">04</span>Writing</a></li>
+        <li><a href="contact.html"><span class="nav-num">05</span>Contact</a></li>
       </ul>
-      <p class="nav-extra mono">Computer Science Student · Live Host</p>
+      <p class="nav-foot cap">Christine Joy Espiritu · Portfolio ’26</p>
     </nav>
-
-    <a class="header-cta line-link" href="contact.html">Let’s talk <span class="arrow" aria-hidden="true">→</span></a>
-
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-      <span class="label">Menu</span><span class="lines" aria-hidden="true"></span>
+    <p class="header-end cap"><a href="contact.html">Let’s talk →</a><br>Portfolio ’26</p>
+    <button class="menu-toggle cap" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="label">Menu</span><span class="bars" aria-hidden="true"></span>
     </button>
   </header>
 
-  <div class="scroll-meter" aria-hidden="true">
-    <span class="mono">Scrolled</span>
-    <b>0%</b>
-    <i></i>
-  </div>
-
-  <main id="main">
+  <main id="main" tabindex="-1">
     <!-- Hero -->
-    <section class="hero tone tone-linen">
-      <div class="leaves left" aria-hidden="true"></div>
-
-      <div class="wrap hero-inner">
-        <div class="hero-copy">
-          <p class="label" data-reveal>Computer Science Student · Live Host</p>
-          <h1 class="display" data-split style="--d: 0.15s">Christine Joy <em>Espiritu.</em></h1>
-          <p class="mono" data-reveal style="--d: 0.55s">Also known as Tinapay — Far Eastern University</p>
-          <p class="lead" data-reveal style="--d: 0.7s">
-            I am an aspiring frontend developer who enjoys building thoughtful,
-            organized, and creative digital experiences.
-          </p>
-          <div class="hero-links" data-reveal style="--d: 0.85s">
-            <a class="line-link" href="projects.html">View my projects <span class="arrow" aria-hidden="true">→</span></a>
-            <a class="line-link" href="about.html">About me <span class="arrow" aria-hidden="true">→</span></a>
-          </div>
-        </div>
-
-        <div class="hero-visual">
-          <div class="hero-arch shape arch tex-clay" data-reveal="rise" data-speed="0.04">
-            <div class="leaves" aria-hidden="true"></div>
-            <img
-              src="images/4.png"
-              alt="Christine Joy Espiritu wearing glasses and a black blazer"
-              width="1145"
-              height="1374"
-            >
-          </div>
-
-          <div class="hero-sun shape circle tex-olive" data-reveal="pop" style="--d: 0.9s" aria-hidden="true"></div>
-
-          <div class="hero-pebble shape pebble tex-sand ring" data-reveal="rise" data-speed="-0.07" style="--d: 0.35s" aria-hidden="true"></div>
-
-          <a class="hero-badge badge clay" href="#intro" data-reveal="pop" style="--d: 1.1s" aria-label="Scroll to explore">
-            <svg viewBox="0 0 100 100" aria-hidden="true">
-              <defs><path id="badge-hero" d="M50,50 m-40,0 a40,40 0 1,1 80,0 a40,40 0 1,1 -80,0"/></defs>
-              <text><textPath href="#badge-hero" textLength="248" lengthAdjust="spacing">Scroll to explore · Scroll to explore ·</textPath></text>
-            </svg>
-            <span class="badge-core">Explore<br>↓</span>
-          </a>
-
-          <p class="hero-caption mono" data-reveal style="--d: 1.2s">Thoughtful<br>Organized<br>Creative</p>
-        </div>
+    <section class="hero" aria-labelledby="hero-title">
+      <h1 class="visually-hidden" id="hero-title">Christine Joy Espiritu, also known as Tinapay</h1>
+      <div class="hero-shadow" aria-hidden="true"></div>
+      <p class="hero-name" aria-hidden="true">TINAPAY</p>
+      <div class="hero-stage">
+        <div class="hero-plinth" aria-hidden="true"></div>
+        <img class="hero-portrait" src="images/4.png" alt="Christine Joy Espiritu smiling, wearing glasses and a black blazer" width="1145" height="1374" fetchpriority="high">
       </div>
+      <div class="hero-left">
+        <p class="it">Thoughtful code,<br>made by hand.</p>
+        <span class="rule"></span>
+        <p class="cap">Christine Joy Espiritu</p>
+        <a class="link cap" href="projects.html">View the work <span aria-hidden="true">→</span></a>
+      </div>
+      <p class="hero-right cap">Computer Science<span class="rule"></span>Frontend Developer<span class="rule"></span>Live Host</p>
     </section>
 
-    <!-- Intro (olive) -->
-    <section class="intro tone tone-olive" id="intro" aria-labelledby="intro-heading">
-      <div class="glow" style="top: -25vmax; left: -20vmax" aria-hidden="true"></div>
-      <div class="leaves" aria-hidden="true"></div>
-
+    <!-- Intro -->
+    <section class="section" id="intro" aria-labelledby="intro-heading">
       <div class="wrap intro-grid">
-        <div class="intro-mark shape pebble tex-sand ring" data-reveal="rise">
-          <div>
-            <p class="mono">Also known as</p>
-            <p class="big">Tinapay</p>
-          </div>
+        <div data-reveal>
+          <p class="sec-num">01</p>
+          <span class="rule"></span>
+          <p class="cap" id="intro-heading">About me</p>
         </div>
-
-        <div class="intro-copy">
-          <p class="label" data-reveal>About me</p>
-          <h2 class="title" id="intro-heading" data-split>I like turning ideas into things people can <em>explore.</em></h2>
-          <p class="mono" data-reveal>
-            I am studying Computer Science with a specialization in Software
-            Engineering at Far Eastern University.
-          </p>
-          <p class="mono soft" data-reveal>
-            I am currently developing my skills in HTML, CSS, JavaScript,
-            UI/UX design, and web development.
-          </p>
-          <div data-reveal>
-            <a class="pill" href="about.html">More about me <span aria-hidden="true">→</span></a>
+        <div>
+          <p class="intro-statement" data-reveal>I like turning ideas into things people can <em>explore</em> — thoughtful, organized, and a little bit creative.</p>
+          <div class="intro-cols" data-reveal style="--d: 0.15s">
+            <p>I am studying Computer Science with a specialization in Software Engineering at Far Eastern University.</p>
+            <p>I am currently developing my skills in HTML, CSS, JavaScript, UI/UX design, and web development.</p>
+            <a class="link cap" href="about.html">More about me <span aria-hidden="true">→</span></a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Skills as material bands -->
-    <section aria-labelledby="skills-heading">
-      <div class="skills-head tone tone-linen">
-        <div class="wrap">
-          <div>
-            <p class="label" data-reveal>What I bring</p>
-            <h2 class="title" id="skills-heading" data-split>Skills &amp; <em>Tools</em></h2>
+    <!-- Skills -->
+    <section class="section tint" aria-labelledby="skills-heading">
+      <div class="wrap">
+        <div class="sec-head">
+          <div data-reveal>
+            <p class="sec-num">02</p>
+            <span class="rule"></span>
+            <p class="cap">What I bring</p>
           </div>
-          <p class="lead" data-reveal>
-            Currently exploring: AI-assisted development, Full-Stack Development, and UI/UX Design.
-          </p>
+          <div data-reveal>
+            <h2 class="title" id="skills-heading">Skills &amp; <em>tools</em></h2>
+          </div>
         </div>
+        <div class="skill-list">
+          <article class="skill" data-reveal>
+            <p class="sec-num">i.</p>
+            <h3>Frontend Development</h3>
+            <ul class="tags cap"><li>HTML</li><li>CSS</li><li>Responsive Design</li><li>JavaScript</li></ul>
+          </article>
+          <article class="skill" data-reveal>
+            <p class="sec-num">ii.</p>
+            <h3>Programming &amp; Tools</h3>
+            <ul class="tags cap"><li>Python</li><li>Java</li><li>Git</li><li>VS Code</li><li>Excel</li></ul>
+          </article>
+          <article class="skill" data-reveal>
+            <p class="sec-num">iii.</p>
+            <h3>Workflow &amp; Research</h3>
+            <ul class="tags cap"><li>Agile</li><li>Project Management</li><li>Data Analysis</li><li>Research</li></ul>
+          </article>
+          <article class="skill" data-reveal>
+            <p class="sec-num">iv.</p>
+            <h3>Communication &amp; Marketing</h3>
+            <ul class="tags cap"><li>Live Streaming</li><li>On-Air Hosting</li><li>Product Marketing</li><li>Customer Support</li><li>Sales</li></ul>
+          </article>
+          <article class="skill" data-reveal>
+            <p class="sec-num">v.</p>
+            <h3>AI-Assisted Development</h3>
+            <ul class="tags cap"><li>AI-Assisted Coding</li><li>Prompt Writing</li><li>ChatGPT</li><li>UI Ideation</li></ul>
+          </article>
+        </div>
+        <p class="skill-note" data-reveal><span class="it">Currently exploring —</span> AI-assisted development, full-stack development, and UI/UX design.</p>
       </div>
-
-      <article class="band tone tone-stone" data-reveal="band">
-        <span class="band-num">01</span>
-        <div class="band-inner">
-          <h3>Frontend Development</h3>
-          <ul class="slash-tags"><li>HTML</li><li>CSS</li><li>Responsive Web Design</li><li>Front-End Development</li><li>JavaScript</li></ul>
-        </div>
-        <span class="band-prop bowl" data-speed="0.12" aria-hidden="true"></span>
-      </article>
-
-      <article class="band tone tone-taupe" data-reveal="band">
-        <span class="band-num">02</span>
-        <div class="band-inner">
-          <h3>Programming &amp; Tools</h3>
-          <ul class="slash-tags"><li>Python</li><li>Java</li><li>Git</li><li>Visual Studio Code</li><li>Microsoft Excel</li></ul>
-        </div>
-        <svg class="band-prop sprig" aria-hidden="true"><use href="#sprig"/></svg>
-      </article>
-
-      <article class="band tone tone-clay" data-reveal="band">
-        <span class="band-num">03</span>
-        <div class="band-inner">
-          <h3>Workflow &amp; Research</h3>
-          <ul class="slash-tags"><li>Agile Development</li><li>Project Management</li><li>Data Analysis</li><li>Research</li></ul>
-        </div>
-        <span class="band-prop stone" data-speed="0.1" aria-hidden="true"></span>
-      </article>
-
-      <article class="band tone tone-olive" data-reveal="band">
-        <span class="band-num">04</span>
-        <div class="band-inner">
-          <h3>Communication &amp; Marketing</h3>
-          <ul class="slash-tags"><li>Live Streaming</li><li>On-Air Hosting</li><li>Product Marketing</li><li>Customer Support</li><li>Sales</li></ul>
-        </div>
-        <span class="band-prop pot" data-speed="0.1" aria-hidden="true"></span>
-      </article>
-
-      <article class="band tone tone-wood" data-reveal="band">
-        <span class="band-num">05</span>
-        <div class="band-inner">
-          <h3>AI-Assisted Development</h3>
-          <ul class="slash-tags"><li>AI-Assisted Coding</li><li>Prompt Writing</li><li>ChatGPT</li><li>UI Ideation</li></ul>
-        </div>
-        <svg class="band-prop sprig light" aria-hidden="true"><use href="#sprig"/></svg>
-      </article>
     </section>
 
-    <!-- Learning journey (taupe) -->
-    <section class="journey tone tone-taupe" aria-labelledby="journey-heading">
-      <div class="leaves left" aria-hidden="true"></div>
-
-      <div class="wrap journey-grid">
-        <div class="journey-aside">
-          <p class="label" data-reveal>Learning milestones</p>
-          <h2 class="title" id="journey-heading" data-split>Learning <em>Journey</em></h2>
-          <p class="lead" data-reveal>Courses, certifications, and milestones that shape how I build.</p>
+    <!-- Learning journey -->
+    <section class="section dark journey" aria-labelledby="journey-heading">
+      <div class="bowl" aria-hidden="true" data-speed="0.08"></div>
+      <div class="wrap">
+        <div class="sec-head">
           <div data-reveal>
-            <a class="line-link" href="https://www.linkedin.com/in/tinapay/details/certifications/" target="_blank" rel="noopener">
-              View all on LinkedIn <span class="arrow" aria-hidden="true">↗</span>
-            </a>
+            <p class="sec-num">03</p>
+            <span class="rule"></span>
+            <p class="cap">Learning milestones</p>
           </div>
-          <div class="journey-shape shape arch tex-sand ring" data-reveal="rise" aria-hidden="true">
-            <span class="counter">01</span>
+          <div data-reveal>
+            <h2 class="title" id="journey-heading">Learning <em>journey</em></h2>
+            <p class="lead">Courses, certifications, and milestones that shape how I build.</p>
           </div>
         </div>
-
-        <div class="journey-list">
-          <article class="journey-item" data-reveal data-count="01">
-            <p class="num-line">01</p>
-            <div class="journey-meta-row"><span class="mono">freeCodeCamp</span><span class="mono">2026</span></div>
+        <div class="cert-grid">
+          <article class="cert" data-reveal>
+            <p class="meta cap"><span>freeCodeCamp</span><span>2026</span></p>
             <h3>Responsive Web Design</h3>
             <p>Built a foundation in semantic HTML, CSS, accessibility, and responsive layouts.</p>
-            <p class="mono">Credential ID: tinapay-rwdv9</p>
+            <p class="cred cap">ID · tinapay-rwdv9</p>
           </article>
-
-          <article class="journey-item" data-reveal data-count="02">
-            <p class="num-line">02</p>
-            <div class="journey-meta-row"><span class="mono">Project Management Institute</span><span class="mono">2026</span></div>
-            <h3>PMI Project Management Ready</h3>
+          <article class="cert" data-reveal style="--d: 0.08s">
+            <p class="meta cap"><span>PMI</span><span>2026</span></p>
+            <h3>Project Management Ready</h3>
             <p>Learned project planning, teamwork, and the foundations of delivering work with structure.</p>
-            <p class="mono">Valid until March 2030</p>
+            <p class="cred cap">Valid until 2030</p>
           </article>
-
-          <article class="journey-item" data-reveal data-count="03">
-            <p class="num-line">03</p>
-            <div class="journey-meta-row"><span class="mono">Pearson Professional Programs</span><span class="mono">2025</span></div>
-            <h3>Information Technology Specialist in Python</h3>
+          <article class="cert" data-reveal style="--d: 0.16s">
+            <p class="meta cap"><span>Pearson</span><span>2025</span></p>
+            <h3>IT Specialist in Python</h3>
             <p>Validated programming foundations in Python through an industry certification.</p>
-            <p class="mono">Valid until July 2030</p>
+            <p class="cred cap">Valid until 2030</p>
           </article>
-
-          <article class="journey-item" data-reveal data-count="04">
-            <p class="num-line">04</p>
-            <div class="journey-meta-row"><span class="mono">LinkedIn Learning</span><span class="mono">2025</span></div>
+        </div>
+        <div class="cert-grid">
+          <article class="cert" data-reveal>
+            <p class="meta cap"><span>LinkedIn Learning</span><span>2025</span></p>
             <h3>Using Git with Visual Studio Code</h3>
             <p>Practiced version control and a practical development workflow using Git and Visual Studio Code.</p>
           </article>
-
-          <article class="journey-item is-next" data-reveal data-count="Next">
-            <p class="num-line">05</p>
-            <div class="journey-meta-row"><span class="mono">Currently learning</span><span class="mono">Next</span></div>
+          <article class="cert is-next" data-reveal style="--d: 0.08s">
+            <p class="meta cap"><span>Currently learning</span><span>Next</span></p>
             <h3>Prompt Engineering for AI</h3>
             <p>Exploring how to write clear, useful prompts for generative AI tools and development workflows.</p>
           </article>
         </div>
+        <p class="journey-foot" data-reveal>
+          <a class="link cap" href="https://www.linkedin.com/in/tinapay/details/certifications/" target="_blank" rel="noopener">View all on LinkedIn <span aria-hidden="true">↗</span></a>
+        </p>
       </div>
     </section>
 
-    <!-- Featured projects: three atmospheres -->
-    <section class="trio tone tone-stone" aria-labelledby="featured-heading">
+    <!-- Featured work -->
+    <section class="section" aria-labelledby="work-heading">
       <div class="wrap">
-        <div class="trio-head">
-          <p class="label no-line" data-reveal>Selected work</p>
-          <h2 class="title" id="featured-heading" data-split>Featured Projects</h2>
-          <p class="lead" data-reveal style="margin: 0 auto">
-            A few projects where I turn what I am learning into working web experiences.
-          </p>
-        </div>
-
-        <div class="trio-grid" data-stagger="0.15">
-          <article class="trio-card" data-reveal>
-            <a href="projects.html" data-cursor="view">
-              <div class="trio-stage" data-speed="0.05">
-                <div class="trio-backdrop shape arch tex-clay"><div class="leaves" aria-hidden="true"></div></div>
-                <div class="trio-shot">
-                  <img src="images/projects/pugon.png" alt="Pugon savings tracker dashboard with goal cards and progress bars" loading="lazy">
-                </div>
-              </div>
-              <h3>Pugon</h3>
-              <ul class="slash-tags" aria-label="Technologies used"><li>html</li><li>css</li><li>javascript</li></ul>
-            </a>
-          </article>
-
-          <article class="trio-card" data-reveal>
-            <a href="projects.html" data-cursor="view">
-              <div class="trio-stage" data-speed="-0.05">
-                <div class="trio-backdrop shape pebble tex-olive"><div class="leaves" aria-hidden="true"></div></div>
-                <div class="trio-shot">
-                  <img src="images/projects/salin.png" alt="Salin Filipino dictionary interface with word cards and search tools" loading="lazy">
-                </div>
-              </div>
-              <h3>Salin</h3>
-              <ul class="slash-tags" aria-label="Technologies used"><li>html</li><li>css</li><li>javascript</li></ul>
-            </a>
-          </article>
-
-          <article class="trio-card" data-reveal>
-            <a href="projects.html" data-cursor="view">
-              <div class="trio-stage" data-speed="0.05">
-                <div class="trio-backdrop shape circle tex-wood"><div class="leaves" aria-hidden="true"></div></div>
-                <div class="trio-shot">
-                  <img src="images/projects/tribute-page.png" alt="Norman Borlaug tribute page with editorial typography and portrait image" loading="lazy">
-                </div>
-              </div>
-              <h3>Borlaug Tribute</h3>
-              <ul class="slash-tags" aria-label="Technologies used"><li>html</li><li>css</li><li>responsive design</li></ul>
-            </a>
-          </article>
-        </div>
-
-        <div class="trio-foot" data-reveal>
-          <a class="pill" href="projects.html">View all projects <span aria-hidden="true">→</span></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Point of view (wood) -->
-    <section class="quote tone tone-wood" aria-label="My point of view">
-      <div class="glow" aria-hidden="true"></div>
-      <div class="leaves" aria-hidden="true"></div>
-      <div class="wrap">
-        <p class="label" data-reveal>My point of view</p>
-        <blockquote data-fill>
-          I believe good digital experiences should be useful first, but they
-          should also feel <em>warm, clear, and made with care.</em>
-        </blockquote>
-        <p class="mono" data-reveal>— Christine Joy Espiritu</p>
-      </div>
-    </section>
-
-    <!-- Closing (terracotta) -->
-    <section class="closing tone tone-clay" aria-labelledby="closing-heading">
-      <div class="leaves left" aria-hidden="true"></div>
-      <div class="wrap closing-grid">
-        <div>
-          <p class="label" data-reveal>Let’s connect</p>
-          <h2 class="display" id="closing-heading" data-split>Let’s build something <em>thoughtful.</em></h2>
-          <p class="lead" data-reveal>Send me a message and I will get back to you as soon as I can.</p>
+        <div class="sec-head">
           <div data-reveal>
-            <a class="pill" href="contact.html">Contact me <span aria-hidden="true">→</span></a>
+            <p class="sec-num">04</p>
+            <span class="rule"></span>
+            <p class="cap">Selected work</p>
+          </div>
+          <div data-reveal>
+            <h2 class="title" id="work-heading">Featured <em>projects</em></h2>
+            <p class="lead">A few projects where I turn what I am learning into working web experiences.</p>
           </div>
         </div>
+        <div class="work-grid">
+          <article class="work-card" data-reveal>
+            <a href="projects.html">
+              <div class="work-frame">
+                <img src="images/projects/pugon.png" alt="Pugon savings tracker dashboard with goal cards and progress bars" loading="lazy">
+              </div>
+              <div class="work-info">
+                <p class="sec-num">01</p>
+                <h3>Pugon</h3>
+                <ul class="tags cap"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+              </div>
+            </a>
+          </article>
+          <article class="work-card" data-reveal style="--d: 0.12s">
+            <a href="projects.html">
+              <div class="work-frame">
+                <img src="images/projects/salin.png" alt="Salin Filipino dictionary interface with word cards and search tools" loading="lazy">
+              </div>
+              <div class="work-info">
+                <p class="sec-num">02</p>
+                <h3>Salin</h3>
+                <ul class="tags cap"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+              </div>
+            </a>
+          </article>
+          <article class="work-card" data-reveal style="--d: 0.24s">
+            <a href="projects.html">
+              <div class="work-frame">
+                <img src="images/projects/tribute-page.png" alt="Norman Borlaug tribute page with editorial typography and portrait image" loading="lazy">
+              </div>
+              <div class="work-info">
+                <p class="sec-num">03</p>
+                <h3>Borlaug Tribute</h3>
+                <ul class="tags cap"><li>HTML</li><li>CSS</li><li>Responsive</li></ul>
+              </div>
+            </a>
+          </article>
+        </div>
+        <p class="work-foot" data-reveal><a class="btn cap" href="projects.html">View all projects <span aria-hidden="true">→</span></a></p>
+      </div>
+    </section>
 
-        <div class="closing-visual">
-          <div class="closing-arch shape arch tex-olive ring" data-reveal="rise"><div class="leaves" aria-hidden="true"></div></div>
-          <svg class="sprig" aria-hidden="true" data-speed="0.08"><use href="#sprig"/></svg>
-          <a class="badge wood" href="contact.html" data-reveal="pop" style="--d: 0.4s" aria-label="Say hello">
-            <svg viewBox="0 0 100 100" aria-hidden="true">
-              <defs><path id="badge-close" d="M50,50 m-40,0 a40,40 0 1,1 80,0 a40,40 0 1,1 -80,0"/></defs>
-              <text><textPath href="#badge-close" textLength="248" lengthAdjust="spacing">Say hello · Say hello · Say hello ·</textPath></text>
-            </svg>
-            <span class="badge-core">Write<br>→</span>
-          </a>
+    <!-- Point of view -->
+    <section class="quote tint" aria-label="My point of view">
+      <div class="wrap">
+        <p class="cap" data-reveal>My point of view</p>
+        <blockquote data-reveal>Good digital experiences should be useful first — but they should also feel <em>warm, clear, and made with care.</em></blockquote>
+        <span class="rule" data-reveal></span>
+        <p class="cap" data-reveal style="margin-top: 14px">Christine Joy Espiritu</p>
+      </div>
+      <div class="drop" aria-hidden="true"></div>
+    </section>
+
+    <!-- Closing -->
+    <section class="closing dark" aria-labelledby="closing-heading">
+      <div class="wrap closing-grid">
+        <h2 class="display" id="closing-heading" data-reveal>Let’s build something <em>thoughtful.</em></h2>
+        <div class="closing-side" data-reveal style="--d: 0.15s">
+          <p class="lead">Send me a message and I will get back to you as soon as I can.</p>
+          <a class="btn cap" href="contact.html">Contact me <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
@@ -402,8 +252,8 @@
 
   <footer class="site-footer">
     <div class="wrap">
-      <div class="footer-inner">
-        <p class="mono">© 2026 Christine Joy Espiritu</p>
+      <div class="footer-top cap">
+        <p>© 2026 Christine Joy Espiritu</p>
         <ul class="footer-links">
           <li><a href="https://www.linkedin.com/in/tinapay/" target="_blank" rel="noopener">LinkedIn</a></li>
           <li><a href="https://github.com/tinapaaay" target="_blank" rel="noopener">GitHub</a></li>
@@ -412,7 +262,7 @@
         </ul>
         <a class="to-top" href="#top">Back to top ↑</a>
       </div>
-      <p class="footer-word" aria-hidden="true">tinapay</p>
+      <p class="footer-word" aria-hidden="true">TINAPAY</p>
     </div>
   </footer>
 </body>

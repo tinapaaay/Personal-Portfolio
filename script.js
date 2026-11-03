@@ -1,176 +1,146 @@
-/* Tinapay portfolio — motion, no libraries.
-   The <head> of each page sets html.js and decides whether the loader
-   (first visit this session) or the clay curtain (moving between pages) shows. */
+/* Tinapay — plum editorial
+   Smooth scroll, reveals, hero intro, header state, mobile menu. */
 
 (function () {
-  const root = document.documentElement;
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const clamp = (n, min, max) => Math.min(Math.max(n, min), max);
+  "use strict";
 
-  const store = {
-    get(key) {
-      try { return sessionStorage.getItem(key); } catch (e) { return null; }
-    },
-    set(key, value) {
-      try { sessionStorage.setItem(key, value); } catch (e) { /* private mode */ }
-    },
-  };
+  const root = document.documentElement;
+  root.classList.add("js");
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
   document.addEventListener("DOMContentLoaded", () => {
-    splitWords("[data-split]", "w");
-    splitWords("[data-fill]", "f");
+    splitHeroName();
     setupHeader();
     setupMenu();
-    setupPageTransitions();
+    setupReveals();
+    setupForm();
+    const smooth = setupSmoothScroll();
+    setupAnchors(smooth);
+    setupParallax(smooth);
 
-    if (reduceMotion) {
-      root.classList.remove("show-loader", "from-nav");
-      document.querySelectorAll("[data-reveal], [data-split]").forEach((el) => el.classList.add("is-in"));
-      return;
-    }
-
-    setupCursor();
-    setupScrollScenes();
-    intro().then(setupReveals);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => document.body.classList.add("is-loaded"));
+    });
   });
 
-  /* First visit: count to 100 while an arch fills. Between pages: lift the curtain. */
-  function intro() {
-    return new Promise((resolve) => {
-      if (root.classList.contains("show-loader")) {
-        const loader = document.querySelector(".loader");
-        const num = loader && loader.querySelector(".loader-num");
-        const arch = loader && loader.querySelector(".loader-arch");
-        if (!loader) { resolve(); return; }
+  /* ---------- smooth scroll ----------
+     Eases mouse-wheel and trackpad scrolling toward a target.
+     Touch and keyboard keep native scrolling. */
+  function setupSmoothScroll() {
+    const api = {
+      active: false,
+      to(y) { window.scrollTo({ top: y, behavior: reduceMotion ? "auto" : "smooth" }); },
+      onScroll(fn) { window.addEventListener("scroll", fn, { passive: true }); },
+    };
+    if (reduceMotion || !finePointer) return api;
 
-        const duration = 1900;
-        const start = performance.now();
-        const tick = (now) => {
-          const t = clamp((now - start) / duration, 0, 1);
-          const eased = 1 - Math.pow(1 - t, 3);
-          const value = Math.round(eased * 100);
-          if (num) num.textContent = `${value}%`;
-          if (arch) arch.style.setProperty("--fill", `${100 - value}%`);
-          if (t < 1) {
-            requestAnimationFrame(tick);
-          } else {
-            store.set("tp-seen", "1");
-            setTimeout(() => {
-              loader.classList.add("is-done");
-              setTimeout(resolve, 250);
-              setTimeout(() => root.classList.remove("show-loader"), 1300);
-            }, 250);
-          }
-        };
-        requestAnimationFrame(tick);
-        return;
+    root.classList.add("smooth-scroll");
+    api.active = true;
+
+    let current = window.scrollY;
+    let target = current;
+    let running = false;
+    const listeners = [];
+    const ease = 0.1;
+
+    const maxScroll = () => document.documentElement.scrollHeight - window.innerHeight;
+    const clamp = (v) => Math.max(0, Math.min(v, maxScroll()));
+
+    function tick() {
+      current += (target - current) * ease;
+      if (Math.abs(target - current) < 0.5) {
+        current = target;
+        running = false;
       }
-
-      if (root.classList.contains("from-nav")) {
-        requestAnimationFrame(() => requestAnimationFrame(() => root.classList.add("is-ready")));
-        setTimeout(resolve, 450);
-        return;
-      }
-
-      store.set("tp-seen", "1");
-      resolve();
-    });
-  }
-
-  /* Wrap words in spans (keeps <em>, <strong>, <br>). */
-  function splitWords(selector, kind) {
-    document.querySelectorAll(selector).forEach((el) => {
-      let index = 0;
-      const walk = (node) => {
-        [...node.childNodes].forEach((child) => {
-          if (child.nodeType === Node.TEXT_NODE) {
-            const frag = document.createDocumentFragment();
-            child.textContent.split(/(\s+)/).forEach((part) => {
-              if (!part) return;
-              if (/^\s+$/.test(part)) {
-                frag.appendChild(document.createTextNode(" "));
-                return;
-              }
-              if (kind === "w") {
-                const outer = document.createElement("span");
-                const inner = document.createElement("span");
-                outer.className = "w";
-                inner.className = "w-i";
-                inner.style.setProperty("--i", index++);
-                inner.textContent = part;
-                outer.appendChild(inner);
-                frag.appendChild(outer);
-              } else {
-                const span = document.createElement("span");
-                span.className = "f";
-                span.textContent = part;
-                frag.appendChild(span);
-              }
-            });
-            child.replaceWith(frag);
-          } else if (child.nodeType === Node.ELEMENT_NODE && child.tagName !== "BR") {
-            walk(child);
-          }
-        });
-      };
-      el.setAttribute("aria-label", el.textContent.replace(/\s+/g, " ").trim());
-      walk(el);
-      [...el.children].forEach((c) => c.setAttribute("aria-hidden", "true"));
-    });
-  }
-
-  function setupReveals() {
-    document.querySelectorAll("[data-stagger]").forEach((group) => {
-      const step = parseFloat(group.dataset.stagger) || 0.1;
-      group.querySelectorAll(":scope > [data-reveal]").forEach((child, i) => {
-        child.style.setProperty("--d", `${i * step}s`);
-      });
-    });
-
-    const targets = document.querySelectorAll("[data-reveal], [data-split]");
-    if (!("IntersectionObserver" in window)) {
-      targets.forEach((el) => el.classList.add("is-in"));
-      return;
+      window.scrollTo(0, current);
+      listeners.forEach((fn) => fn());
+      if (running) requestAnimationFrame(tick);
     }
 
-    // Fully clipped shapes count as invisible, so watch their parent instead
-    const proxies = new Map();
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          (proxies.get(entry.target) || []).forEach((el) => el.classList.add("is-in"));
-          observer.unobserve(entry.target);
-        });
-      },
-      { rootMargin: "0px 0px -10% 0px", threshold: 0.01 }
-    );
-    targets.forEach((el) => {
-      const clipped = ["rise", "band"].includes(el.dataset.reveal);
-      const watch = clipped ? el.parentElement : el;
-      if (!proxies.has(watch)) proxies.set(watch, []);
-      proxies.get(watch).push(el);
-      observer.observe(watch);
+    function start() {
+      if (!running) {
+        running = true;
+        requestAnimationFrame(tick);
+      }
+    }
+
+    window.addEventListener("wheel", (e) => {
+      if (e.ctrlKey || document.body.classList.contains("menu-open")) return;
+      // Let scrollable inner elements (like the message box) scroll themselves.
+      const inner = e.target.closest && e.target.closest("textarea");
+      if (inner && inner.scrollHeight > inner.clientHeight) return;
+
+      e.preventDefault();
+      let delta = e.deltaY;
+      if (e.deltaMode === 1) delta *= 32;
+      else if (e.deltaMode === 2) delta *= window.innerHeight;
+      if (!running) current = window.scrollY;
+      target = clamp(target + delta);
+      start();
+    }, { passive: false });
+
+    // Keep in sync when the page is moved some other way (keyboard, scrollbar drag).
+    window.addEventListener("scroll", () => {
+      if (!running) {
+        current = target = window.scrollY;
+        listeners.forEach((fn) => fn());
+      }
+    }, { passive: true });
+
+    window.addEventListener("resize", () => { target = clamp(target); });
+
+    api.to = (y) => {
+      if (!running) current = window.scrollY;
+      target = clamp(y);
+      start();
+    };
+    api.onScroll = (fn) => listeners.push(fn);
+    return api;
+  }
+
+  function setupAnchors(smooth) {
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+      link.addEventListener("click", (e) => {
+        const id = link.getAttribute("href").slice(1);
+        const el = id ? document.getElementById(id) : null;
+        if (!el && id !== "top") return;
+        e.preventDefault();
+        const y = el && id !== "top" ? el.getBoundingClientRect().top + window.scrollY - 80 : 0;
+        smooth.to(y);
+        if (el && el.id === "main") el.focus({ preventScroll: true });
+      });
     });
   }
 
+  /* ---------- hero name letters ---------- */
+  function splitHeroName() {
+    const name = document.querySelector(".hero-name");
+    if (!name) return;
+    const text = name.textContent.trim();
+    name.setAttribute("aria-label", text);
+    name.textContent = "";
+    [...text].forEach((ch, i) => {
+      const span = document.createElement("span");
+      span.className = "ch";
+      span.setAttribute("aria-hidden", "true");
+      span.textContent = ch;
+      span.style.transitionDelay = `${0.05 * i}s`;
+      name.appendChild(span);
+    });
+  }
+
+  /* ---------- header ---------- */
   function setupHeader() {
     const header = document.querySelector(".site-header");
     if (!header) return;
-    let lastY = window.scrollY;
-    const update = () => {
-      const y = window.scrollY;
-      header.classList.toggle("is-scrolled", y > 40);
-      if (!document.body.classList.contains("menu-open")) {
-        if (y > 320 && y > lastY + 2) header.classList.add("is-hidden");
-        if (y < lastY - 2 || y < 320) header.classList.remove("is-hidden");
-      }
-      lastY = y;
-    };
-    window.addEventListener("scroll", update, { passive: true });
+    const update = () => header.classList.toggle("is-scrolled", window.scrollY > 40);
     update();
+    window.addEventListener("scroll", update, { passive: true });
   }
 
+  /* ---------- mobile menu ---------- */
   function setupMenu() {
     const toggle = document.querySelector(".menu-toggle");
     if (!toggle) return;
@@ -183,138 +153,69 @@
     toggle.addEventListener("click", () => setOpen(!document.body.classList.contains("menu-open")));
     document.addEventListener("keydown", (e) => { if (e.key === "Escape") setOpen(false); });
     window.matchMedia("(min-width: 961px)").addEventListener("change", () => setOpen(false));
+    document.querySelectorAll(".site-nav a").forEach((a) => a.addEventListener("click", () => setOpen(false)));
   }
 
-  /* A terracotta curtain rises before leaving and lifts on the next page. */
-  function setupPageTransitions() {
+  /* ---------- reveal on scroll ---------- */
+  function setupReveals() {
+    const items = document.querySelectorAll("[data-reveal]");
+    if (!("IntersectionObserver" in window) || reduceMotion) {
+      items.forEach((el) => el.classList.add("is-in"));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-in");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: "0px 0px -10% 0px", threshold: 0.12 });
+    items.forEach((el) => io.observe(el));
+  }
+
+  /* ---------- gentle parallax ---------- */
+  function setupParallax(smooth) {
     if (reduceMotion) return;
-    document.querySelectorAll("a[href]").forEach((link) => {
-      const href = link.getAttribute("href");
-      const internal = /\.html($|#)/.test(href) && !link.target && !/^https?:/.test(href);
-      if (!internal) return;
-      link.addEventListener("click", (e) => {
-        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-        e.preventDefault();
-        store.set("tp-nav", "1");
-        document.body.classList.add("is-leaving");
-        setTimeout(() => (window.location.href = href), 650);
-      });
-    });
-
-    window.addEventListener("pageshow", (e) => {
-      if (e.persisted) {
-        document.body.classList.remove("is-leaving", "menu-open");
-        root.classList.remove("from-nav", "show-loader");
-      }
-    });
-  }
-
-  /* A small clay dot that follows the pointer and grows over links. */
-  function setupCursor() {
-    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
-    const dot = document.createElement("div");
-    dot.className = "cursor";
-    dot.setAttribute("aria-hidden", "true");
-    document.body.appendChild(dot);
-    root.classList.add("has-cursor");
-
-    let x = -100, y = -100, cx = x, cy = y;
-    window.addEventListener("mousemove", (e) => { x = e.clientX; y = e.clientY; }, { passive: true });
-
-    document.addEventListener("mouseover", (e) => {
-      const view = e.target.closest("[data-cursor='view']");
-      const link = e.target.closest("a, button, label, input, textarea");
-      dot.classList.toggle("is-view", Boolean(view));
-      dot.classList.toggle("is-link", Boolean(link) && !view);
-      dot.textContent = view ? "View" : "";
-    });
-
-    const loop = () => {
-      cx += (x - cx) * 0.2;
-      cy += (y - cy) * 0.2;
-      dot.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
-      requestAnimationFrame(loop);
-    };
-    loop();
-  }
-
-  function setupScrollScenes() {
-    const meter = document.querySelector(".scroll-meter");
-    const meterNum = meter && meter.querySelector("b");
-    const fills = [...document.querySelectorAll("[data-fill]")].map((el) => ({
-      el,
-      words: [...el.querySelectorAll(".f")],
-    }));
-    const parallax = [...document.querySelectorAll("[data-speed]")];
-    const leaves = [...document.querySelectorAll(".leaves")];
-    const bands = [...document.querySelectorAll(".band")];
-    const badges = [...document.querySelectorAll(".badge svg")];
-    const journeyItems = [...document.querySelectorAll(".journey-item")];
-    const journeyCounter = document.querySelector(".journey-shape .counter");
-
-    let vh = window.innerHeight;
+    const items = [...document.querySelectorAll("[data-speed]")];
+    if (!items.length) return;
     let ticking = false;
-
-    const render = () => {
+    const update = () => {
       ticking = false;
-      const scrollY = window.scrollY;
-      const max = document.documentElement.scrollHeight - vh;
-      const p = max > 0 ? scrollY / max : 0;
-
-      if (meter) {
-        meter.style.setProperty("--p", p.toFixed(4));
-        if (meterNum) meterNum.textContent = `${Math.round(p * 100)}%`;
-      }
-
-      fills.forEach(({ el, words }) => {
-        const rect = el.getBoundingClientRect();
-        const t = clamp((vh * 0.85 - rect.top) / (rect.height + vh * 0.3), 0, 1);
-        const lit = Math.round(t * words.length);
-        words.forEach((w, i) => w.classList.toggle("is-on", i < lit));
+      const vh = window.innerHeight;
+      items.forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.bottom < -200 || r.top > vh + 200) return;
+        const offset = (r.top + r.height / 2 - vh / 2) * parseFloat(el.dataset.speed);
+        el.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0)`;
       });
-
-      parallax.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        if (rect.bottom < -300 || rect.top > vh + 300) return;
-        const speed = parseFloat(el.dataset.speed) || 0.1;
-        const offset = (rect.top + rect.height / 2 - vh / 2) * speed;
-        el.style.translate = `0 ${(-offset).toFixed(1)}px`;
-      });
-
-      leaves.forEach((el) => {
-        const rect = el.parentElement.getBoundingClientRect();
-        if (rect.bottom < 0 || rect.top > vh) return;
-        el.style.setProperty("--ly", `${(rect.top * -0.12).toFixed(1)}px`);
-      });
-
-      bands.forEach((band) => {
-        const rect = band.getBoundingClientRect();
-        if (rect.bottom < 0 || rect.top > vh) return;
-        const t = (rect.top + rect.height / 2) / vh;
-        band.style.setProperty("--by", `${(t * 100).toFixed(1)}%`);
-      });
-
-      badges.forEach((svg) => svg.style.setProperty("--spin", `${scrollY * 0.15}deg`));
-
-      if (journeyCounter && journeyItems.length) {
-        let current = 0;
-        journeyItems.forEach((item, i) => {
-          if (item.getBoundingClientRect().top < vh * 0.55) current = i;
-        });
-        const label = journeyItems[current].dataset.count || String(current + 1).padStart(2, "0");
-        if (journeyCounter.textContent !== label) journeyCounter.textContent = label;
-      }
     };
-
     const request = () => {
       if (!ticking) {
         ticking = true;
-        requestAnimationFrame(render);
+        requestAnimationFrame(update);
       }
     };
-
-    render();
+    smooth.onScroll(request);
     window.addEventListener("scroll", request, { passive: true });
-    window.addEventListener("resize", () => { vh = window.innerHeight; request(); });
+    window.addEventListener("resize", request);
+    update();
+  }
+
+  /* ---------- contact form ---------- */
+  function setupForm() {
+    const form = document.querySelector(".form");
+    if (!form) return;
+    const note = form.querySelector(".form-note");
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      const name = form.querySelector("#name").value.trim().split(" ")[0];
+      if (note) note.textContent = `Thank you, ${name}. Your message is noted.`;
+      form.reset();
+    });
   }
 })();

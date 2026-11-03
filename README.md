@@ -14,12 +14,11 @@ This project is part of the [Personal Portfolio project on roadmap.sh](https://r
 
 ## Features
 
-- Earthy, zen-inspired design: warm ivory, taupe, terracotta, olive green, and dark wood
-- Hand-made textures (raked sand, plaster, clay, linen, wood grain) drawn with SVG filters in `images/textures/`
-- Arches, pebbles, and circles as image frames, with drifting leaf shadows
-- Opening loader with a percentage counter and a terracotta curtain between pages
-- Scroll animations: word-by-word headings, ink-fill quotes, material bands that open as you scroll, parallax shapes, and a scroll meter
-- Custom cursor on desktop, full-screen mobile menu, and a reduced-motion fallback
+- Plum editorial design: cream paper, one deep plum accent, and large Bodoni Moda serif type
+- Poster-style hero where the portrait overlaps a giant "TINAPAY" wordmark on a plum half-circle
+- Smooth, eased scrolling for mouse and trackpad (native scrolling on touch and with reduced motion)
+- Letter-by-letter hero intro, fade-up reveals, gentle parallax, and plum hover fills on list rows
+- Full-screen plum mobile menu and a reduced-motion fallback
 - Responsive layout for desktop and mobile screens
 
 ## Built With
