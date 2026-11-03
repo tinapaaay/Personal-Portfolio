@@ -11,12 +11,13 @@
   --plum-2: #5a2338;
   --plum-soft: #8a5468;
   --ink: #2a161f;
-  --muted: #76626b;
+  --muted: #5f4b54;
   --line: rgba(61, 20, 38, 0.18);
   --line-light: rgba(236, 229, 218, 0.22);
 
-  --serif: "Bodoni Moda", "Didot", "Times New Roman", serif;
-  --italic: "Instrument Serif", "Times New Roman", serif;
+  --display: "Bodoni Moda", "Didot", "Times New Roman", serif;
+  --serif: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --italic: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
   --sans: "Manrope", system-ui, -apple-system, sans-serif;
 
   --gutter: clamp(16px, 4.4vw, 64px);
@@ -79,9 +80,9 @@ h1, h2, h3 { font-weight: 400; }
 
 .cap {
   font-family: var(--sans);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
-  letter-spacing: 0.32em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   line-height: 1.9;
 }
@@ -95,14 +96,14 @@ h1, h2, h3 { font-weight: 400; }
   opacity: 0.8;
 }
 
-.it { font-family: var(--italic); font-style: italic; font-weight: 400; }
+.it { font-family: var(--italic); font-style: italic; font-weight: 500; letter-spacing: -0.01em; }
 
 .display {
   font-family: var(--serif);
-  font-weight: 400;
+  font-weight: 500;
   font-size: clamp(3.2rem, 9vw, 8.5rem);
-  line-height: 0.92;
-  letter-spacing: -0.02em;
+  line-height: 1;
+  letter-spacing: -0.04em;
 }
 .display em,
 .title em {
@@ -115,7 +116,7 @@ h1, h2, h3 { font-weight: 400; }
 
 .title {
   font-family: var(--serif);
-  font-weight: 400;
+  font-weight: 500;
   font-size: clamp(2.3rem, 5vw, 4.4rem);
   line-height: 1;
   letter-spacing: -0.02em;
@@ -244,7 +245,7 @@ h1, h2, h3 { font-weight: 400; }
   top: 27%;
   z-index: 1;
   text-align: center;
-  font-family: var(--serif);
+  font-family: var(--display);
   font-weight: 500;
   font-size: clamp(5rem, 18.6vw, 17.5rem);
   line-height: 1;
@@ -532,7 +533,7 @@ h1, h2, h3 { font-weight: 400; }
 .footer-links a, .to-top { opacity: 0.8; transition: opacity 0.3s; }
 .footer-links a:hover, .to-top:hover { opacity: 1; }
 .footer-word {
-  font-family: var(--serif);
+  font-family: var(--display);
   font-weight: 500;
   font-size: clamp(4.5rem, 21vw, 20rem);
   line-height: 0.8;
@@ -783,7 +784,7 @@ h1, h2, h3 { font-weight: 400; }
 .field input:focus + label,
 .field input:not(:placeholder-shown) + label,
 .field textarea:focus + label,
-.field textarea:not(:placeholder-shown) + label { top: 0; font-size: 10px; color: var(--plum); }
+.field textarea:not(:placeholder-shown) + label { top: 0; font-size: 11px; color: var(--plum); }
 .field .bar {
   position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
   background: var(--plum);
@@ -808,7 +809,7 @@ h1, h2, h3 { font-weight: 400; }
 .social-row .arrow { font-family: var(--sans); font-size: 1.4rem; transition: transform 0.45s var(--ease); }
 .social-row:hover { padding-left: 18px; color: var(--cream-3); }
 .social-row:hover .arrow { transform: translate(4px, -4px); }
-.social-row .handle { font-family: var(--sans); font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; opacity: 0.6; margin-left: auto; margin-right: 32px; }
+.social-row .handle { font-family: var(--sans); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.7; margin-left: auto; margin-right: 32px; }
 
 /* ---------- motion ---------- */
 
@@ -1131,3 +1132,17 @@ html.lenis, html.lenis body { height: auto; }
   .work-slide-info .link { grid-column: 1 / -1; grid-row: auto; justify-self: start; margin-top: 10px; }
   .live-screen { aspect-ratio: 4 / 5; }
 }
+
+
+/* Sans headings read better a touch heavier and tighter */
+.skill h3, .cert h3, .row h3, .feature-body h3, .index-row h3, .index-row h2,
+.work-info h3, .work-slide-info h3, .intro-statement, .quote blockquote, .social-row {
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+.intro-statement, .quote blockquote { line-height: 1.18; }
+.title { letter-spacing: -0.035em; line-height: 1.04; }
+.field input, .field textarea { font-weight: 500; letter-spacing: -0.01em; }
+
+/* Room for descenders (g, y, p) inside the masked line reveals */
+.title > *, .display > * { padding-bottom: 0.14em; margin-bottom: -0.14em; }
