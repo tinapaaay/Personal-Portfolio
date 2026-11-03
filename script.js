@@ -21,6 +21,7 @@
     setupMenu();
     setupForm();
     setupLive();
+    setupShapes();
 
     if (hasGsap) {
       gsap.registerPlugin(ScrollTrigger);
@@ -202,10 +203,19 @@
 
       mm.add("(min-width: 721px)", () => {
         const mid = (chars.length - 1) / 2;
+        const first = chars[0];
+        const last = chars[chars.length - 1];
+        // Spread the letters only into the empty space beside the word,
+        // so the outer letters never leave the screen. (offset* ignores transforms.)
+        const step = () => {
+          const word = last.offsetLeft + last.offsetWidth - first.offsetLeft;
+          const free = Math.max(0, (window.innerWidth - word) / 2 - 24);
+          return Math.min(free / mid, 40);
+        };
         gsap.timeline({
-          scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true },
+          scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true, invalidateOnRefresh: true },
         })
-          .to(chars, { x: (i) => (i - mid) * 90, ease: "none" }, 0)
+          .to(chars, { x: (i) => (i - mid) * step(), ease: "none" }, 0)
           .to(hero.querySelector(".hero-name"), { yPercent: -60, opacity: 0.25, ease: "none" }, 0)
           .to(hero.querySelector(".hero-stage"), { y: 90, scale: 1.05, transformOrigin: "50% 100%", ease: "none" }, 0)
           .to(sides, { y: -80, opacity: 0, ease: "none" }, 0);
@@ -339,6 +349,17 @@
         scrollTrigger: { trigger: el, start: "top bottom", end: "top 60%", scrub: true } });
     });
 
+    // --- floating shapes drift and turn as you scroll ---
+    gsap.utils.toArray(".shapes").forEach((box) => {
+      box.querySelectorAll(".shape").forEach((el, i) => {
+        const depth = 40 + (i % 3) * 45;
+        gsap.fromTo(el, { y: depth, rotate: 0 }, {
+          y: -depth, rotate: i % 2 ? -40 : 50, ease: "none",
+          scrollTrigger: { trigger: box.parentElement, start: "top bottom", end: "bottom top", scrub: true },
+        });
+      });
+    });
+
     // Recalculate after images and live frames settle.
     window.addEventListener("load", () => ScrollTrigger.refresh());
   }
@@ -346,6 +367,31 @@
   /* =========================================================
      Shared bits
      ========================================================= */
+
+  // Thin outline shapes scattered around section headings.
+  // Each section gets one of a few layouts, picked in turn.
+  const SHAPE_LAYOUTS = [
+    [["ring", 96, "auto", "30%", "auto", "6%"], ["square rose", 44, "auto", "16%", "auto", "14%"], ["dot", 12, "3%", "auto", "auto", "30%"], ["ring", 24, "22%", "auto", "auto", "10%"]],
+    [["square", 70, "auto", "5%", "18%"], ["ring rose", 30, "8%", "auto", "auto", "16%"], ["dot", 10, "auto", "26%", "12%"], ["ring", 54, "40%", "auto", "auto", "-2%"]],
+    [["ring rose", 120, "auto", "-2%", "auto", "10%"], ["square", 36, "48%", "auto", "9%"], ["dot", 14, "auto", "12%", "16%"], ["square rose", 22, "30%", "auto", "auto", "12%"]],
+  ];
+  function setupShapes() {
+    const sections = document.querySelectorAll(".page-hero, .section, .closing");
+    sections.forEach((section, n) => {
+      if (section.querySelector(":scope > .shapes")) return;
+      const box = document.createElement("div");
+      box.className = "shapes";
+      box.setAttribute("aria-hidden", "true");
+      SHAPE_LAYOUTS[n % SHAPE_LAYOUTS.length].forEach(([kind, size, left, right, top, bottom]) => {
+        const el = document.createElement("i");
+        el.className = "shape " + kind;
+        el.style.setProperty("--s", size + "px");
+        Object.assign(el.style, { left, right, top: top || "auto", bottom: bottom || "auto" });
+        box.appendChild(el);
+      });
+      section.prepend(box);
+    });
+  }
   function splitHeroName() {
     const name = document.querySelector(".hero-name");
     if (!name) return;

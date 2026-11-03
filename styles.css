@@ -314,7 +314,7 @@ h1, h2, h3 { font-weight: 400; }
 
 /* ---------- sections ---------- */
 
-.section { position: relative; padding: clamp(5rem, 13vh, 9rem) 0; }
+.section { position: relative; padding: clamp(6rem, 16vh, 11rem) 0; }
 .section + .section:not(.dark):not(.tint) { border-top: 1px solid var(--line); }
 .tint { background: var(--cream-2); }
 
@@ -323,7 +323,7 @@ h1, h2, h3 { font-weight: 400; }
   grid-template-columns: minmax(180px, 1fr) 2.4fr;
   gap: 32px clamp(24px, 5vw, 80px);
   align-items: end;
-  margin-bottom: clamp(3rem, 7vh, 5rem);
+  margin-bottom: clamp(3.5rem, 9vh, 6rem);
 }
 .sec-head .lead { margin-top: 22px; }
 .sec-num {
@@ -535,9 +535,11 @@ h1, h2, h3 { font-weight: 400; }
 .footer-word {
   font-family: var(--display);
   font-weight: 500;
-  font-size: clamp(4.5rem, 21vw, 20rem);
+  /* The word is ~4.5em wide, so size it to the footer width and keep it on one line. */
+  font-size: min(20rem, calc((100vw - 2 * var(--gutter)) / 5));
   line-height: 0.8;
   letter-spacing: 0.02em;
+  white-space: nowrap;
   text-align: center;
   color: transparent;
   -webkit-text-stroke: 1px rgba(236, 229, 218, 0.35);
@@ -1254,3 +1256,35 @@ a.index-row .soon { color: var(--plum); }
   .course-list li { grid-template-columns: 1fr; }
   .course-list span:last-child { text-align: left; }
 }
+
+/* ---------- floating outline shapes ---------- */
+.shapes {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.page-hero > .wrap, .section > .wrap, .closing > .wrap { position: relative; z-index: 1; }
+.shape {
+  position: absolute;
+  display: block;
+  width: var(--s);
+  aspect-ratio: 1;
+  border: 1.5px solid var(--c, var(--plum-soft));
+  opacity: 0.55;
+}
+.shape.ring { border-radius: 50%; }
+.shape.square { rotate: var(--r, 18deg); }
+.shape.dot { border-radius: 50%; border: 0; background: var(--c, var(--plum-soft)); }
+.shape.rose { --c: #c48a9b; }
+.dark .shape { --c: rgba(236, 229, 218, 0.4); }
+.dark .shape.rose { --c: #c48a9b; }
+.js:not(.has-gsap) .shape { animation: shape-float 9s ease-in-out infinite alternate; }
+.js:not(.has-gsap) .shape:nth-child(2n) { animation-duration: 12s; animation-delay: -4s; }
+@keyframes shape-float { to { transform: translateY(-18px) rotate(10deg); } }
+@media (max-width: 720px) {
+  .shape { width: calc(var(--s) * 0.6); }
+  .shape:nth-child(4), .shape.dot { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .shape { animation: none !important; } }
