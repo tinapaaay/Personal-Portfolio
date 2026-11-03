@@ -190,7 +190,7 @@
       const portrait = hero.querySelector(".hero-portrait");
       const plinth = hero.querySelector(".hero-plinth");
       const shadow = hero.querySelector(".hero-shadow");
-      const sides = hero.querySelectorAll(".hero-left, .hero-right");
+      const sides = hero.querySelectorAll(".hero-left");
 
       // Intro and scroll scenes move different layers, so they never collide.
       gsap.timeline({ defaults: { ease } })
@@ -199,7 +199,7 @@
         .from(hero.querySelectorAll(".ch-in"), { yPercent: 105, opacity: 0, duration: 1.5, stagger: 0.07 }, 0.15)
         .from(portrait, { y: 120, opacity: 0, duration: 1.8 }, 0.4)
         .from(shadow, { opacity: 0, duration: 2 }, 0.9)
-        .from(hero.querySelectorAll(".hero-left > *, .hero-right-in"), { y: 30, opacity: 0, duration: 1.2, stagger: 0.08 }, 1);
+        .from(hero.querySelectorAll(".hero-left > *"), { y: 30, opacity: 0, duration: 1.2, stagger: 0.08 }, 1);
 
       mm.add("(min-width: 721px)", () => {
         const mid = (chars.length - 1) / 2;

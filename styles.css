@@ -281,8 +281,8 @@ h1, h2, h3 { font-weight: 400; }
   width: 30vw; height: 22vw;
   border-radius: 50%;
   background: var(--ink);
-  opacity: 0.2;
-  filter: blur(42px);
+  opacity: 0.12;
+  filter: blur(56px);
   z-index: 0;
 }
 .hero-plinth {
@@ -304,16 +304,15 @@ h1, h2, h3 { font-weight: 400; }
   translate: -50% 0;
   z-index: 2;
 }
-.hero-left,
-.hero-right {
+.hero-left {
   position: absolute;
   bottom: clamp(56px, 13vh, 124px);
   z-index: 3;
 }
 .hero-left { left: var(--gutter); }
-.hero-right { right: var(--gutter); }
 .hero-left .it { font-size: var(--fs-xl); line-height: 1.08; color: var(--plum); }
 .hero-left .text-link { margin-top: var(--space-5); }
+.hero-role { margin-top: var(--space-1); font-size: var(--fs-base); color: var(--ink); }
 /* ---------- sections ---------- */
 
 .section { position: relative; padding: clamp(6rem, 16vh, 11rem) 0; }
@@ -575,13 +574,6 @@ h1, h2, h3 { font-weight: 400; }
 .split p + p { margin-top: var(--space-4); }
 .split .copy > p { color: var(--muted); }
 .split .title { margin: var(--space-4) 0 var(--space-6); }
-.chips { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-6); }
-.chips li {
-  padding: var(--space-2) var(--space-4);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-pill);
-  font-size: var(--fs-sm);
-}
 
 /* growth */
 .growth { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line-light); }
@@ -724,7 +716,7 @@ h1, h2, h3 { font-weight: 400; }
 .js:not(.has-gsap) .is-loaded .hero-name .ch { transform: none; opacity: 1; }
 .js:not(.has-gsap) .is-loaded .hero-portrait { opacity: 1; translate: -50% 0; }
 .js:not(.has-gsap) .is-loaded .hero-plinth { scale: 1 1; }
-.js:not(.has-gsap) .is-loaded .hero-shadow { opacity: 0.2; }
+.js:not(.has-gsap) .is-loaded .hero-shadow { opacity: 0.12; }
 
 /* ---------- responsive ---------- */
 
@@ -778,10 +770,9 @@ h1, h2, h3 { font-weight: 400; }
   .hero-portrait { height: 100%; }
   .hero-plinth { width: 120vw; }
   .hero-shadow { width: 60vw; height: 40vw; top: 18%; left: -10%; }
-  .hero-left, .hero-right { position: relative; inset: auto; padding: 0 var(--gutter); }
+  .hero-left { position: relative; inset: auto; padding: 0 var(--gutter); }
   .hero-left { order: -1; margin-bottom: var(--space-6); }
   .hero-left .text-link { display: none; }
-  .hero-right { display: none; }
 
   .intro-cols { grid-template-columns: 1fr; gap: var(--space-4); }
   .row { grid-template-columns: 1fr; }
@@ -1008,7 +999,7 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-stopped { overflow: hidden; }
 
 .footer-word { overflow: hidden; }
-.footer-word .ch, .hero-name .ch, .ch-in, .hero-right-in { display: inline-block; }
+.footer-word .ch, .hero-name .ch, .ch-in { display: inline-block; }
 
 @media (max-width: 960px) {
   .work-slide { width: 86vw; }
@@ -1232,3 +1223,13 @@ a.index-row .soon { color: var(--plum); }
 .field.is-invalid textarea { border-bottom-color: var(--error); }
 .field.is-invalid label { color: var(--error); }
 .field.is-invalid .bar { background: var(--error); transform: scaleX(1); }
+
+/* header logo: hidden at the top of Home, where the big TINAPAY already shows */
+.brand { transition: opacity var(--dur) var(--ease); }
+.js body:has(.hero) .site-header:not(.is-scrolled) .brand { opacity: 0; pointer-events: none; }
+
+/* bigger tap areas on touch screens, without moving the layout */
+@media (pointer: coarse) {
+  .text-link { padding-block: var(--space-2); margin-block: calc(var(--space-2) * -1); }
+  .footer-links a, .to-top, .brand { display: inline-block; padding-block: 10px; margin-block: -10px; }
+}
