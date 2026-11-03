@@ -349,6 +349,20 @@
         scrollTrigger: { trigger: el, start: "top bottom", end: "top 60%", scrub: true } });
     });
 
+    // --- word stack: fill one word at a time as the section scrolls by ---
+    document.querySelectorAll(".word-stack").forEach((stack) => {
+      const words = stack.querySelectorAll("span");
+      ScrollTrigger.create({
+        trigger: stack,
+        start: "top 70%",
+        end: "bottom 30%",
+        onUpdate(self) {
+          const on = Math.min(words.length - 1, Math.floor(self.progress * words.length));
+          words.forEach((w, i) => w.classList.toggle("is-on", i === on));
+        },
+      });
+    });
+
     // --- floating shapes drift and turn as you scroll ---
     gsap.utils.toArray(".shapes").forEach((box) => {
       box.querySelectorAll(".shape").forEach((el, i) => {
