@@ -220,6 +220,12 @@ components:
     backgroundColor: "{colors.neutral-2}"
     textColor: "{colors.on-surface}"
     rounded: "{rounded.code}"
+  case-card:
+    backgroundColor: "{colors.neutral-2}"
+    textColor: "{colors.on-surface}"
+    typography: "{typography.body-md}"
+    rounded: "{rounded.none}"
+    padding: "{spacing.space-5}"
   code-block:
     backgroundColor: "{colors.primary}"
     textColor: "{colors.neutral}"
@@ -311,7 +317,7 @@ Both shadows are tinted with the plum-black ink, not neutral black, and fall str
 - **Card (`card`, 14px)** — the live preview window. It is the only rounded rectangle at this size, which marks it as "a different thing": someone else's site.
 - **Phone (`phone`, 36px)** — the mobile preview's screen inside its plum bezel.
 - **Code (`code`, 6px)** — inline code and code blocks in articles. All code shares this one small radius, so the 14px card shape stays unique to live previews.
-- **None** — form inputs, which are a single bottom line.
+- **None** — form inputs, which are a single bottom line, and the tinted "Key decisions" cards on case studies, which stay square like paper.
 
 Decorative shapes are 1.5px outlines: rings, rotated squares and small filled dots, in dusty plum, rose on light sections or faint cream on plum. Borders elsewhere are always 1px hairlines.
 
