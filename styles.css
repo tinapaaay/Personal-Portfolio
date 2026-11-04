@@ -56,6 +56,7 @@
   /* shape, depth, motion */
   --radius-pill: 999px;
   --radius-card: 14px;
+  --radius-code: 6px;
   --shadow-soft: 0 40px 60px -30px rgba(42, 15, 27, 0.6);
   --shadow-deep: 0 50px 90px -50px rgba(42, 15, 27, 0.55);
   --dur-fast: 0.3s;
@@ -1082,13 +1083,16 @@ html.lenis, html.lenis body { height: auto; }
 .post-hero .lead { margin-top: var(--space-5); font-size: var(--fs-md); }
 .post-body { padding-bottom: clamp(5rem, 12vh, 8rem); font-size: var(--fs-base); line-height: 1.8; }
 .post-body > * + * { margin-top: var(--space-4); }
+.post-body > * { max-width: 34em; } /* comfortable measure, about 65–75 characters */
+.post-body > .live { max-width: none; margin-top: var(--space-6); }
+.post-caption { font-size: var(--fs-sm); color: var(--muted); }
 .post-body h2 { margin-top: var(--space-7); font-family: var(--heading); font-weight: 600; font-size: var(--fs-lg); letter-spacing: -0.02em; line-height: 1.2; }
 .post-body p, .post-body li { color: var(--ink-soft); }
 .post-body strong { font-weight: 600; color: var(--ink); }
 .post-body ul { list-style: disc; padding-left: 1.3em; }
 .post-body li + li { margin-top: var(--space-2); }
-.post-body code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.88em; background: var(--cream-2); padding: 2px var(--space-2); border-radius: 6px; }
-.post-body pre { background: var(--plum); color: var(--cream); padding: var(--space-5) var(--space-5); border-radius: var(--radius-card); overflow-x: auto; line-height: 1.6; }
+.post-body code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.88em; background: var(--cream-2); padding: 2px var(--space-2); border-radius: var(--radius-code); }
+.post-body pre { background: var(--plum); color: var(--cream); padding: var(--space-5) var(--space-5); border-radius: var(--radius-code); overflow-x: auto; line-height: 1.6; }
 .post-body pre code { background: none; padding: 0; color: inherit; font-size: var(--fs-sm); }
 .post-end { margin-top: var(--space-7) !important; }
 a.index-row .soon { color: var(--plum); }

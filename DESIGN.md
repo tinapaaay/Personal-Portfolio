@@ -220,6 +220,12 @@ components:
     backgroundColor: "{colors.neutral-2}"
     textColor: "{colors.on-surface}"
     rounded: "{rounded.code}"
+  code-block:
+    backgroundColor: "{colors.primary}"
+    textColor: "{colors.neutral}"
+    typography: "{typography.body-sm}"
+    rounded: "{rounded.code}"
+    padding: "{spacing.space-5}"
   status-dot:
     backgroundColor: "{colors.ok}"
     size: 8px
@@ -304,7 +310,7 @@ Both shadows are tinted with the plum-black ink, not neutral black, and fall str
 - **Pill (`full`)** — buttons, the Desktop/Mobile switch and anything else you press.
 - **Card (`card`, 14px)** — the live preview window. It is the only rounded rectangle at this size, which marks it as "a different thing": someone else's site.
 - **Phone (`phone`, 36px)** — the mobile preview's screen inside its plum bezel.
-- **Code (`code`, 6px)** — inline code in articles.
+- **Code (`code`, 6px)** — inline code and code blocks in articles. All code shares this one small radius, so the 14px card shape stays unique to live previews.
 - **None** — form inputs, which are a single bottom line.
 
 Decorative shapes are 1.5px outlines: rings, rotated squares and small filled dots, in dusty plum, rose on light sections or faint cream on plum. Borders elsewhere are always 1px hairlines.
@@ -323,7 +329,9 @@ Decorative shapes are 1.5px outlines: rings, rotated squares and small filled do
 
 **Project entry (`.feature`).** Category label (`category-label`), title, one short line, up to four tools, then one small button and plain text links.
 
-**Word stack and floating shapes.** Four words in Bodoni Moda; the filled, italic one follows the scroll, the rest are outlined. Shapes drift slowly around section headings.
+**Word stack and floating shapes.** Four words in Bodoni Moda; the filled, italic one follows the scroll, the rest are outlined. Shapes drift slowly around section headings. Shapes are switched off on article pages, so long reading stays calm.
+
+**Article (`.post`).** Text held to 34em (about 65–75 characters a line) in `on-surface-article` ink. Code blocks (`code-block`) are plum boxes with cream text and horizontal scroll. A live preview may sit inside an article at full column width, followed by a short `body-sm` caption in `muted`.
 
 **Résumé page.** `resume.html` is a standalone, printable A4 sheet with its own inline styles; it does not load `styles.css`. It repeats the core tokens (cream, plum, ink, muted, line) by value, so when a token changes, update that page's `:root` too. Its toolbar button follows the uppercase `.btn` style.
 
