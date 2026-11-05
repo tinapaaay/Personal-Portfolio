@@ -391,8 +391,8 @@
     [["ring rose", 120, "auto", "-2%", "auto", "10%"], ["square", 36, "48%", "auto", "9%"], ["dot", 14, "auto", "12%", "16%"], ["square rose", 22, "30%", "auto", "auto", "12%"]],
   ];
   function setupShapes() {
-    // Reading pages stay calm: no floating shapes on articles.
-    if (document.querySelector(".post")) return;
+    // Reading pages stay calm: no floating shapes on articles or case studies.
+    if (document.querySelector(".post, .case-hero")) return;
     const sections = document.querySelectorAll(".page-hero, .section, .closing");
     sections.forEach((section, n) => {
       if (section.querySelector(":scope > .shapes")) return;

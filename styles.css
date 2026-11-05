@@ -1236,6 +1236,7 @@ a.index-row .soon { color: var(--plum); }
 @media (pointer: coarse) {
   .text-link { padding-block: var(--space-2); margin-block: calc(var(--space-2) * -1); }
   .footer-links a, .to-top, .brand { display: inline-block; padding-block: 10px; margin-block: -10px; }
+  .case-hero .cap a, .post-hero .cap a, .case-meta a { display: inline-block; padding-block: 13px; margin-block: -13px; }
 }
 
 /* preview "open" button: easier to tap on touch screens */
