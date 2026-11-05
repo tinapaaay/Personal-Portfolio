@@ -20,6 +20,7 @@ Edit shared navigation/footer across all HTML pages. Update preview URLs and thu
 - [`case-css-casebook.html`](../case-css-casebook.html)
 - [`case-leemo-cocktails.html`](../case-leemo-cocktails.html)
 - [`case-little-feelings.html`](../case-little-feelings.html)
+- [`case-trailpeak.html`](../case-trailpeak.html)
 - [`contact.html`](../contact.html)
 - [`index.html`](../index.html)
 - [`projects.html`](../projects.html)

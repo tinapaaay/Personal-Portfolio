@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrailPeak — Case Study | Christine Joy Espiritu</title>
+  <meta name="description" content="How Christine Joy Espiritu designed and built TrailPeak, a prototype for finding and booking joiner hikes in the Philippines, from Facebook-group research to a lint-clean design system.">
+  <meta name="author" content="Christine Joy Espiritu">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="TrailPeak — Case Study | Christine Joy Espiritu">
+  <meta property="og:description" content="How Christine Joy Espiritu designed and built TrailPeak, a prototype for finding and booking joiner hikes in the Philippines, from Facebook-group research to a lint-clean design system.">
+  <meta property="og:url" content="https://tinapaaay.github.io/Personal-Portfolio/case-trailpeak.html">
+  <meta property="og:image" content="https://tinapaaay.github.io/Personal-Portfolio/images/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ece5da">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="favicon_io/round-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="favicon_io/round-192.png" sizes="192x192" type="image/png">
+  <link rel="apple-touch-icon" href="favicon_io/apple-touch-icon.png">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body id="top">
+  <a class="skip-link cap" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="brand cap" href="index.html" aria-label="Tinapay home">Tinapay</a>
+    <nav id="site-nav" class="site-nav cap" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html" aria-current="page">Work</a></li>
+        <li><a href="articles.html">Writing</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <p class="nav-foot cap">Christine Joy Espiritu · Portfolio ’26</p>
+    </nav>
+    <button class="menu-toggle cap" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="label">Menu</span><span class="bars" aria-hidden="true"></span>
+    </button>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="page-hero case-hero" aria-labelledby="page-title">
+      <div class="wrap">
+        <p class="cap" data-reveal><a href="projects.html">← All projects</a></p>
+        <h1 class="display" id="page-title" data-reveal>Trail<em>Peak.</em></h1>
+        <p class="lead" data-reveal>Joiner hikes in the Philippines live in long Facebook posts and get booked one DM at a time. TrailPeak turns those posts into trips you can search, compare, and reserve with a down payment, and gives organizers one place to run them.</p>
+        <dl class="case-meta" data-reveal>
+          <div><dt class="cap">Type</dt><dd>Booking prototype · design system</dd></div>
+          <div><dt class="cap">Built with</dt><dd>HTML, CSS, JavaScript</dd></div>
+          <div><dt class="cap">Design</dt><dd>DESIGN.md, lint-clean</dd></div>
+          <div><dt class="cap">Links</dt><dd><a href="https://tinapaaay.github.io/trailpeak/" target="_blank" rel="noopener">Live ↗</a> · <a href="https://github.com/tinapaaay/trailpeak" target="_blank" rel="noopener">Code ↗</a></dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="case-preview" aria-label="Live preview">
+      <div class="wrap">
+        <figure class="live" data-src="https://tinapaaay.github.io/trailpeak/">
+          <div class="live-bar">
+            <span class="live-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="live-url">tinapaaay.github.io/trailpeak</span>
+            <span class="live-modes" role="group" aria-label="Preview size"><button type="button" data-mode="desktop">Desktop</button><button type="button" data-mode="mobile">Mobile</button></span>
+            <a class="live-open" href="https://tinapaaay.github.io/trailpeak/" target="_blank" rel="noopener" aria-label="Open TrailPeak in a new tab">↗</a>
+          </div>
+          <div class="live-screen">
+            <div class="live-viewport"><iframe title="TrailPeak — live website" tabindex="-1" referrerpolicy="no-referrer"></iframe></div>
+            <img class="live-poster" src="images/projects/trailpeak.png" alt="" loading="lazy">
+            <button class="live-cover" type="button" aria-label="Try TrailPeak live"><span>Click to try it live</span></button>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="problem-heading">
+      <div class="wrap case-grid">
+        <div class="spacer" aria-hidden="true"></div>
+        <div class="case-copy">
+          <h2 class="title" id="problem-heading">Booked one <em>DM at a time.</em></h2>
+          <p data-reveal>Before designing anything, I read 27 recent posts in Hiking Club Philippines, a public Facebook group with about 148,000 members. Organizers already post the same information every time, but by hand, so joiners can't search or compare anything.</p>
+          <ul class="case-list" data-reveal>
+            <li><b>Same fields, typed by hand.</b> Mountain, height, difficulty, event fee, inclusions, exclusions, pick-up points, and a list of dates, sometimes thirty lines long.</li>
+            <li><b>Booking happens in Messenger.</b> One joiner's request got 105 comments, most of them "DM me".</li>
+            <li><b>"All-in" usually isn't.</b> Meals, shower fees and tips are listed as exclusions further down.</li>
+            <li><b>Joiners ask by date, group size and place.</b> "Batulao day tour, 7 kami, around Dasma pick-up, Nov 14" says it all.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section tint" aria-labelledby="local-heading">
+      <div class="wrap case-grid">
+        <div class="spacer" aria-hidden="true"></div>
+        <div class="case-copy">
+          <h2 class="title" id="local-heading">Built for how <em>Filipinos hike</em></h2>
+          <p data-reveal>I kept the words and numbers local hikers already use instead of inventing new ones.</p>
+          <ul class="case-list" data-reveal>
+            <li><b>Difficulty out of 9.</b> The Pinoy Mountaineer scale (Batulao is 4/9, Halcon 9/9), grouped into four badges: Easy, Moderate, Hard, Expert.</li>
+            <li><b>Height in MASL.</b> Meters above sea level, on every card and trip page.</li>
+            <li><b>Event fee and DP.</b> What you pay now to reserve, and what you hand the organizer on meetup day.</li>
+            <li><b>Pick-up points and meetup time.</b> Cubao, Greenfield, Alabang, because a Saturday hike often starts with a 2 AM Friday-night van.</li>
+            <li><b>Slots and joiners.</b> Search filters by group size, so a barkada of seven only sees trips with room for seven.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="how-heading">
+      <div class="wrap case-grid">
+        <div class="spacer" aria-hidden="true"></div>
+        <div class="case-copy">
+          <h2 class="title" id="how-heading">Key <em>decisions</em></h2>
+          <div class="case-cards">
+            <article data-reveal>
+              <h3>Difficulty in color and shape</h3>
+              <p>Each level has a trail-blaze color and a sign shape: circle, square, diamond, double diamond. Difficulty never depends on color alone.</p>
+            </article>
+            <article data-reveal>
+              <h3>One color, one job</h3>
+              <p>Lake blue means availability and nothing else. Slots left are stated calmly, with no red "book na bago maagawan" urgency.</p>
+            </article>
+            <article data-reveal>
+              <h3>Fees you can check</h3>
+              <p>Every trip shows the event fee and the DP. Organizers must list what's not included before they can publish.</p>
+            </article>
+            <article data-reveal>
+              <h3>The policy where you choose</h3>
+              <p>Moving a date is free once, 7+ days before. Cancelling always says first that the DP won't be refunded, and offers the free move instead.</p>
+            </article>
+            <article data-reveal>
+              <h3>A design system first</h3>
+              <p>Tokens, type and components live in a DESIGN.md that passes Google's linter with no errors or warnings. Corners are concentric squircles.</p>
+            </article>
+            <article data-reveal>
+              <h3>Both sides of the trip</h3>
+              <p>Organizers post once and copy clean Facebook text with a link. Their dashboard shows slots per date, a joiner checklist and DP payouts.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark" aria-labelledby="quality-heading">
+      <div class="wrap case-grid">
+        <div class="spacer" aria-hidden="true"></div>
+        <div class="case-copy">
+          <h2 class="title" id="quality-heading">Checked for <em>every hiker.</em></h2>
+          <p data-reveal>I audited every page against WCAG 2.1 AA with an automated scan and keyboard-only use, and fixed all 13 issues it found. Focus rings now stay visible on the dark booking panel, form errors are announced and move focus to the problem, every control is at least 44px, and numbers carry words for screen readers, like "Difficulty 4/9".</p>
+          <p data-reveal class="case-small">This is a front-end prototype: accounts, bookings and payments are simulated in the browser. Next steps: a VoiceOver test, interviews with 3–5 organizers and 5 joiners from the groups, and then real accounts and GCash or Maya payments on a backend.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing dark" aria-labelledby="closing-heading">
+      <div class="wrap closing-grid">
+        <h2 class="display" id="closing-heading" data-reveal>Next: <em>Leemo Cocktails.</em></h2>
+        <div class="closing-side" data-reveal style="--d: 0.15s">
+          <p class="lead">A cocktail bar landing page where the scroll tells the story.</p>
+          <a class="btn cap" href="case-leemo-cocktails.html">Read the case study <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top cap">
+        <p>© 2026 Christine Joy Espiritu</p>
+        <ul class="footer-links">
+          <li><a href="resume.html">Résumé</a></li>
+          <li><a href="https://www.linkedin.com/in/tinapay/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/tinapaaay" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://www.instagram.com/_tina_pay/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com/01eyojenitsirhc/" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+        <a class="to-top" href="#top">Back to top ↑</a>
+      </div>
+      <p class="footer-word" aria-hidden="true">TINAPAY</p>
+    </div>
+  </footer>
+</body>
+</html>
