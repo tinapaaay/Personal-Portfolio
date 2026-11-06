@@ -21,6 +21,7 @@
     setupMenu();
     setupForm();
     setupLive();
+    setupLiveClips();
     setupShapes();
 
     if (hasGsap) {
@@ -382,6 +383,31 @@
   /* =========================================================
      Shared bits
      ========================================================= */
+
+  // Live hosting clips: play muted while on screen, with a Pause/Play button.
+  // Reduced motion: never autoplay; the visitor presses Play.
+  function setupLiveClips() {
+    document.querySelectorAll(".live-clip").forEach((clip) => {
+      const video = clip.querySelector("video");
+      const toggle = clip.querySelector(".live-clip-toggle");
+      if (!video || !toggle) return;
+      let userPaused = reduceMotion;
+      const sync = () => { toggle.textContent = video.paused ? "Play" : "Pause"; };
+      video.addEventListener("play", sync);
+      video.addEventListener("pause", sync);
+      toggle.addEventListener("click", () => {
+        if (video.paused) { userPaused = false; video.play().catch(() => {}); }
+        else { userPaused = true; video.pause(); }
+      });
+      if ("IntersectionObserver" in window) {
+        new IntersectionObserver(([entry]) => {
+          if (entry.isIntersecting && !userPaused) video.play().catch(() => {});
+          else if (!entry.isIntersecting) video.pause();
+        }, { threshold: 0.4 }).observe(clip);
+      }
+      sync();
+    });
+  }
 
   // Thin outline shapes scattered around section headings.
   // Each section gets one of a few layouts, picked in turn.

@@ -216,6 +216,25 @@ components:
   live-preview-phone:
     backgroundColor: "{colors.canvas}"
     rounded: "{rounded.phone}"
+  live-clip:
+    backgroundColor: "{colors.primary}"
+    rounded: "{rounded.phone}"
+    padding: "{spacing.space-2}"
+  live-clip-toggle:
+    backgroundColor: "{colors.neutral}"
+    textColor: "{colors.primary}"
+    typography: "{typography.body-sm}"
+    rounded: "{rounded.full}"
+  live-clip-toggle-hover:
+    backgroundColor: "{colors.primary}"
+    textColor: "{colors.neutral}"
+  brand-list-item:
+    backgroundColor: "{colors.neutral}"
+    textColor: "{colors.muted}"
+    typography: "{typography.headline-md}"
+  brand-list-item-active:
+    backgroundColor: "{colors.neutral}"
+    textColor: "{colors.primary}"
   code:
     backgroundColor: "{colors.neutral-2}"
     textColor: "{colors.on-surface}"
@@ -307,7 +326,7 @@ Project entries alternate image left and image right down the Projects page, so 
 The page is flat paper; depth is reserved for the **work**. Only the live preview has a shadow, because it is a real window sitting on the page:
 
 - **shadow-deep** `0 50px 90px -50px` plum-black at 55% — the desktop preview window.
-- **shadow-soft** `0 40px 60px -30px` plum-black at 60% — the phone frame, which also gets a 10px plum bezel.
+- **shadow-soft** `0 40px 60px -30px` plum-black at 60% — the phone frame, which also gets a 10px plum bezel, and the live hosting clip, which is real footage in the same plum bezel.
 
 Both shadows are tinted with the plum-black ink, not neutral black, and fall straight down. Everything else separates with hairline rules (`line`, `line-light`), tinted sections or a plum section, never a shadow. The fixed header uses a 14px backdrop blur over 86% cream once the page scrolls.
 
@@ -332,6 +351,8 @@ Decorative shapes are 1.5px outlines: rings, rotated squares and small filled do
 **Live preview (`.live`).** A real website in a browser frame, rendered at desktop width and scaled down, with a Desktop/Mobile switch. Click the cover to interact; on phones, sites load only when tapped.
 
 **Form field (`.field`, `input`).** No box: a hairline under the input, a label that floats up on focus, and a plum line that grows across on focus. Invalid fields turn the line and label `error`, show a short message linked with `aria-describedby`, and clear as the visitor types.
+
+**Live hosting (`.hosting`, About page).** The brands I've hosted as a quiet list (`brand-list-item`) next to one real clip (`live-clip`): a muted, looping recording in a plum bezel with 36px corners. The brand on screen is plum and marked "On screen"; the rest are muted text, not buttons, until they have their own clip. The clip is cropped to a near-square window (24:25) so the live app's chat, viewer names, price card and buttons never show — only the host and the set. It plays only while on screen, has a Pause/Play pill (`live-clip-toggle`), and never autoplays with reduced motion. Keep clips short (about 8 seconds) and small (under 1MB).
 
 **Project entry (`.feature`).** Category label (`category-label`), title, one short line, up to four tools, then one small button and plain text links.
 
