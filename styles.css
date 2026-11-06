@@ -1268,6 +1268,18 @@ a.index-row .soon { color: var(--plum); }
 }
 .brand-list li.is-on { color: var(--plum); }
 .brand-list .on-screen { flex-shrink: 0; font: 500 var(--fs-sm)/1.4 var(--sans); letter-spacing: 0; color: var(--plum); }
+.brand-list .brand-pick {
+  display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-4);
+  width: 100%; padding: 0; border: 0; background: none;
+  font: inherit; letter-spacing: inherit; color: var(--ink); text-align: left;
+  cursor: pointer; transition: color var(--dur-fast);
+}
+.brand-list .brand-pick:hover { color: var(--plum); }
+.brand-list .brand-pick .on-screen { visibility: hidden; }
+.brand-list .brand-pick[aria-pressed="true"] { color: var(--plum); }
+.brand-list .brand-pick[aria-pressed="true"] .on-screen { visibility: visible; }
+.live-clip img { display: block; width: 100%; height: 100%; border-radius: calc(var(--radius-phone) - var(--space-2)); object-fit: cover; object-position: 50% 0; }
+.live-clip img[hidden], .live-clip video[hidden], .live-clip-toggle[hidden] { display: none; }
 .live-clip { justify-self: center; width: min(100%, 320px); margin: 0; }
 .live-clip-screen {
   position: relative;

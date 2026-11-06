@@ -384,25 +384,53 @@
      Shared bits
      ========================================================= */
 
-  // Live hosting clips: play muted while on screen, with a Pause/Play button.
-  // Reduced motion: never autoplay; the visitor presses Play.
+  // Live hosting: one phone that shows the chosen brand's clip or screenshot.
+  // Clips play muted only while on screen; reduced motion never autoplays.
   function setupLiveClips() {
     document.querySelectorAll(".live-clip").forEach((clip) => {
       const video = clip.querySelector("video");
+      const img = clip.querySelector("img");
       const toggle = clip.querySelector(".live-clip-toggle");
+      const caption = clip.querySelector(".live-clip-caption");
+      const brands = document.querySelectorAll(`.brand-pick[aria-controls="${clip.id}"]`);
       if (!video || !toggle) return;
       let userPaused = reduceMotion;
+      let visible = false;
       const sync = () => { toggle.textContent = video.paused ? "Play" : "Pause"; };
+      const tryPlay = () => { if (visible && !userPaused && !video.hidden) video.play().catch(() => {}); };
       video.addEventListener("play", sync);
       video.addEventListener("pause", sync);
       toggle.addEventListener("click", () => {
         if (video.paused) { userPaused = false; video.play().catch(() => {}); }
         else { userPaused = true; video.pause(); }
       });
+      brands.forEach((brand) => brand.addEventListener("click", () => {
+        brands.forEach((b) => {
+          b.setAttribute("aria-pressed", String(b === brand));
+          b.closest("li").classList.toggle("is-on", b === brand);
+        });
+        const name = brand.firstChild.textContent.trim();
+        if (caption) caption.textContent = `Hosting a live sale for ${name}`;
+        if (brand.dataset.kind === "video") {
+          img.hidden = true;
+          video.hidden = false;
+          toggle.hidden = false;
+          video.poster = brand.dataset.poster || "";
+          video.src = brand.dataset.src;
+          tryPlay();
+        } else {
+          video.pause();
+          video.hidden = true;
+          toggle.hidden = true;
+          img.src = brand.dataset.src;
+          img.alt = `Screenshot of a live sale for ${name}`;
+          img.hidden = false;
+        }
+      }));
       if ("IntersectionObserver" in window) {
         new IntersectionObserver(([entry]) => {
-          if (entry.isIntersecting && !userPaused) video.play().catch(() => {});
-          else if (!entry.isIntersecting) video.pause();
+          visible = entry.isIntersecting;
+          if (visible) tryPlay(); else video.pause();
         }, { threshold: 0.4 }).observe(clip);
       }
       sync();
