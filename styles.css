@@ -1259,18 +1259,14 @@ a.index-row .soon { color: var(--plum); }
 }
 .brand-list { border-top: 1px solid var(--line); }
 .brand-list li {
-  display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-4);
-  padding: var(--space-4) 0;
   border-bottom: 1px solid var(--line);
   font-family: var(--heading); font-weight: 500; font-size: var(--fs-xl);
   letter-spacing: -0.025em; line-height: 1.15;
-  color: var(--muted);
 }
-.brand-list li.is-on { color: var(--plum); }
 .brand-list .on-screen { flex-shrink: 0; font: 500 var(--fs-sm)/1.4 var(--sans); letter-spacing: 0; color: var(--plum); }
 .brand-list .brand-pick {
   display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-4);
-  width: 100%; padding: 0; border: 0; background: none;
+  width: 100%; padding: var(--space-4) 0; border: 0; background: none; /* the whole row is the target */
   font: inherit; letter-spacing: inherit; color: var(--ink); text-align: left;
   cursor: pointer; transition: color var(--dur-fast);
 }
@@ -1278,6 +1274,7 @@ a.index-row .soon { color: var(--plum); }
 .brand-list .brand-pick .on-screen { visibility: hidden; }
 .brand-list .brand-pick[aria-pressed="true"] { color: var(--plum); }
 .brand-list .brand-pick[aria-pressed="true"] .on-screen { visibility: visible; }
+.brand-also { margin-top: var(--space-4); font-size: var(--fs-sm); color: var(--muted); }
 .live-clip img { display: block; width: 100%; height: 100%; border-radius: calc(var(--radius-phone) - var(--space-2)); object-fit: cover; object-position: 50% 0; }
 .live-clip img[hidden], .live-clip video[hidden], .live-clip-toggle[hidden] { display: none; }
 .live-clip { justify-self: center; width: min(100%, 320px); margin: 0; }

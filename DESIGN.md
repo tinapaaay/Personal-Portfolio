@@ -228,13 +228,10 @@ components:
   live-clip-toggle-hover:
     backgroundColor: "{colors.neutral}"
     textColor: "{colors.primary}"
-  brand-list-item:
+  brand-also:
     backgroundColor: "{colors.neutral}"
     textColor: "{colors.muted}"
-    typography: "{typography.headline-md}"
-  brand-list-item-active:
-    backgroundColor: "{colors.neutral}"
-    textColor: "{colors.primary}"
+    typography: "{typography.body-sm}"
   brand-pick:
     backgroundColor: "{colors.neutral}"
     textColor: "{colors.on-surface}"
@@ -359,7 +356,7 @@ Decorative shapes are 1.5px outlines: rings, rotated squares and small filled do
 
 **Form field (`.field`, `input`).** No box: a hairline under the input, a label that floats up on focus, and a plum line that grows across on focus. Invalid fields turn the line and label `error`, show a short message linked with `aria-describedby`, and clear as the visitor types.
 
-**Live hosting (`.hosting`, About page).** The brands I've hosted as a list next to one phone (`live-clip`): a plum bezel with 36px corners in the recording's own tall shape (360:780), showing the whole screen, live app and comments included. Brands with media are buttons (`brand-pick`, ink, plum on hover); choosing one switches the phone to that brand's 8-second clip or, when there is no recording, one screenshot, and moves the plum "On screen" mark (`aria-pressed`). Brands without media stay muted text (`brand-list-item`), so nothing looks clickable that isn't. Clips are muted, loop, play only while the phone is on screen and never autoplay with reduced motion; the Pause/Play pill (`live-clip-toggle`) sits under the phone, above the caption, and hides when a screenshot is showing. The caption names the brand and is announced politely to screen readers. One piece per brand only: clips about 8 seconds and under 1MB, screenshots about 500px wide.
+**Live hosting (`.hosting`, About page).** The brands I've hosted as a list next to one phone (`live-clip`): a plum bezel with 36px corners in the recording's own tall shape (360:780), showing the whole screen, live app and comments included. Brands with media are buttons (`brand-pick`, ink, plum on hover); choosing one switches the phone to that brand's 8-second clip or, when there is no recording, one screenshot, and moves the plum "On screen" mark (`aria-pressed`). Each whole row is the button, so the target is the full row height, not just the text. Brands without media are not in the list; they go in one quiet line under it (`brand-also`, "Also hosted …"), so every row in the list does something. On phones the phone sits above the list, so choosing a brand scrolls the phone into view. Clips are muted, loop, play only while the phone is on screen and never autoplay with reduced motion; the Pause/Play pill (`live-clip-toggle`) sits under the phone, above the caption, and hides when a screenshot is showing. The caption names the brand and is announced politely to screen readers. One piece per brand only: clips about 8 seconds and under 1MB, screenshots about 500px wide.
 
 **Project entry (`.feature`).** Category label (`category-label`), title, one short line, up to four tools, then one small button and plain text links.
 

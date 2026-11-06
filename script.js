@@ -407,8 +407,12 @@
       brands.forEach((brand) => brand.addEventListener("click", () => {
         brands.forEach((b) => {
           b.setAttribute("aria-pressed", String(b === brand));
-          b.closest("li").classList.toggle("is-on", b === brand);
         });
+        // On phones the clip sits above the list, so bring it into view.
+        const box = clip.getBoundingClientRect();
+        if (box.top < 0 || box.bottom > window.innerHeight) {
+          scrollToY(box.top + window.scrollY - Math.max(80, (window.innerHeight - box.height) / 2));
+        }
         const name = brand.firstChild.textContent.trim();
         if (caption) caption.textContent = `Hosting a live sale for ${name}`;
         if (brand.dataset.kind === "video") {
