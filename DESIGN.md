@@ -221,13 +221,13 @@ components:
     rounded: "{rounded.phone}"
     padding: "{spacing.space-2}"
   live-clip-toggle:
-    backgroundColor: "{colors.neutral}"
-    textColor: "{colors.primary}"
+    backgroundColor: "{colors.primary}"
+    textColor: "{colors.neutral}"
     typography: "{typography.body-sm}"
     rounded: "{rounded.full}"
   live-clip-toggle-hover:
-    backgroundColor: "{colors.primary}"
-    textColor: "{colors.neutral}"
+    backgroundColor: "{colors.neutral}"
+    textColor: "{colors.primary}"
   brand-list-item:
     backgroundColor: "{colors.neutral}"
     textColor: "{colors.muted}"
@@ -352,7 +352,7 @@ Decorative shapes are 1.5px outlines: rings, rotated squares and small filled do
 
 **Form field (`.field`, `input`).** No box: a hairline under the input, a label that floats up on focus, and a plum line that grows across on focus. Invalid fields turn the line and label `error`, show a short message linked with `aria-describedby`, and clear as the visitor types.
 
-**Live hosting (`.hosting`, About page).** The brands I've hosted as a quiet list (`brand-list-item`) next to one real clip (`live-clip`): a muted, looping recording in a plum bezel with 36px corners. The brand on screen is plum and marked "On screen"; the rest are muted text, not buttons, until they have their own clip. The clip is cropped to a near-square window (24:25) so the live app's chat, viewer names, price card and buttons never show — only the host and the set. It plays only while on screen, has a Pause/Play pill (`live-clip-toggle`), and never autoplays with reduced motion. Keep clips short (about 8 seconds) and small (under 1MB).
+**Live hosting (`.hosting`, About page).** The brands I've hosted as a quiet list (`brand-list-item`) next to one real clip (`live-clip`): a muted, looping screen recording of the whole phone, live app and comments included, in a plum bezel with 36px corners and the recording's own tall shape (360:780). The brand on screen is plum and marked "On screen"; the rest are muted text, not buttons, until they have their own clip. The clip plays only while on screen and never autoplays with reduced motion. Its Pause/Play pill (`live-clip-toggle`) sits under the phone, above the caption, so it never covers the app's own buttons in the recording. Keep clips short (about 8 seconds) and small (under 1MB).
 
 **Project entry (`.feature`).** Category label (`category-label`), title, one short line, up to four tools, then one small button and plain text links.
 
