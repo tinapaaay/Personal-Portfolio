@@ -122,6 +122,9 @@ spacing:
   space-8: 64px
   space-9: 96px
   gutter: 64px
+  col-gap-tight: 64px
+  col-gap: 80px
+  col-gap-wide: 96px
   max-width: 1440px
 
 components:
@@ -321,7 +324,7 @@ Uppercase appears only in labels, captions and main button labels, always tracke
 
 ## Layout
 
-A centered column up to 1440px with a fluid gutter, `clamp(16px, 4.4vw, 64px)` (`gutter` is its maximum). Spacing sits on a **4px base** (`space-1` to `space-9`: 4, 8, 12, 16, 24, 32, 48, 64, 96); section padding uses fluid `clamp()` values on top of it.
+A centered column up to 1440px with a fluid gutter, `clamp(16px, 4.4vw, 64px)` (`gutter` is its maximum). Spacing sits on a **4px base** (`space-1` to `space-9`: 4, 8, 12, 16, 24, 32, 48, 64, 96); section padding uses fluid `clamp()` values on top of it. Space **between side-by-side columns** comes from three fluid tokens only (values are their maximums): `col-gap-tight` (compact index rows and the project slider), `col-gap` (the default, heading next to text) and `col-gap-wide` (big two-column splits like contact, features and live hosting). Pick one of the three instead of writing a new `clamp()`. No inline `style` attributes for spacing; give the element a class (for example `.section-flush`, a section with no top padding because the page hero above already gives the space).
 
 Project entries alternate image left and image right down the Projects page, so a long list doesn't become a uniform grid. Light and plum sections alternate to give the scroll a rhythm. Two breakpoints: 960px narrows multi-column layouts and 720px goes to a single column, swaps the nav for a MENU button, and hides floating shapes that would touch text.
 
