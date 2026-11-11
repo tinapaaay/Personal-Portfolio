@@ -275,18 +275,13 @@
             pin: true,
             start: "top top",
             end: () => "+=" + distance(),
-            scrub: 1,
+            scrub: true, // follows the scroll exactly; a catch-up delay felt like lag
             invalidateOnRefresh: true,
             onUpdate(self) {
               if (bar) bar.style.transform = `scaleX(${self.progress})`;
               if (count) count.textContent = String(Math.min(total, 1 + Math.floor(self.progress * total))).padStart(2, "0");
             },
           },
-        });
-        gsap.utils.toArray(works.querySelectorAll(".work-slide .live")).forEach((el, i) => {
-          if (i === 0) return;
-          gsap.from(el, { rotate: 3, scale: 0.9, ease: "none",
-            scrollTrigger: { trigger: works, start: "top top", end: () => "+=" + window.innerWidth * (i * 0.8), scrub: true } });
         });
         return () => works.classList.remove("is-pinned");
       });
@@ -300,7 +295,7 @@
         const text = quote.querySelectorAll(".wrap .cap, .wrap blockquote, .wrap .rule");
         const token = (name) => getComputedStyle(root).getPropertyValue(name).trim();
         gsap.timeline({
-          scrollTrigger: { trigger: quote, start: "top top", end: "+=110%", pin: true, scrub: 1 },
+          scrollTrigger: { trigger: quote, start: "top top", end: "+=110%", pin: true, scrub: true },
         })
           .to(drop, { scale: 5.2, ease: "power2.in", duration: 1 }, 0)
           .to(text, { color: token("--cream"), duration: 0.25 }, 0.3)

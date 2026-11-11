@@ -379,7 +379,7 @@ Decorative shapes are 1.5px outlines: rings, rotated squares and small filled do
 
 **Touch targets.** On touch screens, small text links (footer links, back links, the case study Live and Code links) get invisible vertical padding, offset by a negative margin, so each tap area is about 44px tall without moving the layout.
 
-**Motion.** One easing for everything, `cubic-bezier(0.2, 0.7, 0.1, 1)`, with three durations: 0.3s for color, 0.45s for movement, 0.8s for larger reveals. Scrolling is native: no smooth-scroll library, so the page follows the wheel instantly. Animate only `transform` and `opacity`, which the browser can hand to the graphics card. Pinning, parallax and floating shapes are all switched off with `prefers-reduced-motion`. **Not animated:** body text, project descriptions and the content inside live previews.
+**Motion.** One easing for everything, `cubic-bezier(0.2, 0.7, 0.1, 1)`, with three durations: 0.3s for color, 0.45s for movement, 0.8s for larger reveals. Scrolling is native: no smooth-scroll library, so the page follows the wheel instantly. Animate only `transform` and `opacity`, which the browser can hand to the graphics card. Scroll-linked scenes follow the scroll exactly (`scrub: true`) with no catch-up delay, and slides in the pinned project slider glide in straight, without tilting or zooming. Pinning, parallax and floating shapes are all switched off with `prefers-reduced-motion`. **Not animated:** body text, project descriptions and the content inside live previews.
 
 ## Do's and Don'ts
 
