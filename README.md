@@ -58,6 +58,8 @@ Christine Joy Espiritu
 
 See [Development and maintenance](docs/DEVELOPMENT.md) for setup, source files, implementation limits, editing instructions, verification, and deployment.
 
+The latest accessibility check (routes, tools, fixes and what is not covered yet) is in [docs/accessibility-audit.md](docs/accessibility-audit.md).
+
 ## Run locally
 
 From the repository root, run `python3 -m http.server 5500`, then open [localhost:5500](http://localhost:5500). Python 3 is only a development-server option; VS Code Live Server also works. Stop the server with Ctrl+C. No package installation or build is required to serve this checkout.

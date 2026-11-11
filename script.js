@@ -501,6 +501,8 @@
       toggle.setAttribute("aria-expanded", String(open));
       if (label) label.textContent = open ? "Close" : "Menu";
       if (lenis) open ? lenis.stop() : lenis.start();
+      // While the menu covers the page, keep Tab inside it: the page behind can't take focus.
+      document.querySelectorAll("main, .site-footer").forEach((el) => { el.inert = open; });
     };
     toggle.addEventListener("click", () => setOpen(!document.body.classList.contains("menu-open")));
     document.addEventListener("keydown", (e) => { if (e.key === "Escape") setOpen(false); });

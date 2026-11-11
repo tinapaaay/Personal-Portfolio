@@ -5,7 +5,7 @@ description: Personal portfolio of a front-end developer — projects shown as r
 
 colors:
   primary: "#3D1426"
-  secondary: "#8A5468"
+  secondary: "#7A4459"
   tertiary: "#C48A9B"
   neutral: "#ECE5DA"
   neutral-2: "#E2D9CB"
@@ -302,7 +302,7 @@ One plum, one paper, and the inks between them.
 - **On-surface — plum-black ink.** Main text. It is plum pushed almost to black rather than a neutral grey, so the whole page stays in one hue family.
 - **On-surface-article** — a slightly softer ink for long articles, to reduce glare over many paragraphs.
 - **Muted** — secondary text: leads, dates, descriptions. It is the lowest-contrast text pair (about 4.5:1 on cream), so it is never used below body-sm size.
-- **Secondary — dusty plum.** Small category labels and shape outlines: a quieter step of the accent for things that should be noticed last.
+- **Secondary — dusty plum.** Small category labels and shape outlines: a quieter step of the accent for things that should be noticed last. It is set dark enough to pass 4.5:1 on both cream (6.0:1) and the tinted cream-2 sections (5.4:1), because its labels are small.
 - **Tertiary — rose.** Accent shapes only. Never text, never a button.
 - **On-dark-muted / on-dark-faint** — cream at 72% and 35% for body text and outlines inside plum sections.
 - **Line / line-light** — hairline dividers on light and dark grounds.
@@ -353,6 +353,8 @@ Decorative shapes are 1.5px outlines: rings, rotated squares and small filled do
 
 **Text link (`.text-link`).** Every secondary action. Sentence case, weight 500, with an underline that grows from the left on hover and an arrow that nudges. Use → for pages on this site and ↗ for other sites.
 
+**Inline link (inside a paragraph).** A link in running text, like the sources under a case study section. Always underlined (1px, 3px offset, thicker on hover) in plum, cream on dark, because there’s no arrow or button shape to show it’s clickable.
+
 **Header.** The TINAPAY wordmark left, nav links center, a MENU button on phones. The current page is underlined (`aria-current="page"`). It gains the frosted background and a hairline after scrolling.
 
 **Live preview (`.live`).** A real website in a browser frame, rendered at desktop width and scaled down, with a Desktop/Mobile switch. Click the cover to interact; on phones, sites load only when tapped.
@@ -364,6 +366,10 @@ Decorative shapes are 1.5px outlines: rings, rotated squares and small filled do
 **Project entry (`.feature`).** Category label (`category-label`), title, one short line, up to four tools, then one small button and plain text links.
 
 **Word stack and floating shapes.** Four words in Bodoni Moda; the filled, italic one follows the scroll, the rest are outlined. Shapes drift slowly around section headings. Shapes are switched off on articles and case studies, so reading pages stay calm.
+
+**Recruiter actions (`.hero-actions`).** The home hero and the Contact hero each end with the two things a recruiter came for: one solid `button-sm` (View projects, or Email me) and one `text-link` (Download résumé, straight to the PDF). The home hero also states availability with the status dot ("Open to internships from January 2027"). On the home hero the pair stacks vertically, so the link never lands on the plum plinth behind the portrait; on phones the whole block sits above the wordmark and portrait.
+
+**Home project slider (`.works`).** Three featured projects only, each with a one-sentence summary (what it is and what I did) and direct links: Case study → when one exists, Live site ↗ and Code ↗. The tech stack is left to the Projects page, so the text under each preview fits while the slider is pinned. Everything else lives on the Projects page, named in the closing slide.
 
 **Article (`.post`).** Text held to 34em (about 65–75 characters a line) in `on-surface-article` ink. Code blocks (`code-block`) are plum boxes with cream text and horizontal scroll. A live preview may sit inside an article at full column width, followed by a short `body-sm` caption in `muted`.
 

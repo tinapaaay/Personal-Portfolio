@@ -55,9 +55,10 @@
         <h1 class="display" id="page-title" data-reveal>Trail<em>Peak.</em></h1>
         <p class="lead" data-reveal>Joiner hikes in the Philippines live in long Facebook posts and get booked one DM at a time. TrailPeak turns those posts into trips you can search, compare, and reserve with a down payment, and gives organizers one place to run them.</p>
         <dl class="case-meta" data-reveal>
-          <div><dt class="cap">Type</dt><dd>Booking prototype · design system</dd></div>
-          <div><dt class="cap">Built with</dt><dd>HTML, CSS, JavaScript</dd></div>
-          <div><dt class="cap">Design</dt><dd>Documented design system</dd></div>
+          <div><dt class="cap">Type</dt><dd>Booking app · pilot-ready prototype</dd></div>
+          <div><dt class="cap">My role</dt><dd>Research, product rules, design and build, with AI-assisted coding (Claude Code)</dd></div>
+          <div><dt class="cap">When</dt><dd>November 2026</dd></div>
+          <div><dt class="cap">Built with</dt><dd>HTML, CSS, JavaScript, Supabase (Postgres)</dd></div>
           <div><dt class="cap">Links</dt><dd><a href="https://tinapaaay.github.io/trailpeak/" target="_blank" rel="noopener">Live ↗</a> · <a href="https://github.com/tinapaaay/trailpeak" target="_blank" rel="noopener">Code ↗</a></dd></div>
         </dl>
       </div>
@@ -149,13 +150,26 @@
       </div>
     </section>
 
+    <section class="section tint" aria-labelledby="eng-heading">
+      <div class="wrap case-grid">
+        <div class="spacer" aria-hidden="true"></div>
+        <div class="case-copy">
+          <h2 class="title" id="eng-heading">Never sell <em>the same seat twice.</em></h2>
+          <p data-reveal>Zero overbookings is the pilot's main promise, and the hardest part to get right. A reservation holds slots for 6 hours (2 when the trip is within 3 days) while the joiner sends their DP to the organizer. TrailPeak is a static site on Supabase with no server running timers, so a hold has to expire even when nobody has the page open.</p>
+          <p data-reveal>I made "does this booking still hold its seats?" a calculation instead of a stored flag. One database function answers it from the current time, and every slot count uses it, so search, trip pages and the organizer dashboard always agree. A scheduled job only updates the labels.</p>
+          <p data-reveal>Then a race test on a real Postgres database, running requests at the same instant, found two holes: a late DP reference could overbook a date (4 seats taken on a date with 2), and a double-click could create two reservations. The fix was three rules for every function that touches seats: lock the date before the booking, judge deadlines by the real clock after the lock, and give each submit one request ID.</p>
+          <p data-reveal class="case-small">Checked by race tests against Postgres 16 that run on every pull request. Decisions and trade-offs: <a href="https://github.com/tinapaaay/trailpeak/blob/main/docs/adr/002-dp-hold-expiry.md" target="_blank" rel="noopener">hold expiry ↗</a> · <a href="https://github.com/tinapaaay/trailpeak/blob/main/docs/adr/009-concurrency-rules.md" target="_blank" rel="noopener">concurrency rules ↗</a> · <a href="https://github.com/tinapaaay/trailpeak/blob/main/tests/race.test.mjs" target="_blank" rel="noopener">race test ↗</a></p>
+        </div>
+      </div>
+    </section>
+
     <section class="section dark" aria-labelledby="quality-heading">
       <div class="wrap case-grid">
         <div class="spacer" aria-hidden="true"></div>
         <div class="case-copy">
           <h2 class="title" id="quality-heading">Checked for <em>every hiker.</em></h2>
-          <p data-reveal>I audited every page against WCAG 2.1 AA with an automated scan and keyboard-only use, and fixed all 13 issues it found. Focus rings now stay visible on the dark booking panel, form errors are announced and move focus to the problem, every control is at least 44px, and numbers carry words for screen readers, like "Difficulty 4/9".</p>
-          <p data-reveal class="case-small">This is a front-end prototype: accounts, bookings and payments are simulated in the browser. Next steps: a VoiceOver test, interviews with 3–5 organizers and 5 joiners from the groups, and then real accounts and GCash or Maya payments on a backend.</p>
+          <p data-reveal>I audited every page of the front end against WCAG 2.1 AA with an automated scan and keyboard-only use, and fixed all 13 issues it found. That checks a lot, but not everything: it isn’t a full conformance claim, and screen readers haven’t been tested yet. Focus rings now stay visible on the dark booking panel, form errors are announced and move focus to the problem, every control is at least 44px, and numbers carry words for screen readers, like "Difficulty 4/9".</p>
+          <p data-reveal class="case-small">Where it stands: accounts, trips and bookings are real and stored in Supabase. TrailPeak doesn’t move money: joiners pay the DP to the organizer directly, and the organizer records it. ID checks and text messages are simulated and labeled "Demo". Next: a VoiceOver test, <a href="https://github.com/tinapaaay/trailpeak/blob/main/research/interview-guide.md" target="_blank" rel="noopener">interviews with organizers and joiners ↗</a>, and an assisted pilot with 3–5 organizers.</p>
         </div>
       </div>
     </section>
