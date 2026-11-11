@@ -1,5 +1,5 @@
 /* Tinapay — plum editorial
-   Live project previews, Lenis smooth scroll, and GSAP scroll scenes.
+   Live project previews and GSAP scroll scenes.
    Falls back to light CSS animations if the libraries don't load. */
 
 (function () {
@@ -9,11 +9,9 @@
   root.classList.add("js");
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
   const hasGsap = !!(window.gsap && window.ScrollTrigger);
   if (hasGsap) root.classList.add("has-gsap");
 
-  let lenis = null;
 
   document.addEventListener("DOMContentLoaded", () => {
     splitHeroName();
@@ -27,7 +25,6 @@
     if (hasGsap) {
       gsap.registerPlugin(ScrollTrigger);
       if (window.SplitText) gsap.registerPlugin(SplitText);
-      if (!reduceMotion && window.Lenis) setupLenis();
       setupAnchors();
       if (reduceMotion) {
         document.body.classList.add("is-loaded");
@@ -38,7 +35,6 @@
         else go();
       }
     } else {
-      setupFallbackSmoothScroll();
       setupAnchors();
       setupFallbackReveals();
       requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.add("is-loaded")));
@@ -53,9 +49,8 @@
     if (!lives.length) return;
 
     const smallScreen = window.matchMedia("(max-width: 720px)").matches;
-    const saveData = !!(navigator.connection && navigator.connection.saveData);
-    // On phones and data-saver, a live site loads only when tapped.
-    const autoLoad = !smallScreen && !saveData;
+    // A live site loads only when clicked: each one is a whole website,
+    // and several running at once made the page lag while scrolling.
 
     lives.forEach((live) => {
       const screen = live.querySelector(".live-screen");
@@ -63,7 +58,7 @@
       const iframe = live.querySelector("iframe");
       const cover = live.querySelector(".live-cover");
       if (smallScreen) live.dataset.mode = "mobile";
-      if (!autoLoad) {
+      if (smallScreen) {
         const label = live.querySelector(".live-cover span");
         if (label) label.textContent = "Tap to load the live site";
       }
@@ -132,36 +127,13 @@
       if (!iframe.src) iframe.src = live.dataset.src;
     }
 
-    if (!autoLoad) return;
-    if (!("IntersectionObserver" in window)) {
-      lives.forEach(load);
-      return;
-    }
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          load(entry.target);
-          io.unobserve(entry.target);
-        }
-      });
-    }, { rootMargin: "60% 120% 60% 120%" });
-    lives.forEach((l) => io.observe(l));
   }
 
   /* =========================================================
-     Smooth scroll
+     Scrolling: native, so the page follows the wheel instantly
      ========================================================= */
-  function setupLenis() {
-    lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1, smoothWheel: true });
-    lenis.on("scroll", ScrollTrigger.update);
-    gsap.ticker.add((time) => lenis.raf(time * 1000));
-    gsap.ticker.lagSmoothing(0);
-  }
-
   function scrollToY(y) {
-    if (lenis) lenis.scrollTo(y, { duration: 1.4 });
-    else if (fallbackScroll) fallbackScroll(y);
-    else window.scrollTo({ top: y, behavior: reduceMotion ? "auto" : "smooth" });
+    window.scrollTo({ top: y, behavior: reduceMotion ? "auto" : "smooth" });
   }
 
   function setupAnchors() {
@@ -319,14 +291,6 @@
         return () => works.classList.remove("is-pinned");
       });
     }
-
-    // --- projects page: previews open up as they enter ---
-    gsap.utils.toArray(".feature .live").forEach((el) => {
-      gsap.fromTo(el,
-        { clipPath: "inset(14% 10% 14% 10% round 14px)", scale: 0.94 },
-        { clipPath: "inset(0% 0% 0% 0% round 14px)", scale: 1, ease: "none",
-          scrollTrigger: { trigger: el, start: "top 95%", end: "top 35%", scrub: true } });
-    });
 
     // --- quote: the plum drop grows and floods the screen ---
     mm.add("(min-width: 721px)", () => {
@@ -500,7 +464,6 @@
       document.body.classList.toggle("menu-open", open);
       toggle.setAttribute("aria-expanded", String(open));
       if (label) label.textContent = open ? "Close" : "Menu";
-      if (lenis) open ? lenis.stop() : lenis.start();
       // While the menu covers the page, keep Tab inside it: the page behind can't take focus.
       document.querySelectorAll("main, .site-footer").forEach((el) => { el.inert = open; });
     };
@@ -588,38 +551,8 @@
   }
 
   /* =========================================================
-     Fallback (no GSAP): eased wheel scroll + fade-up reveals
+     Fallback (no GSAP): fade-up reveals
      ========================================================= */
-  let fallbackScroll = null;
-
-  function setupFallbackSmoothScroll() {
-    if (reduceMotion || !finePointer) return;
-    root.classList.add("smooth-scroll");
-    let current = window.scrollY;
-    let target = current;
-    let running = false;
-    const maxScroll = () => document.documentElement.scrollHeight - window.innerHeight;
-    const clamp = (v) => Math.max(0, Math.min(v, maxScroll()));
-    const tick = () => {
-      current += (target - current) * 0.1;
-      if (Math.abs(target - current) < 0.5) { current = target; running = false; }
-      window.scrollTo(0, current);
-      if (running) requestAnimationFrame(tick);
-    };
-    const start = () => { if (!running) { running = true; requestAnimationFrame(tick); } };
-    window.addEventListener("wheel", (e) => {
-      if (e.ctrlKey || document.body.classList.contains("menu-open")) return;
-      e.preventDefault();
-      let d = e.deltaY;
-      if (e.deltaMode === 1) d *= 32; else if (e.deltaMode === 2) d *= window.innerHeight;
-      if (!running) current = window.scrollY;
-      target = clamp(target + d);
-      start();
-    }, { passive: false });
-    window.addEventListener("scroll", () => { if (!running) current = target = window.scrollY; }, { passive: true });
-    fallbackScroll = (y) => { if (!running) current = window.scrollY; target = clamp(y); start(); };
-  }
-
   function setupFallbackReveals() {
     const items = document.querySelectorAll("[data-reveal]");
     if (!("IntersectionObserver" in window) || reduceMotion) {

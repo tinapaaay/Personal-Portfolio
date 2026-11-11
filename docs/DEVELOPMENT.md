@@ -6,7 +6,7 @@ From the repository root, run `python3 -m http.server 5500`, then open [localhos
 
 ## Implementation and boundaries
 
-HTML pages share `styles.css` and `script.js`. GSAP/ScrollTrigger/SplitText and Lenis load from CDNs; project previews embed external sites. The contact form posts to FormSubmit and requires that service configuration to deliver mail. Leemo Cocktails and the retro calculator are bundled standalone subprojects. GitHub Pages can serve guest mode of Little Feelings, but cannot run its Node account API.
+HTML pages share `styles.css` and `script.js`. GSAP/ScrollTrigger/SplitText load from CDNs; project previews embed external sites, loaded only when clicked. The contact form posts to FormSubmit and requires that service configuration to deliver mail. Leemo Cocktails and the retro calculator are bundled standalone subprojects. GitHub Pages can serve guest mode of Little Feelings, but cannot run its Node account API.
 
 ## Make changes
 

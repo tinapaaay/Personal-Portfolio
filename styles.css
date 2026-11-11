@@ -74,7 +74,6 @@
 *::after { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-html.smooth-scroll { scroll-behavior: auto; }
 
 body {
   margin: 0;
@@ -815,7 +814,6 @@ h1, h2, h3 { font-weight: 400; }
   border-radius: var(--radius-card);
   overflow: hidden;
   box-shadow: var(--shadow-deep);
-  will-change: clip-path;
 }
 .live-bar {
   display: flex;
@@ -1002,12 +1000,6 @@ h1, h2, h3 { font-weight: 400; }
   .has-gsap .quote { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; }
 }
 .quote .drop { z-index: 1; will-change: transform; }
-
-/* ---------- lenis ---------- */
-
-html.lenis, html.lenis body { height: auto; }
-.lenis.lenis-smooth { scroll-behavior: auto !important; }
-.lenis.lenis-stopped { overflow: hidden; }
 
 .footer-word { overflow: hidden; }
 .footer-word .ch, .hero-name .ch, .ch-in { display: inline-block; }

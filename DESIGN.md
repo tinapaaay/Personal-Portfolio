@@ -357,7 +357,7 @@ Decorative shapes are 1.5px outlines: rings, rotated squares and small filled do
 
 **Header.** The TINAPAY wordmark left, nav links center, a MENU button on phones. The current page is underlined (`aria-current="page"`). It gains the frosted background and a hairline after scrolling.
 
-**Live preview (`.live`).** A real website in a browser frame, rendered at desktop width and scaled down, with a Desktop/Mobile switch. Click the cover to interact; on phones, sites load only when tapped.
+**Live preview (`.live`).** A real website in a browser frame, rendered at desktop width and scaled down, with a Desktop/Mobile switch. Each site loads only when someone clicks (or taps) its cover; until then the frame shows a poster image. Never auto-load previews: each one is a whole website, and several running at once made scrolling lag. Previews are never animated with `clip-path` or anything else that forces a repaint of the frame.
 
 **Form field (`.field`, `input`).** No box: a hairline under the input, a label that floats up on focus, and a plum line that grows across on focus. Invalid fields turn the line and label `error`, show a short message linked with `aria-describedby`, and clear as the visitor types.
 
@@ -379,7 +379,7 @@ Decorative shapes are 1.5px outlines: rings, rotated squares and small filled do
 
 **Touch targets.** On touch screens, small text links (footer links, back links, the case study Live and Code links) get invisible vertical padding, offset by a negative margin, so each tap area is about 44px tall without moving the layout.
 
-**Motion.** One easing for everything, `cubic-bezier(0.2, 0.7, 0.1, 1)`, with three durations: 0.3s for color, 0.45s for movement, 0.8s for larger reveals. Smooth scroll, pinning, parallax and floating shapes are all switched off with `prefers-reduced-motion`. **Not animated:** body text, project descriptions and the content inside live previews.
+**Motion.** One easing for everything, `cubic-bezier(0.2, 0.7, 0.1, 1)`, with three durations: 0.3s for color, 0.45s for movement, 0.8s for larger reveals. Scrolling is native: no smooth-scroll library, so the page follows the wheel instantly. Animate only `transform` and `opacity`, which the browser can hand to the graphics card. Pinning, parallax and floating shapes are all switched off with `prefers-reduced-motion`. **Not animated:** body text, project descriptions and the content inside live previews.
 
 ## Do's and Don'ts
 
