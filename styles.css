@@ -13,7 +13,6 @@
   --muted: #5f4b54;
   --line: rgba(61, 20, 38, 0.18);
   --line-light: rgba(236, 229, 218, 0.22);
-  --rose: #c48a9b;
   --on-dark-muted: rgba(236, 229, 218, 0.72); /* body text on plum */
   --on-dark-faint: rgba(236, 229, 218, 0.35); /* outlines on plum */
   --ink-soft: #3b2a32;
@@ -1128,36 +1127,8 @@ a.index-row .soon { color: var(--plum); }
   .course-list span:last-child { text-align: left; }
 }
 
-/* ---------- floating outline shapes ---------- */
-.shapes {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
-}
+/* keep section content above the plum arch */
 .page-hero > .wrap, .section > .wrap, .closing > .wrap { position: relative; z-index: 1; }
-.shape {
-  position: absolute;
-  display: block;
-  width: var(--s);
-  aspect-ratio: 1;
-  border: 1.5px solid var(--c, var(--plum-soft));
-  opacity: 0.55;
-}
-.shape.ring { border-radius: 50%; }
-.shape.square { rotate: var(--r, 18deg); }
-.shape.dot { border-radius: 50%; border: 0; background: var(--c, var(--plum-soft)); }
-.shape.rose { --c: var(--rose); }
-.dark .shape { --c: var(--on-dark-faint); }
-.js:not(.has-gsap) .shape { animation: shape-float 9s ease-in-out infinite alternate; }
-.js:not(.has-gsap) .shape:nth-child(2n) { animation: 12s; animation-delay: -4s; }
-@keyframes shape-float { to { transform: translateY(-18px) rotate(10deg); } }
-@media (max-width: 720px) {
-  .shape { width: calc(var(--s) * 0.6); }
-  .shape:nth-child(4), .shape.dot { display: none; }
-}
-@media (prefers-reduced-motion: reduce) { .shape { animation: none !important; } }
 
 /* ---------- minimal: no section numbers or repeat labels ---------- */
 .spacer { display: none; }

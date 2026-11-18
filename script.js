@@ -20,7 +20,6 @@
     setupForm();
     setupLive();
     setupLiveClips();
-    setupShapes();
 
     if (hasGsap) {
       gsap.registerPlugin(ScrollTrigger);
@@ -95,6 +94,7 @@
         btn.setAttribute("aria-pressed", String(btn.dataset.mode === live.dataset.mode));
         btn.addEventListener("click", () => {
           live.dataset.mode = btn.dataset.mode;
+          load(live); // a poster can't change size, so show the real site
           live.querySelectorAll(".live-modes button").forEach((b) =>
             b.setAttribute("aria-pressed", String(b === btn)));
           layout();
@@ -324,17 +324,6 @@
       });
     });
 
-    // --- floating shapes drift and turn as you scroll ---
-    gsap.utils.toArray(".shapes").forEach((box) => {
-      box.querySelectorAll(".shape").forEach((el, i) => {
-        const depth = 40 + (i % 3) * 45;
-        gsap.fromTo(el, { y: depth, rotate: 0 }, {
-          y: -depth, rotate: i % 2 ? -40 : 50, ease: "none",
-          scrollTrigger: { trigger: box.parentElement, start: "top bottom", end: "bottom top", scrub: true },
-        });
-      });
-    });
-
     // Recalculate after images and live frames settle.
     window.addEventListener("load", () => ScrollTrigger.refresh());
   }
@@ -400,32 +389,6 @@
     });
   }
 
-  // Thin outline shapes scattered around section headings.
-  // Each section gets one of a few layouts, picked in turn.
-  const SHAPE_LAYOUTS = [
-    [["ring", 96, "auto", "30%", "auto", "6%"], ["square rose", 44, "auto", "16%", "auto", "14%"], ["dot", 12, "3%", "auto", "auto", "30%"], ["ring", 24, "22%", "auto", "auto", "10%"]],
-    [["square", 70, "auto", "5%", "18%"], ["ring rose", 30, "8%", "auto", "auto", "16%"], ["dot", 10, "auto", "26%", "12%"], ["ring", 54, "40%", "auto", "auto", "-2%"]],
-    [["ring rose", 120, "auto", "-2%", "auto", "10%"], ["square", 36, "48%", "auto", "9%"], ["dot", 14, "auto", "12%", "16%"], ["square rose", 22, "30%", "auto", "auto", "12%"]],
-  ];
-  function setupShapes() {
-    // Reading pages stay calm: no floating shapes on articles or case studies.
-    if (document.querySelector(".post, .case-hero")) return;
-    const sections = document.querySelectorAll(".page-hero, .section, .closing");
-    sections.forEach((section, n) => {
-      if (section.querySelector(":scope > .shapes")) return;
-      const box = document.createElement("div");
-      box.className = "shapes";
-      box.setAttribute("aria-hidden", "true");
-      SHAPE_LAYOUTS[n % SHAPE_LAYOUTS.length].forEach(([kind, size, left, right, top, bottom]) => {
-        const el = document.createElement("i");
-        el.className = "shape " + kind;
-        el.style.setProperty("--s", size + "px");
-        Object.assign(el.style, { left, right, top: top || "auto", bottom: bottom || "auto" });
-        box.appendChild(el);
-      });
-      section.prepend(box);
-    });
-  }
   function splitHeroName() {
     const name = document.querySelector(".hero-name");
     if (!name) return;

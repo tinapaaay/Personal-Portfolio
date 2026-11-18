@@ -6,7 +6,6 @@ description: Personal portfolio of a front-end developer — projects shown as r
 colors:
   primary: "#3D1426"
   secondary: "#7A4459"
-  tertiary: "#C48A9B"
   neutral: "#ECE5DA"
   neutral-2: "#E2D9CB"
   neutral-3: "#D8CDBC"
@@ -261,9 +260,6 @@ components:
   status-dot:
     backgroundColor: "{colors.ok}"
     size: 8px
-  shape-accent:
-    backgroundColor: "{colors.tertiary}"
-    size: 12px
   divider:
     backgroundColor: "{colors.line}"
     height: 1px
@@ -281,7 +277,7 @@ components:
 
 This is a developer's portfolio, and its job is to get out of the way of the work. Every project is shown as the **real, working site** inside a browser frame, so the page around it is deliberately quiet: cream paper, one deep plum, and type doing all the emphasis. A visitor — usually a recruiter or a client skimming between tabs — should feel in the first second that this person is *careful*: nothing extra, everything aligned, and the work is the loudest thing on the screen.
 
-The direction is **Plum Editorial**: magazine-style restraint (big confident headlines, generous space, hairline rules, uppercase captions) in a single warm plum on paper. Personality comes from two editorial gestures only — the Bodoni Moda **TINAPAY** wordmark and the scrolling word stack — and from thin floating shapes around headings.
+The direction is **Plum Editorial**: magazine-style restraint (big confident headlines, generous space, hairline rules, uppercase captions) in a single warm plum on paper. Personality comes from two editorial gestures only — the Bodoni Moda **TINAPAY** wordmark and the scrolling word stack.
 
 **What it gives up:** color and decoration. There is one accent, used as ink and as full dark sections, never as a highlight color sprinkled around. Project sites bring all the color; the portfolio stays neutral so each project's own design reads clearly next to it. Also given up: anything that looks clickable but isn't. Only links and buttons react to hover.
 
@@ -290,7 +286,7 @@ Principles carried over from the original design notes:
 - **Every element earns its place.** No section numbers, no labels that repeat a heading, no extra calls to action.
 - **Hierarchy through type.** Title first, one short line second, quiet details last.
 - **Honest UI.** Only links and buttons react to hover.
-- **Decoration with meaning.** Shapes and wordmarks support the content; they never replace it.
+- **Decoration with meaning.** The wordmark and the plum arch under the portrait support the content. Nothing floats around it just to fill space.
 - **Readable first.** Sans-serif for all reading text. The Bodoni serif is only for wordmarks.
 
 ## Colors
@@ -302,8 +298,7 @@ One plum, one paper, and the inks between them.
 - **On-surface — plum-black ink.** Main text. It is plum pushed almost to black rather than a neutral grey, so the whole page stays in one hue family.
 - **On-surface-article** — a slightly softer ink for long articles, to reduce glare over many paragraphs.
 - **Muted** — secondary text: leads, dates, descriptions. It is the lowest-contrast text pair (about 4.5:1 on cream), so it is never used below body-sm size.
-- **Secondary — dusty plum.** Small category labels and shape outlines: a quieter step of the accent for things that should be noticed last. It is set dark enough to pass 4.5:1 on both cream (6.0:1) and the tinted cream-2 sections (5.4:1), because its labels are small.
-- **Tertiary — rose.** Accent shapes only. Never text, never a button.
+- **Secondary — dusty plum.** Small category labels and the outlined word stack: a quieter step of the accent for things that should be noticed last. It is set dark enough to pass 4.5:1 on both cream (6.0:1) and the tinted cream-2 sections (5.4:1), because its labels are small.
 - **On-dark-muted / on-dark-faint** — cream at 72% and 35% for body text and outlines inside plum sections.
 - **Line / line-light** — hairline dividers on light and dark grounds.
 - **Header** — cream at 86% behind a blur, so the fixed header reads as frosted paper over content.
@@ -345,7 +340,7 @@ Both shadows are tinted with the plum-black ink, not neutral black, and fall str
 - **Code (`code`, 6px)** — inline code and code blocks in articles. All code shares this one small radius, so the 14px card shape stays unique to live previews.
 - **None** — form inputs, which are a single bottom line, and the tinted "Key decisions" cards on case studies, which stay square like paper.
 
-Decorative shapes are 1.5px outlines: rings, rotated squares and small filled dots, in dusty plum, rose on light sections or faint cream on plum. Borders elsewhere are always 1px hairlines.
+Borders are always 1px hairlines.
 
 ## Components
 
@@ -357,7 +352,7 @@ Decorative shapes are 1.5px outlines: rings, rotated squares and small filled do
 
 **Header.** The TINAPAY wordmark left, nav links center, a MENU button on phones. The current page is underlined (`aria-current="page"`). It gains the frosted background and a hairline after scrolling.
 
-**Live preview (`.live`).** A real website in a browser frame, rendered at desktop width and scaled down, with a Desktop/Mobile switch. Each site loads only when someone clicks (or taps) its cover; until then the frame shows a poster image. Never auto-load previews: each one is a whole website, and several running at once made scrolling lag. Previews are never animated with `clip-path` or anything else that forces a repaint of the frame.
+**Live preview (`.live`).** A real website in a browser frame, rendered at desktop width and scaled down, with a Desktop/Mobile switch. Each site loads only when someone clicks (or taps) its cover or uses the Desktop/Mobile switch; until then the frame shows a poster image. Never auto-load previews: each one is a whole website, and several running at once made scrolling lag. Previews are never animated with `clip-path` or anything else that forces a repaint of the frame.
 
 **Form field (`.field`, `input`).** No box: a hairline under the input, a label that floats up on focus, and a plum line that grows across on focus. Invalid fields turn the line and label `error`, show a short message linked with `aria-describedby`, and clear as the visitor types.
 
@@ -365,7 +360,7 @@ Decorative shapes are 1.5px outlines: rings, rotated squares and small filled do
 
 **Project entry (`.feature`).** Category label (`category-label`), title, one short line, up to four tools, then one small button and plain text links.
 
-**Word stack and floating shapes.** Four words in Bodoni Moda; the filled, italic one follows the scroll, the rest are outlined. Shapes drift slowly around section headings. Shapes are switched off on articles and case studies, so reading pages stay calm.
+**Word stack.** Four words in Bodoni Moda; the filled, italic one follows the scroll, the rest are outlined.
 
 **Recruiter actions (`.hero-actions`).** The home hero and the Contact hero each end with the two things a recruiter came for: one solid `button-sm` (View projects, or Email me) and one `text-link` (Download résumé, straight to the PDF). The home hero also states availability with the status dot ("Open to internships from January 2027"). On the home hero the pair stacks vertically, so the link never lands on the plum plinth behind the portrait; on phones the whole block sits above the wordmark and portrait.
 
@@ -379,7 +374,7 @@ Decorative shapes are 1.5px outlines: rings, rotated squares and small filled do
 
 **Touch targets.** On touch screens, small text links (footer links, back links, the case study Live and Code links) get invisible vertical padding, offset by a negative margin, so each tap area is about 44px tall without moving the layout.
 
-**Motion.** One easing for everything, `cubic-bezier(0.2, 0.7, 0.1, 1)`, with three durations: 0.3s for color, 0.45s for movement, 0.8s for larger reveals. Scrolling is native: no smooth-scroll library, so the page follows the wheel instantly. Animate only `transform` and `opacity`, which the browser can hand to the graphics card. Scroll-linked scenes follow the scroll exactly (`scrub: true`) with no catch-up delay, and slides in the pinned project slider glide in straight, without tilting or zooming. Pinning, parallax and floating shapes are all switched off with `prefers-reduced-motion`. **Not animated:** body text, project descriptions and the content inside live previews.
+**Motion.** One easing for everything, `cubic-bezier(0.2, 0.7, 0.1, 1)`, with three durations: 0.3s for color, 0.45s for movement, 0.8s for larger reveals. Scrolling is native: no smooth-scroll library, so the page follows the wheel instantly. Animate only `transform` and `opacity`, which the browser can hand to the graphics card. Scroll-linked scenes follow the scroll exactly (`scrub: true`) with no catch-up delay, and slides in the pinned project slider glide in straight, without tilting or zooming. Pinning and parallax are switched off with `prefers-reduced-motion`. **Not animated:** body text, project descriptions and the content inside live previews.
 
 ## Do's and Don'ts
 
@@ -390,6 +385,6 @@ Decorative shapes are 1.5px outlines: rings, rotated squares and small filled do
 - Do reserve shadows for the live preview. Don't shadow cards, sections or buttons; separate them with a hairline or a tinted section.
 - Do keep muted text at body-sm size or larger; it is already at the AA limit.
 - Don't add section numbers, labels that repeat a heading, or a second call to action.
-- Do use rose only for decorative shapes. Don't use it for text or fills you can click.
+- Don't add floating decorative shapes. They carry no meaning and collide with content.
 - Do set uppercase only on labels, captions and main `.btn` labels, at 0.2em tracking.
 - Do give every new animation a `prefers-reduced-motion` fallback, and never animate reading text.

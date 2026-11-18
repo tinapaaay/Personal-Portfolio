@@ -21,7 +21,7 @@ This is a focused check, not a claim of full WCAG 2.1 AA conformance.
 - **Focus:** every link, button and form field gets a visible 1.5px outline with a 4px offset (`:focus-visible`), plum on cream and cream on plum. Both are well above 3:1 against their background.
 - **Skip link:** "Skip to content" is the first focusable element on each page.
 - **Menu:** the toggle reports `aria-expanded`, its label switches between Menu and Close, and Escape closes it.
-- **Reduced motion:** with `prefers-reduced-motion` on, smooth scrolling is off, reveals show at once, shapes stop floating and the live hosting clips don't autoplay.
+- **Reduced motion:** with `prefers-reduced-motion` on, reveals show at once and the live hosting clips don't autoplay.
 - **If GSAP fails to load:** the page doesn't get the `has-gsap` class, and content fades in on scroll with IntersectionObserver instead. Nothing stays hidden.
 - **Reflow:** no horizontal scrolling at 320px, 390px or 640px wide on Home, About, Projects, Contact or the TrailPeak case study. The home hero's View projects and Download résumé stay visible before the portrait on phones.
 - **Contact form:** every field has a real `<label>`, and errors appear inline, linked to the field with `aria-describedby`. I didn't send a test message.
