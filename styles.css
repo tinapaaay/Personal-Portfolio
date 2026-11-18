@@ -316,6 +316,8 @@ h1, h2, h3 { font-weight: 400; }
 .hero-left { left: var(--gutter); }
 .hero-left .it { font-size: var(--fs-xl); line-height: 1.08; color: var(--plum); }
 .hero-status { margin-top: var(--space-3); font-size: var(--fs-sm); font-weight: 500; }
+/* on narrower desktops, wrap before the line reaches the portrait */
+@media (min-width: 961px) and (max-width: 1180px) { .hero-status { max-width: 13em; } }
 .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-5); margin-top: var(--space-4); }
 /* stacked on the home hero so the link never sits on the plum plinth */
 .hero-left .hero-actions { flex-direction: column; align-items: flex-start; }
@@ -376,8 +378,6 @@ h1, h2, h3 { font-weight: 400; }
   line-height: 1.05;
   letter-spacing: -0.01em;
 }
-.skill-note { margin-top: var(--space-7); color: var(--muted); }
-.skill-note .it { color: var(--plum); font-size: 1.2em; }
 
 /* journey (dark) */
 .journey { overflow: hidden; }
@@ -771,15 +771,19 @@ h1, h2, h3 { font-weight: 400; }
   .about-visual { min-height: 0; height: min(110vw, 620px); }
 }
 
-@media (max-width: 720px) {
+/* Phones and tablets: text first, then wordmark and portrait, so nothing overlaps. */
+@media (max-width: 960px) {
   .hero { min-height: 0; height: auto; display: flex; flex-direction: column; padding-top: 128px; }
   .hero-name { position: relative; top: auto; font-size: 19.5vw; letter-spacing: 0; }
-  .hero-stage { position: relative; height: 128vw; margin-top: -12vw; }
+  .hero-stage { position: relative; height: min(128vw, 760px); margin-top: -12vw; }
   .hero-portrait { height: 100%; }
-  .hero-plinth { width: 120vw; }
+  .hero-plinth { width: min(120vw, 820px); }
   .hero-shadow { width: 60vw; height: 40vw; top: 18%; left: -10%; }
   .hero-left { position: relative; inset: auto; padding: 0 var(--gutter); }
   .hero-left { order: -1; margin-bottom: var(--space-6); }
+}
+
+@media (max-width: 720px) {
 
   .intro-cols { grid-template-columns: 1fr; gap: var(--space-4); }
   .row { grid-template-columns: 1fr; }
@@ -792,7 +796,7 @@ h1, h2, h3 { font-weight: 400; }
   .footer-top { flex-direction: column; align-items: flex-start; }
 }
 
-@media (min-width: 721px) {
+@media (min-width: 961px) {
   .hero-stage { position: absolute; inset: 0; z-index: 1; }
 }
 
@@ -1104,7 +1108,7 @@ a.index-row .soon { color: var(--plum); }
 /* About: résumé + availability */
 .about-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4) var(--space-5); margin-top: var(--space-6); }
 .status { display: inline-flex; align-items: center; gap: var(--space-3); color: var(--plum); }
-.status i { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 4px color-mix(in srgb, var(--ok) 18%, transparent); }
+.status i { flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 4px color-mix(in srgb, var(--ok) 18%, transparent); }
 
 /* Certificates: course list */
 .courses { padding: var(--space-6) 0 var(--space-2); }

@@ -174,7 +174,7 @@
         .from(shadow, { opacity: 0, duration: 2 }, 0.9)
         .from(hero.querySelectorAll(".hero-left > *"), { y: 30, opacity: 0, duration: 1.2, stagger: 0.08 }, 1);
 
-      mm.add("(min-width: 721px)", () => {
+      mm.add("(min-width: 961px)", () => {
         const mid = (chars.length - 1) / 2;
         const first = chars[0];
         const last = chars[chars.length - 1];
