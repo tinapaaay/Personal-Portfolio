@@ -362,7 +362,7 @@ Borders are always 1px hairlines.
 
 **Word stack.** Four words in Bodoni Moda; the filled, italic one follows the scroll, the rest are outlined.
 
-**Recruiter actions (`.hero-actions`).** The home hero and the Contact hero each end with the two things a recruiter came for: one solid `button-sm` (View projects, or Email me) and one `text-link` (Download résumé, straight to the PDF). The home hero also states availability with the status dot ("Open to internships from January 2027"). On the home hero the pair stacks vertically, so the link never lands on the plum plinth behind the portrait; on phones and tablets (960px and below) the whole block sits above the wordmark and portrait, so text never lands on the photo.
+**Recruiter actions (`.hero-actions`).** The home hero and the Contact hero each end with the two things a recruiter came for: one solid `button-sm` (View projects, or Email me) and one `text-link` (Download résumé, straight to the PDF). The home hero also states availability with the status dot ("Open to internships"). On the home hero the pair stacks vertically, so the link never lands on the plum plinth behind the portrait; on phones and tablets (960px and below) the whole block sits above the wordmark and portrait, so text never lands on the photo.
 
 **Home project slider (`.works`).** Three featured projects only, each with a one-sentence summary (what it is and what I did) and direct links: Case study → when one exists, Live site ↗ and Code ↗. The tech stack is left to the Projects page, so the text under each preview fits while the slider is pinned. Everything else lives on the Projects page, named in the closing slide.
 
