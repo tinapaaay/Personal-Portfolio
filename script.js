@@ -166,13 +166,14 @@
       const sides = hero.querySelectorAll(".hero-left");
 
       // Intro and scroll scenes move different layers, so they never collide.
+      // Kept short (about 1.3s): the intro text starts at 0.25s, so a first-time visitor reads right away.
       gsap.timeline({ defaults: { ease } })
-        .from(".site-header", { y: -30, opacity: 0, duration: 1.2 }, 0.2)
-        .from(plinth, { scale: 0.2, duration: 1.8 }, 0)
-        .from(hero.querySelectorAll(".ch-in"), { yPercent: 105, opacity: 0, duration: 1.5, stagger: 0.07 }, 0.15)
-        .from(portrait, { y: 120, opacity: 0, duration: 1.8 }, 0.4)
-        .from(shadow, { opacity: 0, duration: 2 }, 0.9)
-        .from(hero.querySelectorAll(".hero-left > *"), { y: 30, opacity: 0, duration: 1.2, stagger: 0.08 }, 1);
+        .from(".site-header", { y: -30, opacity: 0, duration: 0.8 }, 0.1)
+        .from(plinth, { scale: 0.2, duration: 1.1 }, 0)
+        .from(hero.querySelectorAll(".ch-in"), { yPercent: 105, opacity: 0, duration: 1, stagger: 0.05 }, 0.05)
+        .from(portrait, { y: 120, opacity: 0, duration: 1.1 }, 0.2)
+        .from(shadow, { opacity: 0, duration: 1.2 }, 0.5)
+        .from(hero.querySelectorAll(".hero-left > *"), { y: 30, opacity: 0, duration: 0.8, stagger: 0.06 }, 0.25);
 
       mm.add("(min-width: 961px)", () => {
         const mid = (chars.length - 1) / 2;
