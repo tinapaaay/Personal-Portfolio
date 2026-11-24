@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document title | Christine Joy Espiritu</title>
+  <meta name="author" content="Christine Joy Espiritu">
+  <!-- A working template, not a portfolio page: keep it out of search results. -->
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/x-icon" href="favicon_io/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500&family=Plus+Jakarta+Sans:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <!--
+    Plum Editorial: Document. A printable A4 template for papers, reports and reflections.
+    How to use it:
+      1. Copy this file, then replace the header details, title, lead and sections.
+      2. Open it in Chrome and print to PDF (A4, margins "Default", headers and footers off),
+         or run headless Chrome:
+         "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new \
+           --no-pdf-header-footer --virtual-time-budget=8000 \
+           --print-to-pdf="out.pdf" "file://$PWD/my-document.html"
+      3. Change the footer text in @page below to match the document.
+    Like resume.html it does not load styles.css, so it repeats the core tokens from DESIGN.md by value.
+  -->
+  <style>
+    :root {
+      --plum: #3d1426;        /* colors.primary */
+      --plum-2: #7a4459;      /* colors.secondary */
+      --cream: #ece5da;       /* colors.neutral */
+      --ink: #2a161f;         /* colors.on-surface */
+      --ink-article: #3b2a32; /* colors.on-surface-article */
+      --muted: #5f4b54;       /* colors.muted */
+      --line: rgba(61, 20, 38, 0.18); /* colors.line */
+    }
+    @page {
+      size: A4;
+      margin: 20mm 30mm 18mm; /* a 150mm text column keeps lines near 75 characters */
+      @bottom-left { content: "Christine Joy Espiritu · Document title"; font: 500 7.5pt/1 Manrope, sans-serif; letter-spacing: 0.2em; text-transform: uppercase; color: #5f4b54; }
+      @bottom-right { content: counter(page) " / " counter(pages); font: 500 7.5pt/1 Manrope, sans-serif; letter-spacing: 0.2em; color: #5f4b54; }
+    }
+    @page :first { @bottom-left { content: none; } }
+    * { box-sizing: border-box; }
+    html { background: var(--cream); }
+    body { margin: 0; font-family: Manrope, system-ui, sans-serif; font-size: 11pt; line-height: 1.65; color: var(--ink-article); -webkit-font-smoothing: antialiased; }
+
+    /* Screen only: the paper sheet and toolbar, matching resume.html. */
+    .sheet { max-width: 210mm; min-height: 297mm; margin: 24px auto; padding: 20mm 30mm; background: #fffdf9; box-shadow: 0 30px 60px -30px rgba(42, 15, 27, 0.35); }
+    .toolbar { max-width: 210mm; margin: 24px auto 0; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 0 4px; font-size: 13px; }
+    .toolbar a { color: var(--plum); }
+    .toolbar .btn { border: 0; cursor: pointer; background: var(--plum); color: var(--cream); padding: 13px 20px; border-radius: 999px; font: 500 12px/1 Manrope, sans-serif; letter-spacing: 0.2em; text-transform: uppercase; }
+    .toolbar .btn:focus-visible, .toolbar a:focus-visible { outline: 1.5px solid var(--plum); outline-offset: 4px; }
+
+    /* The document. */
+    .doc-header { display: grid; grid-template-columns: 1fr auto; gap: 8px 24px; align-items: end; padding-bottom: 6mm; border-bottom: 2px solid var(--plum); }
+    .who { margin: 0; font-family: "Plus Jakarta Sans", sans-serif; font-size: 13pt; font-weight: 600; letter-spacing: -0.02em; color: var(--ink); }
+    .wordmark { display: block; margin-bottom: 4px; font-family: "Bodoni Moda", serif; font-weight: 500; font-size: 13pt; letter-spacing: 0.14em; color: var(--plum); }
+    .meta { margin: 0; padding: 0; list-style: none; text-align: right; font-size: 8.5pt; line-height: 1.6; color: var(--muted); }
+    .label { margin: 9mm 0 2mm; font-size: 7.5pt; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--plum-2); }
+    h1 { margin: 0 0 3mm; font-family: "Plus Jakarta Sans", sans-serif; font-size: 26pt; font-weight: 500; line-height: 1.05; letter-spacing: -0.035em; color: var(--ink); }
+    h1 em { font-style: italic; color: var(--plum); padding-right: 0.1em; }
+    .lead { margin: 0 0 4mm; max-width: 34em; font-size: 11.5pt; line-height: 1.6; color: var(--muted); }
+    h2 { margin: 7mm 0 2mm; padding-top: 4mm; border-top: 1px solid var(--line); font-family: "Plus Jakarta Sans", sans-serif; font-size: 14pt; font-weight: 500; line-height: 1.15; letter-spacing: -0.025em; color: var(--ink); break-after: avoid; }
+    p { margin: 0 0 3mm; orphans: 3; widows: 3; }
+    p b { font-weight: 600; color: var(--ink); }
+    ul.list { margin: 0 0 3mm; padding-left: 5mm; }
+    ul.list li { margin-bottom: 1mm; }
+    .nowrap { white-space: nowrap; } /* URLs and other things that must not break across lines */
+
+    @media print {
+      html, body { background: #fff; }
+      .toolbar { display: none; }
+      .sheet { margin: 0; padding: 0; max-width: none; min-height: 0; box-shadow: none; background: none; }
+    }
+    @media (max-width: 720px) {
+      .sheet { margin: 12px; padding: 20px; min-height: 0; }
+      .doc-header { grid-template-columns: 1fr; }
+      .meta { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <a href="index.html">← Back to portfolio</a>
+    <button class="btn" type="button" onclick="window.print()">Print or save PDF</button>
+  </div>
+
+  <main class="sheet">
+    <header class="doc-header">
+      <p class="who"><span class="wordmark">TINAPAY</span>Christine Joy Espiritu</p>
+      <ul class="meta">
+        <li>Course or assignment name</li>
+        <li>Event, team or section</li>
+        <li>Month Day, Year</li>
+      </ul>
+    </header>
+
+    <p class="label">Document type</p>
+    <h1>Title with one <em>emphasized</em> phrase</h1>
+    <p class="lead">One or two sentences that say what this document covers and why it matters.</p>
+
+    <h2>First section</h2>
+    <p>Body text is Manrope in the softer article ink, left-aligned, never justified. Use curly quotes (“like this”), and wrap a URL in <span class="nowrap">span.nowrap</span> so it never breaks in two.</p>
+    <p><b>A bold lead-in.</b> Use a short bold phrase to start a paragraph that covers one named item, like a project, an issue or a talk.</p>
+
+    <h2>Second section</h2>
+    <p>Section headings are Plus Jakarta Sans with a hairline above. They are larger than bold lead-ins, so the outline of the paper reads at a glance. The small plum capitals are kept for the one label above the title.</p>
+    <ul class="list">
+      <li>Use a list only for items that are truly parallel.</li>
+      <li>Otherwise, write in sentences.</li>
+    </ul>
+  </main>
+</body>
+</html>

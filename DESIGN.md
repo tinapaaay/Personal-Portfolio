@@ -370,6 +370,8 @@ Borders are always 1px hairlines.
 
 **Résumé page.** `resume.html` is a standalone, printable A4 sheet with its own inline styles; it does not load `styles.css`. It repeats the core tokens (cream, plum, ink, muted, line) by value, so when a token changes, update that page's `:root` too. Its toolbar button follows the uppercase `.btn` style.
 
+**Document (Plum Editorial: Document).** `document-template.html` is the printable A4 template for papers, reports and reflections, so school and work documents carry the same identity as the site and résumé. Like the résumé it is standalone, repeats the core tokens by value and is marked `noindex`. The header matches the résumé: the Bodoni Moda TINAPAY wordmark over the name in Plus Jakarta Sans, document details right-aligned in `muted`, and a 2px plum rule. Below it: one uppercase `category-label` naming the document type (the only caps label on the page), a Plus Jakarta Sans title with one italic plum phrase, and a `lead`. Section headings are Plus Jakarta Sans at about 14pt above a hairline, larger than the bold lead-ins inside paragraphs, so each level of the outline is heavier than the one below it. Body text is Manrope 11pt in `on-surface-article`, left-aligned, never justified, in a 150mm column (30mm side margins) so lines stay near 75 characters. Use curly quotes, and wrap URLs in `.nowrap` so they never break in two. Page numbers and a running title sit in the bottom margin in uppercase `muted` at 7.5pt; that print furniture is the one place muted text goes below body-sm. On screen the page shows as a sheet on cream with a "Print or save PDF" button; printing removes both.
+
 **Focus.** A 1.5px plum outline, 4px off the element; cream inside plum sections.
 
 **Touch targets.** On touch screens, small text links (footer links, back links, the case study Live and Code links) get invisible vertical padding, offset by a negative margin, so each tap area is about 44px tall without moving the layout.
@@ -383,7 +385,7 @@ Borders are always 1px hairlines.
 - Do use one `.btn` per spot and make every other action a `.text-link`. Don't put two solid buttons side by side, and don't use uppercase, letter-spaced links.
 - Don't make anything react to hover unless it is a link or a button.
 - Do reserve shadows for the live preview. Don't shadow cards, sections or buttons; separate them with a hairline or a tinted section.
-- Do keep muted text at body-sm size or larger; it is already at the AA limit.
+- Do keep muted text at body-sm size or larger; it is already at the AA limit. The only exception is print furniture (page numbers and running titles) in the document template.
 - Don't add section numbers, labels that repeat a heading, or a second call to action.
 - Don't add floating decorative shapes. They carry no meaning and collide with content.
 - Do set uppercase only on labels, captions and main `.btn` labels, at 0.2em tracking.

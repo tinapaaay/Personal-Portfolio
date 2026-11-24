@@ -23,6 +23,7 @@ This project is part of the [Personal Portfolio project on roadmap.sh](https://r
 - Case studies for Little Feelings and CSS Casebook, and a first article on building the live previews
 - Contact form that sends real messages through FormSubmit, with an email fallback
 - Printable résumé page and one-page PDF download
+- Branded document template ([document-template.html](document-template.html)) for papers and reports: copy it, fill it in, and print to PDF in the same plum editorial style (see "Document" in [DESIGN.md](DESIGN.md))
 - Share image and Open Graph tags for link previews
 - Live previews load only on tap on phones and with data saver on
 - Full-screen plum mobile menu and responsive layout for desktop and mobile
