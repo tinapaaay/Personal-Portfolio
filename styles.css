@@ -381,14 +381,6 @@ h1, h2, h3 { font-weight: 400; }
 
 /* journey (dark) */
 .journey { overflow: hidden; }
-.journey .bowl {
-  position: absolute;
-  right: -12vw; top: -18vw;
-  width: 46vw; aspect-ratio: 1;
-  border-radius: 50%;
-  border: 1px solid var(--line-light);
-  pointer-events: none;
-}
 .cert-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
